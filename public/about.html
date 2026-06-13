@@ -1,171 +1,170 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Nosotros y Contacto - AuraDesign Studio</title>
+<title>About &amp; Contact - AuraDesign Studio</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="js/tailwind-config.js"></script>
+<link href="css/tailwind.css" rel="stylesheet"/>
 <link href="css/styles.css" rel="stylesheet"/>
-<!-- Evita el parpadeo de carga: main.js revela el contenido cuando los estilos están listos -->
+<!-- Prevents the loading flash: main.js reveals the content once the styles are ready -->
 <style>html:not(.app-ready) main,html:not(.app-ready) footer{visibility:hidden}</style>
 </head>
 <body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
-<!-- Navegación -->
+<!-- Navigation -->
 <header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
 <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[80px]">
 <a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="index.html">AuraDesign</a>
 <nav class="hidden md:flex gap-stack-md font-body-md text-body-md uppercase tracking-wider" id="main-nav">
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="services.html" href="services.html">Servicios</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="services.html" href="services.html">Services</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="about.html" href="about.html">About</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contacto</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contact</a>
 </nav>
-<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Comenzar</a>
-<button aria-label="Abrir menú" class="md:hidden text-primary" id="mobile-menu-toggle">
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Get Started</a>
+<button aria-label="Open menu" class="md:hidden text-primary" id="mobile-menu-toggle">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>
-<!-- Menú móvil -->
+<!-- Mobile menu -->
 <nav class="hidden-menu md:hidden absolute top-full left-0 w-full bg-surface border-t border-outline-variant flex flex-col px-margin-mobile py-stack-sm gap-stack-sm shadow-ambient-1" id="mobile-menu">
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="services.html" href="services.html">Servicios</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="services.html" href="services.html">Services</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="about.html" href="about.html">About</a>
 <a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="about.html#contacto">Contacto</a>
-<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Comenzar</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="about.html#contacto">Contact</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Get Started</a>
 </nav>
 </header>
 <main class="pt-[80px]">
-<!-- Sección Hero: Misión y Filosofía -->
+<!-- Hero section: Mission and Philosophy -->
 <section class="px-margin-mobile md:px-margin-desktop py-section-y max-w-container-max mx-auto fade-in-up">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="col-span-1 md:col-span-8 md:col-start-3 text-center">
 <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-md">
-                        Arquitectura de la claridad digital.
+                        The architecture of digital clarity.
                     </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-                        En AuraDesign creemos que la verdadera elegancia reside en la integridad estructural absoluta. Eliminamos lo innecesario para revelar el propósito central de tu marca, creando experiencias digitales tan confiables como refinadas. Nuestra misión es cerrar la brecha entre los requisitos empresariales rigurosos y un diseño excepcional y respirable.
+                        At AuraDesign, we believe true elegance lies in absolute structural integrity. We strip away the unnecessary to reveal your brand's core purpose, crafting digital experiences that are as reliable as they are refined. Our mission is to bridge the gap between rigorous business requirements and exceptional, breathable design.
                     </p>
 </div>
 </div>
 </section>
-<!-- Bento Grid: El Equipo y la Cultura -->
+<!-- Bento Grid: Team and Culture -->
 <section class="mx-margin-mobile md:mx-margin-desktop my-section-y max-w-container-max xl:mx-auto fade-in-up delay-100 bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)] border border-surface-variant p-margin-mobile md:p-margin-desktop">
 <div class="mb-stack-lg">
-<h2 class="font-headline-xl text-headline-xl text-primary mb-base">Las Mentes Detrás de la Estructura</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Un colectivo de minimalistas estructurales y perfeccionistas técnicos.</p>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-base">The Minds Behind the Structure</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">A collective of structural minimalists and technical perfectionists.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter grid-rows-[auto_auto]">
-<!-- Arquitecta Líder -->
+<!-- Lead Architect -->
 <div class="col-span-1 md:col-span-8 row-span-2 min-h-[420px] glow-card group relative overflow-hidden rounded-lg bg-surface-container-low border border-surface-variant hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out">
-<img alt="Retrato de la diseñadora líder" class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGHI2UPUOwlqCScuAhXb_1kz-bu4QeYYW-TXOnCPaatzxB5WuhGuMQ85s7PacoO_UDTzqEQ5ENYdPmk-XZfhvHTwGsFROh5Qp2Kujt5ppMTc5hEvlfTJqxFqhVmZ_n075SD9rOxo5ClErcsuO1N4Pmpt0aDbwm4po0HXXC8-rT9BP24R0s6p-NrbvLicO2bTq6SnKRhhY5a1DrAZtFQwRT1ejT4qy55BSGQcon6qLZgyv9M_pkvqTVRQA7KVng6ZtQ2R9bVSNrclw"/>
+<img alt="Portrait of the lead designer" class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGHI2UPUOwlqCScuAhXb_1kz-bu4QeYYW-TXOnCPaatzxB5WuhGuMQ85s7PacoO_UDTzqEQ5ENYdPmk-XZfhvHTwGsFROh5Qp2Kujt5ppMTc5hEvlfTJqxFqhVmZ_n075SD9rOxo5ClErcsuO1N4Pmpt0aDbwm4po0HXXC8-rT9BP24R0s6p-NrbvLicO2bTq6SnKRhhY5a1DrAZtFQwRT1ejT4qy55BSGQcon6qLZgyv9M_pkvqTVRQA7KVng6ZtQ2R9bVSNrclw"/>
 <div class="absolute bottom-0 left-0 w-full p-stack-md bg-gradient-to-t from-background to-transparent">
-<div class="inline-block px-3 py-1 mb-2 bg-surface-container-lowest font-label-md text-label-md text-primary uppercase tracking-wider rounded-full shadow-sm">Fundadora y Arquitecta Líder</div>
+<div class="inline-block px-3 py-1 mb-2 bg-surface-container-lowest font-label-md text-label-md text-primary uppercase tracking-wider rounded-full shadow-sm">Founder &amp; Lead Architect</div>
 <h3 class="font-headline-lg text-headline-lg text-primary">Elena Rostova</h3>
 </div>
 </div>
-<!-- Miembro del equipo 2 -->
+<!-- Team member 2 -->
 <div class="col-span-1 md:col-span-4 glow-card group relative overflow-hidden rounded-lg bg-surface-container-low border border-surface-variant hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out">
-<img alt="Director Técnico" class="w-full h-[200px] object-cover object-top mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoZ1HQwvqhJ-YmZ9aUPFNJ1HPebkWSRssz10Nl_9OyAx2gwcmjqVAqSNzUF0Dv6T_P2ipRTat9lgpgurQbCZuLXoiLZHMr5oWI0fSCLqmBwKOM75gWWMGJH_xrSBhl08lHK_861b4ZS7JnAg63Oy2XgkO4qSU5WPPdry8ne_bdN9d82TQyDpILwzNSJA1gpIDnbCxJjoqxmmhnWNLv9R1LxtcsMs-ZHGff7eb2F8KKV_deFbPE-bPcgbDJ7qJsDQa_BHoJT2pH0lQ"/>
+<img alt="Technical Director" class="w-full h-[200px] object-cover object-top mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoZ1HQwvqhJ-YmZ9aUPFNJ1HPebkWSRssz10Nl_9OyAx2gwcmjqVAqSNzUF0Dv6T_P2ipRTat9lgpgurQbCZuLXoiLZHMr5oWI0fSCLqmBwKOM75gWWMGJH_xrSBhl08lHK_861b4ZS7JnAg63Oy2XgkO4qSU5WPPdry8ne_bdN9d82TQyDpILwzNSJA1gpIDnbCxJjoqxmmhnWNLv9R1LxtcsMs-ZHGff7eb2F8KKV_deFbPE-bPcgbDJ7qJsDQa_BHoJT2pH0lQ"/>
 <div class="p-stack-sm">
-<div class="inline-block px-2 py-1 mb-1 bg-surface-container-lowest font-label-md text-label-md text-secondary uppercase tracking-wider rounded-full shadow-sm text-xs">Director Técnico</div>
+<div class="inline-block px-2 py-1 mb-1 bg-surface-container-lowest font-label-md text-label-md text-secondary uppercase tracking-wider rounded-full shadow-sm text-xs">Technical Director</div>
 <h3 class="font-headline-md text-headline-md text-primary">Marcus Vance</h3>
 </div>
 </div>
-<!-- Cultura / Estudio -->
+<!-- Culture / Studio -->
 <div class="col-span-1 md:col-span-4 group relative overflow-hidden rounded-lg bg-primary text-on-primary border border-surface-variant p-stack-md hover:bg-secondary transition-colors duration-200 ease-out flex flex-col justify-between">
 <div>
 <span class="material-symbols-outlined mb-stack-sm text-4xl">architecture</span>
-<h3 class="font-headline-md text-headline-md mb-base">Nuestro Estudio</h3>
-<p class="font-body-sm text-body-sm opacity-80">Ubicado en el corazón del distrito de diseño, nuestro espacio refleja nuestro trabajo: despejado, con propósito e inundado de luz natural.</p>
+<h3 class="font-headline-md text-headline-md mb-base">Our Studio</h3>
+<p class="font-body-sm text-body-sm opacity-80">Located in the heart of the design district, our space reflects our work: uncluttered, purposeful, and flooded with natural light.</p>
 </div>
 <button class="mt-stack-sm font-label-md text-label-md uppercase tracking-wider text-left hover:opacity-70 transition-opacity flex items-center gap-2">
-                        Ver galería <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        View gallery <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </div>
 </div>
 </section>
-<!-- Sección de Contacto -->
+<!-- Contact section -->
 <section class="px-margin-mobile md:px-margin-desktop py-section-y max-w-container-max mx-auto fade-in-up delay-200 scroll-mt-[80px]" id="contacto">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg md:gap-gutter">
-<!-- Formulario de contacto -->
+<!-- Contact form -->
 <div>
-<h2 class="font-headline-xl text-headline-xl text-primary mb-base">Inicia un proyecto.</h2>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-base">Start a project.</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg">
-                        Aceptamos un número limitado de proyectos cada trimestre para garantizar la máxima fidelidad en la ejecución. Por favor, proporciona detalles sobre tus necesidades operativas.
+                        We take on a limited number of projects each quarter to ensure maximum fidelity in execution. Please share details about your operational needs.
                     </p>
 <div class="hidden rounded px-4 py-3 mb-stack-md font-body-md text-body-md" id="form-feedback"></div>
 <form class="space-y-stack-md" id="contact-form" novalidate>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
 <div>
-<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="firstName">Nombre</label>
+<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="firstName">First name</label>
 <input class="w-full bg-surface-container-lowest border border-surface-variant rounded px-4 py-3 font-body-md text-primary focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all duration-200" id="firstName" name="firstName" required type="text"/>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="lastName">Apellido</label>
+<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="lastName">Last name</label>
 <input class="w-full bg-surface-container-lowest border border-surface-variant rounded px-4 py-3 font-body-md text-primary focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all duration-200" id="lastName" name="lastName" required type="text"/>
 </div>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="email">Correo corporativo</label>
+<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="email">Business email</label>
 <input class="w-full bg-surface-container-lowest border border-surface-variant rounded px-4 py-3 font-body-md text-primary focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all duration-200" id="email" name="email" required type="email"/>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="inquiryType">Tipo de consulta</label>
+<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="inquiryType">Inquiry type</label>
 <select class="w-full bg-surface-container-lowest border border-surface-variant rounded px-4 py-3 font-body-md text-primary focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all duration-200 appearance-none" id="inquiryType" name="inquiryType">
-<option value="">Selecciona el alcance del proyecto...</option>
-<option>Rediseño empresarial</option>
-<option>Arquitectura de sistema de diseño</option>
-<option>Consultoría y estrategia</option>
+<option value="">Select project scope...</option>
+<option>Enterprise redesign</option>
+<option>Design system architecture</option>
+<option>Consulting &amp; strategy</option>
 </select>
 </div>
 <div>
-<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="message">Resumen del proyecto</label>
+<label class="block font-label-md text-label-md text-primary uppercase mb-2" for="message">Project summary</label>
 <textarea class="w-full bg-surface-container-lowest border border-surface-variant rounded px-4 py-3 font-body-md text-primary focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all duration-200 resize-none" id="message" name="message" required rows="4"></textarea>
 </div>
 <button class="bg-primary text-on-primary px-8 py-4 rounded hover:bg-secondary transition-colors duration-200 ease-out font-label-md text-label-md uppercase tracking-wider w-full md:w-auto disabled:opacity-60" type="submit">
-                            Enviar consulta
+                            Send inquiry
                         </button>
 </form>
 </div>
-<!-- Detalles de contacto y mapa -->
+<!-- Contact details and map -->
 <div class="flex flex-col gap-stack-lg">
-<!-- Ubicación / Mapa de Google con tema oscuro (filtro CSS sobre el embed) -->
+<!-- Location / Google Map with a dark theme (CSS filter over the embed) -->
 <div class="map-dark w-full h-[300px] bg-surface-variant rounded border border-surface-variant overflow-hidden relative transition-all duration-500">
-<iframe allowfullscreen="" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=London%2C%20United%20Kingdom&amp;z=13&amp;output=embed" title="Mapa de la oficina central en Londres"></iframe>
+<iframe allowfullscreen="" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=London%2C%20United%20Kingdom&amp;z=13&amp;output=embed" title="Map of the London headquarters"></iframe>
 <a class="absolute bottom-4 right-4 z-10 bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out inline-flex items-center gap-2" href="https://www.google.com/maps/search/?api=1&amp;query=100+Structural+Way,+London,+United+Kingdom" rel="noopener" target="_blank">
-<span class="material-symbols-outlined text-sm">location_on</span> Ver ubicación
+<span class="material-symbols-outlined text-sm">location_on</span> View location
 </a>
 </div>
-<!-- Lista de contacto directo -->
+<!-- Direct contact list -->
 <div class="glow-card bg-surface-container-low rounded p-stack-md border border-surface-variant">
-<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm">Contacto directo</h3>
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm">Direct contact</h3>
 <ul class="space-y-stack-sm">
 <li class="flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary mt-1">location_on</span>
 <div>
-<div class="font-label-md text-label-md text-primary uppercase mb-1">Oficina central</div>
-<div class="font-body-md text-body-md text-on-surface-variant">100 Structural Way<br/>Londres, LDN 10010<br/>Reino Unido</div>
+<div class="font-label-md text-label-md text-primary uppercase mb-1">Headquarters</div>
+<div class="font-body-md text-body-md text-on-surface-variant">100 Structural Way<br/>London, LDN 10010<br/>United Kingdom</div>
 </div>
 </li>
 <li class="flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary mt-1">mail</span>
 <div>
-<div class="font-label-md text-label-md text-primary uppercase mb-1">Consultas generales</div>
+<div class="font-label-md text-label-md text-primary uppercase mb-1">General inquiries</div>
 <div class="font-body-md text-body-md text-on-surface-variant">hello@auradesign.agency</div>
 </div>
 </li>
 <li class="flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary mt-1">call</span>
 <div>
-<div class="font-label-md text-label-md text-primary uppercase mb-1">Teléfono</div>
+<div class="font-label-md text-label-md text-primary uppercase mb-1">Phone</div>
 <div class="font-body-md text-body-md text-on-surface-variant">+44 (0) 20 7123 4567</div>
 </div>
 </li>
@@ -175,20 +174,20 @@
 </div>
 </section>
 </main>
-<!-- Pie de página -->
+<!-- Footer -->
 <footer class="bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
 <div class="col-span-1 md:col-span-1">
 <div class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm">AuraDesign</div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                © 2026 AuraDesign Studio. Todos los derechos reservados.
+                © 2026 AuraDesign Studio. All rights reserved.
             </p>
 </div>
 <div class="col-span-1 md:col-span-3 flex flex-wrap gap-stack-md justify-start md:justify-end items-center opacity-80 hover:opacity-100 transition-opacity">
-<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Iniciar proyecto</a>
-<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">Ver portafolio</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Casos de estudio</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Nuestro proceso</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Política de privacidad</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Start a project</a>
+<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">View portfolio</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Case studies</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Our process</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Privacy policy</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">LinkedIn</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Dribbble</a>
 </div>

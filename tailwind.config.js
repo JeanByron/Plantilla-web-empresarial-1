@@ -1,8 +1,10 @@
+/** @type {import('tailwindcss').Config} */
 // Design system futurista oscuro: azules profundos con acentos cian suaves.
 // Varios tonos de superficie llevan alfa (hex de 8 dígitos) para dejar ver el
 // fondo animado de puntos detrás de las secciones.
-tailwind.config = {
-    darkMode: "class",
+// El producto es dark-theme-only: no se configura darkMode ni variantes dark:.
+module.exports = {
+    content: ['./public/**/*.html', './public/js/**/*.js'],
     theme: {
         extend: {
             colors: {
@@ -94,5 +96,10 @@ tailwind.config = {
                 "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
             }
         }
-    }
+    },
+    // Mismos plugins que cargaba el Play CDN (?plugins=forms,container-queries)
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/container-queries')
+    ]
 };

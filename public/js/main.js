@@ -1,27 +1,84 @@
-// Lógica compartida del sitio: menú móvil, portafolio dinámico, formulario de
-// contacto y efectos futuristas (fondo de puntos en onda, halo del cursor,
-// tarjetas iluminadas con tilt 3D, botones magnéticos y reveals al scroll).
+// Shared site logic: mobile menu, dynamic portfolio, contact form, and futuristic
+// effects (wave dot-field background, cursor glow, light-up cards with 3D tilt,
+// magnetic buttons, and scroll reveals).
+
+// ---------- Internationalization (i18n) ----------
+// English is the base language; Spanish is kept as a second locale. Switch the
+// active language by changing LOCALE ('en' or 'es'). All user-facing runtime
+// strings live here so they never appear hardcoded across the file.
+const I18N = {
+    en: {
+        projectsLoadError: 'Could not load projects. Make sure the server is running.',
+        viewCaseStudy: 'View case study',
+        kpiVisitsNote: (delta) => `${delta >= 0 ? '+' : ''}${delta}% vs previous period`,
+        kpiProjectsNote: 'published in the portfolio',
+        kpiInquiriesNote: 'from the contact form',
+        kpiConversionNote: (total) => `of ${total} visits`,
+        donutCenterLabel: 'projects',
+        donutCats: { web: 'Web Design', dev: 'Development', branding: 'Branding' },
+        chartTooltip: (visits, date) => `${visits} visits · ${date}`,
+        inquiriesEmpty: 'No inquiries recorded yet. Those arriving from the contact form will appear here.',
+        tableName: 'Name',
+        tableEmail: 'Email',
+        tableType: 'Type',
+        tableDate: 'Date',
+        inquiryTypeFallback: '—',
+        formSending: 'Sending...',
+        formSubmit: 'Send inquiry',
+        formSuccess: 'Thank you. Your inquiry was sent successfully; we will be in touch soon.',
+        formGenericError: 'An error occurred while submitting the form.',
+        formConnectionError: 'Could not connect to the server. Please try again.'
+    },
+    es: {
+        projectsLoadError: 'No se pudieron cargar los proyectos. Verifica que el servidor esté en ejecución.',
+        viewCaseStudy: 'Ver caso de estudio',
+        kpiVisitsNote: (delta) => `${delta >= 0 ? '+' : ''}${delta}% vs periodo anterior`,
+        kpiProjectsNote: 'publicados en el portafolio',
+        kpiInquiriesNote: 'desde el formulario de contacto',
+        kpiConversionNote: (total) => `sobre ${total} visitas`,
+        donutCenterLabel: 'proyectos',
+        donutCats: { web: 'Diseño Web', dev: 'Desarrollo', branding: 'Branding' },
+        chartTooltip: (visits, date) => `${visits} visitas · ${date}`,
+        inquiriesEmpty: 'Aún no hay consultas registradas. Las que lleguen desde el formulario de contacto aparecerán aquí.',
+        tableName: 'Nombre',
+        tableEmail: 'Correo',
+        tableType: 'Tipo',
+        tableDate: 'Fecha',
+        inquiryTypeFallback: '—',
+        formSending: 'Enviando...',
+        formSubmit: 'Enviar consulta',
+        formSuccess: 'Gracias. Tu consulta fue enviada correctamente; te contactaremos pronto.',
+        formGenericError: 'Ocurrió un error al enviar el formulario.',
+        formConnectionError: 'No se pudo conectar con el servidor. Inténtalo de nuevo.'
+    }
+};
+
+// Active language and matching number/date locale tag.
+const LOCALE = 'en';
+const T = I18N[LOCALE];
+const INTL_LOCALE = LOCALE === 'es' ? 'es-CO' : 'en-US';
+
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
 
-// Posición del ratón compartida entre páginas: se guarda al navegar para que
-// los efectos de luz arranquen instantáneamente donde está el cursor.
+// Mouse position shared across pages: stored on navigation so the light effects
+// start instantly right where the cursor is.
 function loadStoredPointer() {
     try {
         const stored = JSON.parse(sessionStorage.getItem('pointer-pos'));
         if (stored && Number.isFinite(stored.x) && Number.isFinite(stored.y)) return stored;
-    } catch { /* sessionStorage no disponible */ }
+    } catch { /* sessionStorage unavailable */ }
     return null;
 }
 
 function storePointer(x, y) {
     try {
         sessionStorage.setItem('pointer-pos', JSON.stringify({ x, y }));
-    } catch { /* sessionStorage no disponible */ }
+    } catch { /* sessionStorage unavailable */ }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Revela el contenido cuando los estilos ya están listos (anti-parpadeo)
+    // Reveals the content once the styles are ready (anti-flash)
     requestAnimationFrame(() => {
         document.documentElement.classList.add('app-ready');
     });
@@ -41,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveals();
 });
 
-/* ---------- Menú móvil ---------- */
+/* ---------- Mobile menu ---------- */
 function initMobileMenu() {
     const toggle = document.getElementById('mobile-menu-toggle');
     const menu = document.getElementById('mobile-menu');
@@ -54,7 +111,7 @@ function initMobileMenu() {
     });
 }
 
-/* ---------- Estado activo del menú según la vista actual ---------- */
+/* ---------- Active menu state based on the current view ---------- */
 function currentPage() {
     const page = location.pathname.split('/').pop();
     return page === '' ? 'index.html' : page;
@@ -67,13 +124,13 @@ function setActiveNav() {
         link.classList.toggle('text-secondary', active);
         link.classList.toggle('font-bold', active);
         link.classList.toggle('text-on-surface-variant', !active);
-        // El subrayado fijo solo aplica al menú de escritorio
+        // The fixed underline only applies to the desktop menu
         if (link.closest('#main-nav')) {
             link.classList.toggle('border-b-2', active);
             link.classList.toggle('border-secondary', active);
         }
     });
-    // El logo se expande cuando la vista activa es Inicio
+    // The logo expands when the active view is Home
     document.querySelectorAll('header a[href="index.html"]').forEach(logo => {
         logo.classList.toggle('logo-expanded', page === 'index.html');
     });
@@ -88,9 +145,9 @@ function closeMobileMenu() {
     if (icon) icon.textContent = 'menu';
 }
 
-/* ---------- Navegación suave entre vistas ----------
-   Los enlaces internos no recargan la página: se intercambia solo el <main>.
-   El header, el footer y el fondo animado persisten entre vistas. */
+/* ---------- Smooth navigation between views ----------
+   Internal links don't reload the page: only the <main> is swapped.
+   The header, footer, and animated background persist between views. */
 function initRouter() {
     document.addEventListener('click', (e) => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -112,7 +169,7 @@ let navigating = false;
 async function navigateTo(url, push) {
     closeMobileMenu();
 
-    // Misma vista: solo desplazarse (al ancla o arriba del todo)
+    // Same view: just scroll (to the anchor or to the very top)
     if (url.pathname === location.pathname) {
         if (push && url.href !== location.href) history.pushState({}, '', url.href);
         if (url.hash) scrollToHash(url.hash);
@@ -129,7 +186,7 @@ async function navigateTo(url, push) {
         const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
         const newMain = doc.querySelector('main');
         const oldMain = document.querySelector('main');
-        if (!newMain || !oldMain) throw new Error('estructura inesperada');
+        if (!newMain || !oldMain) throw new Error('unexpected structure');
 
         await fadeOutMain(oldMain);
 
@@ -138,7 +195,7 @@ async function navigateTo(url, push) {
         if (push) history.pushState({}, '', url.href);
         setActiveNav();
 
-        // Inicializa solo lo recién insertado: los persistentes tienen guardas
+        // Initialize only what was just inserted: the persistent ones have guards
         initPortfolio();
         initContactForm();
         initDashboard();
@@ -149,7 +206,7 @@ async function navigateTo(url, push) {
         if (url.hash) scrollToHash(url.hash);
         fadeInMain(newMain);
     } catch {
-        // Ante cualquier problema, navegación tradicional como respaldo
+        // On any problem, fall back to traditional navigation
         location.href = url.href;
     } finally {
         navigating = false;
@@ -173,7 +230,7 @@ function scrollToHash(hash) {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
 }
 
-/* ---------- Fondo animado: malla de puntos en onda reactiva al ratón ---------- */
+/* ---------- Animated background: wave dot mesh reactive to the mouse ---------- */
 function initDotField() {
     if (REDUCED_MOTION) return;
 
@@ -186,12 +243,12 @@ function initDotField() {
     const MOUSE_RADIUS = 210;
     let width, height, dots = [];
 
-    // Arranca donde quedó el cursor en la página anterior
+    // Starts where the cursor was on the previous page
     const stored = loadStoredPointer();
     const pointer = stored
         ? { x: stored.x, y: stored.y, tx: stored.x, ty: stored.y, active: true }
         : { x: -9999, y: -9999, tx: -9999, ty: -9999, active: false };
-    // Intensidad de la luz (baja a 0 al salir de la ventana o entrar al mapa)
+    // Light intensity (drops to 0 when leaving the window or entering the map)
     let influence = pointer.active ? 1 : 0;
 
     function resize() {
@@ -210,10 +267,10 @@ function initDotField() {
     window.addEventListener('pointermove', (e) => {
         pointer.tx = e.clientX;
         pointer.ty = e.clientY;
-        // Sobre el mapa la luz se desvanece igual que al salir de la ventana
+        // Over the map the light fades just like when leaving the window
         pointer.active = !(e.target.closest && e.target.closest('.map-dark'));
     });
-    // El iframe del mapa no emite pointermove: la entrada se detecta aquí
+    // The map iframe doesn't emit pointermove: entry is detected here
     document.addEventListener('pointerover', (e) => {
         if (e.target.closest && e.target.closest('.map-dark')) pointer.active = false;
     });
@@ -229,7 +286,7 @@ function initDotField() {
         t += 0.016;
         pointer.x = pointer.tx;
         pointer.y = pointer.ty;
-        // Encendido rápido, desvanecido suave
+        // Quick fade-in, soft fade-out
         influence += ((pointer.active ? 1 : 0) - influence) * (pointer.active ? 0.3 : 0.06);
 
         ctx.clearRect(0, 0, width, height);
@@ -269,7 +326,7 @@ function initDotField() {
     })();
 }
 
-/* ---------- Halo de luz que sigue al cursor ---------- */
+/* ---------- Light glow that follows the cursor ---------- */
 function initCursorGlow() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
@@ -277,7 +334,7 @@ function initCursorGlow() {
     glow.className = 'cursor-glow';
     document.body.appendChild(glow);
 
-    // Arranca donde quedó el cursor en la página anterior
+    // Starts where the cursor was on the previous page
     const stored = loadStoredPointer();
     if (stored) {
         glow.style.transform = `translate(${stored.x}px, ${stored.y}px)`;
@@ -287,23 +344,23 @@ function initCursorGlow() {
 
     window.addEventListener('pointermove', (e) => {
         glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        // Sobre el mapa el halo también se desvanece, como al salir de la ventana
+        // Over the map the glow also fades, like when leaving the window
         glow.style.opacity = (e.target.closest && e.target.closest('.map-dark')) ? '0' : '1';
     });
     document.addEventListener('pointerover', (e) => {
         if (e.target.closest && e.target.closest('.map-dark')) glow.style.opacity = '0';
     });
-    // Al salir de la ventana, el halo se desvanece en su sitio
+    // When leaving the window, the glow fades out in place
     document.addEventListener('pointerleave', () => {
         glow.style.opacity = '0';
     });
 }
 
-/* ---------- Tarjetas: zona iluminada bajo el ratón + inclinación 3D ---------- */
+/* ---------- Cards: lit zone under the mouse + 3D tilt ---------- */
 function initGlowCards() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Delegación: funciona también con tarjetas creadas dinámicamente (portafolio)
+    // Delegation: also works with dynamically created cards (portfolio)
     document.addEventListener('pointermove', (e) => {
         const card = e.target.closest ? e.target.closest('.glow-card') : null;
         if (!card) return;
@@ -327,11 +384,11 @@ function initGlowCards() {
     });
 }
 
-/* ---------- Campos de formulario: luz que sigue al cursor ---------- */
+/* ---------- Form fields: light that follows the cursor ---------- */
 function initFieldGlow() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Delegación: cubre también los campos insertados tras una navegación suave
+    // Delegation: also covers fields inserted after a smooth navigation
     document.addEventListener('pointermove', (e) => {
         const field = e.target.closest && e.target.closest('.field-glow');
         if (!field) return;
@@ -341,11 +398,11 @@ function initFieldGlow() {
     });
 }
 
-/* ---------- Botones: magnetismo, luz bajo el cursor y onda al pulsar ---------- */
+/* ---------- Buttons: magnetism, light under the cursor, and ripple on press ---------- */
 function initButtonEffects() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Los enlaces subrayados (border-b-2) son texto, no botones: sin efectos
+    // Underlined links (border-b-2) are text, not buttons: no effects
     const els = document.querySelectorAll(
         'a[class*="bg-primary"], button[class*="bg-primary"], ' +
         'a[class*="border-primary"]:not([class*="border-b-2"]), ' +
@@ -354,11 +411,11 @@ function initButtonEffects() {
     );
 
     els.forEach(el => {
-        // Evita duplicar listeners tras la navegación suave
+        // Avoids duplicating listeners after smooth navigation
         if (el.dataset.fxBound) return;
         el.dataset.fxBound = '1';
         el.classList.add('magnetic', 'btn-glow');
-        // Variante con colores inversos para botones de fondo claro
+        // Inverted-color variant for light-background buttons
         if (el.className.includes('bg-primary')) {
             el.classList.add('btn-glow-dark');
         }
@@ -370,9 +427,9 @@ function initButtonEffects() {
 
         el.addEventListener('pointermove', (e) => {
             const r = el.getBoundingClientRect();
-            // Magnetismo hacia el cursor
+            // Magnetism toward the cursor
             applyTransform(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
-            // Luz interna siguiendo la punta del ratón
+            // Inner light following the mouse tip
             el.style.setProperty('--mx', `${e.clientX - r.left}px`);
             el.style.setProperty('--my', `${e.clientY - r.top}px`);
         });
@@ -382,7 +439,7 @@ function initButtonEffects() {
             const r = el.getBoundingClientRect();
             applyTransform(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
             spawnRipple(el, e, r);
-            // Reinicia el pulso de color aunque se pulse repetidamente
+            // Restarts the color pulse even on repeated presses
             el.classList.remove('btn-pulse');
             void el.offsetWidth;
             el.classList.add('btn-pulse');
@@ -397,7 +454,7 @@ function initButtonEffects() {
     });
 }
 
-// Onda de color que se expande desde el punto exacto del clic
+// Color ripple that expands from the exact click point
 function spawnRipple(el, e, rect) {
     const size = Math.max(rect.width, rect.height) * 2.2;
     const ripple = document.createElement('span');
@@ -409,13 +466,13 @@ function spawnRipple(el, e, rect) {
     ripple.addEventListener('animationend', () => ripple.remove());
 }
 
-/* ---------- Logo: iluminación negativa limitada a las letras ---------- */
+/* ---------- Logo: negative lighting limited to the letters ---------- */
 function initLogoGlow() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
     document.querySelectorAll('header a[href="index.html"]').forEach(logo => {
         logo.classList.add('logo-glow');
-        // El ::after dibuja una copia exacta del texto a partir de este atributo
+        // The ::after draws an exact copy of the text from this attribute
         logo.dataset.text = logo.textContent.trim();
         logo.addEventListener('pointermove', (e) => {
             const r = logo.getBoundingClientRect();
@@ -425,7 +482,7 @@ function initLogoGlow() {
     });
 }
 
-/* ---------- Menú: cajas con luz inferior que sigue al cursor ---------- */
+/* ---------- Menu: boxes with a bottom light that follows the cursor ---------- */
 function initNavGlow() {
     const links = document.querySelectorAll('header nav a');
     links.forEach(link => {
@@ -438,7 +495,7 @@ function initNavGlow() {
     });
 }
 
-/* ---------- Aparición suave de secciones al hacer scroll ---------- */
+/* ---------- Smooth reveal of sections on scroll ---------- */
 function initReveals() {
     if (REDUCED_MOTION) return;
 
@@ -461,7 +518,7 @@ function initReveals() {
     });
 }
 
-/* ---------- Portafolio dinámico (portfolio.html) ---------- */
+/* ---------- Dynamic portfolio (portfolio.html) ---------- */
 async function initPortfolio() {
     const grid = document.getElementById('portfolio-grid');
     if (!grid) return;
@@ -471,7 +528,7 @@ async function initPortfolio() {
         const res = await fetch('/api/projects');
         projects = await res.json();
     } catch {
-        grid.innerHTML = '<p class="font-body-md text-body-md text-error col-span-full">No se pudieron cargar los proyectos. Verifica que el servidor esté en ejecución.</p>';
+        grid.innerHTML = `<p class="font-body-md text-body-md text-error col-span-full">${T.projectsLoadError}</p>`;
         return;
     }
 
@@ -497,8 +554,8 @@ async function initPortfolio() {
 }
 
 function renderProjects(grid, projects) {
-    // La imagen es el fondo de toda la tarjeta; un espaciador define la altura
-    // y la franja de texto (project-caption) se desvanece al pasar el ratón.
+    // The image is the background of the whole card; a spacer defines the height
+    // and the text strip (project-caption) fades out on hover.
     grid.innerHTML = projects.map(p => `
         <div class="project-card glow-card relative group flex flex-col bg-surface-container-lowest border border-surface-variant shadow-ambient-1 shadow-ambient-2 overflow-hidden transition-all duration-200 ease-out cursor-pointer ${p.wide ? 'md:col-span-2 lg:col-span-2' : ''}">
             <img alt="${escapeHtml(p.imageAlt)}" class="absolute inset-0 w-full h-full object-cover" src="${p.image}"/>

@@ -1,201 +1,200 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Servicios - AuraDesign Studio</title>
+<title>Services - AuraDesign Studio</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="js/tailwind-config.js"></script>
+<link href="css/tailwind.css" rel="stylesheet"/>
 <link href="css/styles.css" rel="stylesheet"/>
-<!-- Evita el parpadeo de carga: main.js revela el contenido cuando los estilos están listos -->
+<!-- Prevents the loading flash: main.js reveals the content once the styles are ready -->
 <style>html:not(.app-ready) main,html:not(.app-ready) footer{visibility:hidden}</style>
 </head>
 <body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
-<!-- Navegación -->
+<!-- Navigation -->
 <header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
 <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[80px]">
 <a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="index.html">AuraDesign</a>
 <nav class="hidden md:flex gap-stack-md font-body-md text-body-md uppercase tracking-wider" id="main-nav">
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="services.html" href="services.html">Servicios</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="services.html" href="services.html">Services</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="about.html" href="about.html">About</a>
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
-<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contacto</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contact</a>
 </nav>
-<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Comenzar</a>
-<button aria-label="Abrir menú" class="md:hidden text-primary" id="mobile-menu-toggle">
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Get Started</a>
+<button aria-label="Open menu" class="md:hidden text-primary" id="mobile-menu-toggle">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>
-<!-- Menú móvil -->
+<!-- Mobile menu -->
 <nav class="hidden-menu md:hidden absolute top-full left-0 w-full bg-surface border-t border-outline-variant flex flex-col px-margin-mobile py-stack-sm gap-stack-sm shadow-ambient-1" id="mobile-menu">
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="services.html" href="services.html">Servicios</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="services.html" href="services.html">Services</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="about.html" href="about.html">About</a>
 <a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
-<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="about.html#contacto">Contacto</a>
-<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Comenzar</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="about.html#contacto">Contact</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Get Started</a>
 </nav>
 </header>
 <main class="pt-[80px]">
-<!-- Sección Hero -->
+<!-- Hero section -->
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg md:py-[128px]">
 <div class="max-w-3xl">
 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-sm">
-                    Arquitectura de la Excelencia Digital
+                    The Architecture of Digital Excellence
                 </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
-                    Entregamos soluciones integrales de extremo a extremo caracterizadas por integridad estructural, precisión impecable e impacto medible en el negocio. Explora nuestras capacidades principales.
+                    We deliver comprehensive end-to-end solutions defined by structural integrity, flawless precision, and measurable business impact. Explore our core capabilities.
                 </p>
 </div>
 </section>
-<!-- Servicios en disposición alternada -->
+<!-- Services in an alternating layout -->
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-[160px] flex flex-col gap-[160px]">
-<!-- Servicio 1: Diseño Web -->
+<!-- Service 1: Web Design -->
 <article class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="col-span-1 md:col-span-7 order-2 md:order-1 relative h-[400px] md:h-[600px] glow-card bg-surface-container rounded-lg overflow-hidden shadow-ambient-1 border border-surface-variant">
-<img alt="Espacio de trabajo minimalista con monitor mostrando wireframes" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs8G4-SFH8ewbnwCCNGlaQzW8y-bv-0TmFUJIc6Q48WAXR_HsT55MOzeIw2Vh2IRunXae0F81hDk36NBOP9MXXJJGjF7n4SCgVEjRB7a39uf9h2chm1WlQ8-6w_aOKYjF_gPvYOhll6KVjMx9w_CoiziDfnmcWtihKK4RsW92-vG2jhLvOcZC2A9SOvCOMFLpwtsLfAGcLvJUTZjPKWO1R0vyk7Em8RVxdA5gCXuTXpM8i-keYAsDp9gY-yqMg0jg31m9gLtAd0"/>
+<img alt="Minimalist workspace with a monitor showing wireframes" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfEs8G4-SFH8ewbnwCCNGlaQzW8y-bv-0TmFUJIc6Q48WAXR_HsT55MOzeIw2Vh2IRunXae0F81hDk36NBOP9MXXJJGjF7n4SCgVEjRB7a39uf9h2chm1WlQ8-6w_aOKYjF_gPvYOhll6KVjMx9w_CoiziDfnmcWtihKK4RsW92-vG2jhLvOcZC2A9SOvCOMFLpwtsLfAGcLvJUTZjPKWO1R0vyk7Em8RVxdA5gCXuTXpM8i-keYAsDp9gY-yqMg0jg31m9gLtAd0"/>
 </div>
 <div class="col-span-1 md:col-span-5 order-1 md:order-2 md:pl-stack-md">
-<span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">01. Diseño Web</span>
-<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Arquitectura y Diseño Digital</h2>
+<span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">01. Web Design</span>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Digital Architecture &amp; Design</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
-                        Construimos sitios web robustos y escalables que actúan como pilar fundamental de tu presencia digital. Nuestro enfoque combina una planificación estratégica rigurosa con ejecución visual de alta fidelidad.
+                        We build robust, scalable websites that serve as the foundational pillar of your digital presence. Our approach combines rigorous strategic planning with high-fidelity visual execution.
                     </p>
 <ul class="space-y-3 mb-stack-lg">
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Frameworks responsivos</span>
+<span class="font-body-md text-body-md text-on-surface">Responsive frameworks</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Optimización de rendimiento</span>
+<span class="font-body-md text-body-md text-on-surface">Performance optimization</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Integración de CMS empresarial</span>
+<span class="font-body-md text-body-md text-on-surface">Enterprise CMS integration</span>
 </li>
 </ul>
 <a class="inline-flex bg-transparent border border-primary text-primary hover:bg-surface-container font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out items-center gap-2 group uppercase" href="about.html#contacto">
-                        Solicitar cotización
+                        Request a quote
                         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 </article>
-<!-- Servicio 2: UI/UX -->
+<!-- Service 2: UI/UX -->
 <article class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="col-span-1 md:col-span-5 md:pr-stack-md">
 <span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">02. UI/UX</span>
-<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Ingeniería de Experiencia de Usuario</h2>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">User Experience Engineering</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
-                        Transformamos sistemas complejos en interfaces intuitivas. Diseñamos recorridos de usuario sin fricción, fundamentados en investigación, datos de comportamiento y una jerarquía visual exacta.
+                        We transform complex systems into intuitive interfaces. We design frictionless user journeys grounded in research, behavioral data, and exact visual hierarchy.
                     </p>
 <ul class="space-y-3 mb-stack-lg">
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Wireframes y prototipos</span>
+<span class="font-body-md text-body-md text-on-surface">Wireframes and prototypes</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Pruebas de usabilidad</span>
+<span class="font-body-md text-body-md text-on-surface">Usability testing</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Creación de sistemas de diseño</span>
+<span class="font-body-md text-body-md text-on-surface">Design system creation</span>
 </li>
 </ul>
 <a class="inline-flex bg-transparent border border-primary text-primary hover:bg-surface-container font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out items-center gap-2 group uppercase" href="about.html#contacto">
-                        Solicitar cotización
+                        Request a quote
                         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 <div class="col-span-1 md:col-span-7 relative h-[400px] md:h-[600px] glow-card bg-surface-container rounded-lg overflow-hidden shadow-ambient-1 border border-surface-variant">
-<img alt="Primer plano de un dispositivo móvil con interfaz de precisión" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgEqnxMTHR1wBjWsosu9mu14mIFbwjv-Go7OKVJRdhosf9bAtieOOnS_Tja9HN5s-a7Xn0XAHAItYtDrWHz-23z_RmGFoWajdnnhlXl4r9nCH8qPjJ_Szmqfn0bPRzfF1IfUdZyc6cKyuzyUsHnLiWi_V2NVCpfh-lgoDDkSZSyQudI6_xoQGkMuc394guv_mOAKskAnRnO3dVhUJUhiBghpVvCKziF5HQPLDiRVv-ABPvVZTwk1__rIGMNq3LUvN313lxr7Mg1n4"/>
+<img alt="Close-up of a mobile device with a precision interface" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgEqnxMTHR1wBjWsosu9mu14mIFbwjv-Go7OKVJRdhosf9bAtieOOnS_Tja9HN5s-a7Xn0XAHAItYtDrWHz-23z_RmGFoWajdnnhlXl4r9nCH8qPjJ_Szmqfn0bPRzfF1IfUdZyc6cKyuzyUsHnLiWi_V2NVCpfh-lgoDDkSZSyQudI6_xoQGkMuc394guv_mOAKskAnRnO3dVhUJUhiBghpVvCKziF5HQPLDiRVv-ABPvVZTwk1__rIGMNq3LUvN313lxr7Mg1n4"/>
 </div>
 </article>
-<!-- Servicio 3: Desarrollo Backend -->
+<!-- Service 3: Backend Development -->
 <article class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="col-span-1 md:col-span-6 order-2 md:order-1 relative h-[400px] md:h-[600px] glow-card bg-surface-container rounded-lg overflow-hidden shadow-ambient-1 border border-surface-variant">
-<img alt="Racks de servidores de alta gama en un centro de datos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi0IqwV8fTudJYzfh8jAku7BZiS8h8lmc1BG92Lfgp8qf3vWxmmnRgZrogHf5JB0b6kAV-4Nyeed5hkP4DMxZzDJFRWg19R2dtTj6XbyzbCkbuZOnIz-8kgf2V8rhk22ZrNGYNq0aC8lRAYq_YCHpr9SxB3k1VCFJI6nmm8-7CE86ejhfoSuZgXqB2l5ZpbmFpREvAvX_Gj40slZrID0zkpemjSz3zKqPCdPZosvVs3PbD4G6mJ_wIrF3tsqABkJF5FL1AOELf730"/>
+<img alt="High-end server racks in a data center" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi0IqwV8fTudJYzfh8jAku7BZiS8h8lmc1BG92Lfgp8qf3vWxmmnRgZrogHf5JB0b6kAV-4Nyeed5hkP4DMxZzDJFRWg19R2dtTj6XbyzbCkbuZOnIz-8kgf2V8rhk22ZrNGYNq0aC8lRAYq_YCHpr9SxB3k1VCFJI6nmm8-7CE86ejhfoSuZgXqB2l5ZpbmFpREvAvX_Gj40slZrID0zkpemjSz3zKqPCdPZosvVs3PbD4G6mJ_wIrF3tsqABkJF5FL1AOELf730"/>
 </div>
 <div class="col-span-1 md:col-span-6 order-1 md:order-2 md:pl-stack-md">
 <span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">03. Backend</span>
-<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Sistemas Estructurales y APIs</h2>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Structural Systems &amp; APIs</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
-                        La base invisible de tu producto digital. Diseñamos arquitecturas backend seguras y de alto rendimiento, junto con APIs personalizadas pensadas para escalar sin fricciones con tu empresa.
+                        The invisible foundation of your digital product. We design secure, high-performance backend architectures alongside custom APIs built to scale seamlessly with your business.
                     </p>
 <ul class="space-y-3 mb-stack-lg">
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Arquitectura de bases de datos</span>
+<span class="font-body-md text-body-md text-on-surface">Database architecture</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Desarrollo de APIs personalizadas</span>
+<span class="font-body-md text-body-md text-on-surface">Custom API development</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Infraestructura en la nube</span>
+<span class="font-body-md text-body-md text-on-surface">Cloud infrastructure</span>
 </li>
 </ul>
 <a class="inline-flex bg-transparent border border-primary text-primary hover:bg-surface-container font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out items-center gap-2 group uppercase" href="about.html#contacto">
-                        Solicitar cotización
+                        Request a quote
                         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 </article>
-<!-- Servicio 4: Estrategia Digital -->
+<!-- Service 4: Digital Strategy -->
 <article class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
 <div class="col-span-1 md:col-span-6 md:pr-stack-md">
-<span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">04. Estrategia</span>
-<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Alineación Estratégica de Crecimiento</h2>
+<span class="inline-block bg-surface-container-low text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider mb-stack-sm">04. Strategy</span>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Strategic Growth Alignment</h2>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
-                        No solo construimos; planificamos. Nuestros servicios de estrategia digital alinean tus inversiones tecnológicas con los objetivos generales del negocio, asegurando una ventaja de mercado sostenible.
+                        We don't just build; we plan. Our digital strategy services align your technology investments with overarching business goals, securing a sustainable market advantage.
                     </p>
 <ul class="space-y-3 mb-stack-lg">
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Análisis de mercado</span>
+<span class="font-body-md text-body-md text-on-surface">Market analysis</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Hoja de ruta tecnológica</span>
+<span class="font-body-md text-body-md text-on-surface">Technology roadmap</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary text-headline-md">check</span>
-<span class="font-body-md text-body-md text-on-surface">Optimización de conversión</span>
+<span class="font-body-md text-body-md text-on-surface">Conversion optimization</span>
 </li>
 </ul>
 <a class="inline-flex bg-transparent border border-primary text-primary hover:bg-surface-container font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out items-center gap-2 group uppercase" href="about.html#contacto">
-                        Solicitar cotización
+                        Request a quote
                         <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-200">arrow_forward</span>
 </a>
 </div>
 <div class="col-span-1 md:col-span-6 relative h-[400px] md:h-[600px] glow-card bg-surface-container rounded-lg overflow-hidden shadow-ambient-1 border border-surface-variant">
-<img alt="Sala de juntas moderna con equipo discutiendo estrategia" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp7HA4-cOV-3_PFRznmIGPoY3UEktWbpjBSLFz8Vk9dCbGXidjufWLsove1dCf3DJdSt_-l-tz2DYyHC2o85IbzFRCX5zQqUT6mX9TQeq8TqD_mFVAMW7VaiIbJsKc_a--ojf1ewEJ4-ficO_1hr3I9FIo2uqNszTLqfzQ2hsu3zbq3CKDOrumznjq4x9cbnrEDk8LY0gGE9R7Pis85OjZ8sgnwrDJ39GseIDpqfnWK1GkBsQrZb8ZPqt_Mxu2eUR_c9WbeMgTeGU"/>
+<img alt="Modern boardroom with a team discussing strategy" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp7HA4-cOV-3_PFRznmIGPoY3UEktWbpjBSLFz8Vk9dCbGXidjufWLsove1dCf3DJdSt_-l-tz2DYyHC2o85IbzFRCX5zQqUT6mX9TQeq8TqD_mFVAMW7VaiIbJsKc_a--ojf1ewEJ4-ficO_1hr3I9FIo2uqNszTLqfzQ2hsu3zbq3CKDOrumznjq4x9cbnrEDk8LY0gGE9R7Pis85OjZ8sgnwrDJ39GseIDpqfnWK1GkBsQrZb8ZPqt_Mxu2eUR_c9WbeMgTeGU"/>
 </div>
 </article>
 </section>
 </main>
-<!-- Pie de página -->
+<!-- Footer -->
 <footer class="bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
 <div class="col-span-1 md:col-span-1">
 <div class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm">AuraDesign</div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                © 2026 AuraDesign Studio. Todos los derechos reservados.
+                © 2026 AuraDesign Studio. All rights reserved.
             </p>
 </div>
 <div class="col-span-1 md:col-span-3 flex flex-wrap gap-stack-md justify-start md:justify-end items-center opacity-80 hover:opacity-100 transition-opacity">
-<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Iniciar proyecto</a>
-<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">Ver portafolio</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Casos de estudio</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Nuestro proceso</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Política de privacidad</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Start a project</a>
+<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">View portfolio</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Case studies</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Our process</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Privacy policy</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">LinkedIn</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Dribbble</a>
 </div>

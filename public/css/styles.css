@@ -4,8 +4,8 @@ html {
 }
 
 /* ---------- CSS crítico del header ----------
-   Pinta el header de inmediato, antes de que Tailwind (CDN) genere sus
-   clases. :where() mantiene la especificidad baja para no pisar a Tailwind. */
+   Pinta el header de inmediato, antes de que se aplique la hoja compilada de
+   Tailwind. :where() mantiene la especificidad baja para no pisar a Tailwind. */
 :where(header[class*="fixed"]) {
     position: fixed;
     top: 0;
