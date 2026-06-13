@@ -3,9 +3,9 @@ html {
     background: #050810;
 }
 
-/* ---------- CSS crítico del header ----------
-   Pinta el header de inmediato, antes de que se aplique la hoja compilada de
-   Tailwind. :where() mantiene la especificidad baja para no pisar a Tailwind. */
+/* ---------- Critical header CSS ----------
+   Paints the header immediately, before the compiled Tailwind sheet applies.
+   :where() keeps specificity low so it never overrides Tailwind. */
 :where(header[class*="fixed"]) {
     position: fixed;
     top: 0;
@@ -168,8 +168,8 @@ header a[href="index.html"].logo-expanded {
     transform: scale(1.18);
 }
 
-/* ---------- Logo: iluminación negativa solo sobre las letras ----------
-   Copia del texto en azul profundo revelada por una máscara que sigue al cursor */
+/* ---------- Logo: negative lighting limited to the letters ----------
+   A deep-blue copy of the text revealed by a cursor-following mask */
 .logo-glow {
     position: relative;
 }
@@ -196,7 +196,7 @@ header a[href="index.html"].logo-expanded {
     opacity: 1;
 }
 
-/* ---------- Navegación: cajas con borde inferior iluminado ---------- */
+/* ---------- Navigation: boxes with a lit bottom border ---------- */
 .nav-box {
     position: relative;
     overflow: hidden;
@@ -205,7 +205,7 @@ header a[href="index.html"].logo-expanded {
     transition: background-color 0.25s ease, color 0.2s ease;
 }
 
-/* En el menú de escritorio la caja se extiende por todo el alto del header */
+/* On the desktop menu the box spans the full header height */
 header nav:not(#mobile-menu) {
     align-self: stretch;
     align-items: stretch;
@@ -223,7 +223,7 @@ header nav:not(#mobile-menu) .nav-box {
     background-color: rgba(88, 196, 255, 0.07);
 }
 
-/* Haz de luz inferior que sigue la posición horizontal del cursor */
+/* Bottom light beam that follows the cursor's horizontal position */
 .nav-box::after {
     content: '';
     position: absolute;
@@ -262,7 +262,7 @@ header nav:not(#mobile-menu) .nav-box {
     opacity: 1;
 }
 
-/* ---------- Tarjetas con iluminación dinámica e inclinación 3D ---------- */
+/* ---------- Cards with dynamic lighting and 3D tilt ---------- */
 .glow-card {
     position: relative;
     overflow: hidden;
@@ -297,7 +297,7 @@ header nav:not(#mobile-menu) .nav-box {
         0 0 45px rgba(70, 160, 255, 0.14);
 }
 
-/* ---------- Botones magnéticos ---------- */
+/* ---------- Magnetic buttons ---------- */
 .magnetic {
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
     will-change: transform;
@@ -346,7 +346,7 @@ header nav:not(#mobile-menu) .nav-box {
     }
 }
 
-/* Pulso de color que se expande alrededor del botón al pulsarlo */
+/* Color pulse that expands around the button on press */
 .btn-pulse {
     animation: btn-pulse 0.55s ease-out;
 }
@@ -416,7 +416,7 @@ button[class*="bg-primary"]:hover {
     box-shadow: 0 0 28px rgba(88, 196, 255, 0.45), 0 0 8px rgba(88, 196, 255, 0.3);
 }
 
-/* ---------- Profundidad ambiental (sombras con brillo frío) ---------- */
+/* ---------- Ambient depth (shadows with a cool glow) ---------- */
 .shadow-ambient-1 {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(88, 196, 255, 0.05);
 }
@@ -453,7 +453,7 @@ button[class*="bg-primary"]:hover {
     opacity: 1;
 }
 
-/* Franja de texto de las tarjetas: se desvanece al pasar el ratón */
+/* Card text strip: fades out on hover */
 .project-caption {
     position: relative;
     background: #0d142a;
@@ -473,7 +473,7 @@ h2 {
     text-shadow: 0 0 30px rgba(88, 196, 255, 0.18);
 }
 
-/* ---------- Imágenes integradas al tema oscuro ---------- */
+/* ---------- Images blended into the dark theme ---------- */
 main img, .project-card img {
     filter: brightness(0.85) contrast(1.03) saturate(0.95);
     transition: filter 0.4s ease;
@@ -483,7 +483,7 @@ main img, .project-card img {
     filter: brightness(1) contrast(1.03) saturate(1.05);
 }
 
-/* ---------- Transición entre vistas (navegación suave sin recarga) ---------- */
+/* ---------- View transition (smooth navigation without reload) ---------- */
 main {
     transition: opacity 0.18s ease, transform 0.18s ease;
 }
@@ -553,7 +553,7 @@ main.view-enter {
     transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---------- Aparición suave de secciones al hacer scroll ---------- */
+/* ---------- Smooth section reveal on scroll ---------- */
 body.js-ready .reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -602,7 +602,24 @@ body.js-ready .reveal.in-view {
     background: linear-gradient(180deg, #2a5ca8, #58c4ffaa);
 }
 
-/* ---------- Accesibilidad: respetar movimiento reducido ---------- */
+/* ---------- Skip link (keyboard accessibility) ---------- */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 12px 20px;
+    background: #58c4ff;
+    color: #02101f;
+    font-weight: 600;
+    border-radius: 0 0 6px 0;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+/* ---------- Accessibility: respect reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     .cursor-glow,
     #dot-field {
@@ -619,7 +636,7 @@ body.js-ready .reveal.in-view {
         transform: none;
     }
 
-    /* El logo expandido se aplica al instante, sin animación */
+    /* The expanded logo applies instantly, without animation */
     header a[href="index.html"] {
         transition: none;
     }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="High-end server racks in a data center">
+  <defs>
+    <linearGradient id="spBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1328"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="spGlow" cx="0.5" cy="0.5" r="0.6"><stop offset="0" stop-color="#58c4ff" stop-opacity="0.32"/><stop offset="1" stop-color="#58c4ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#spBg)"/>
+  <ellipse cx="400" cy="300" rx="330" ry="240" fill="url(#spGlow)"/>
+  <!-- Server racks in perspective -->
+  <g stroke="#223352" stroke-width="2">
+    <rect x="180" y="120" width="150" height="360" rx="8" fill="#0d142a"/>
+    <rect x="470" y="120" width="150" height="360" rx="8" fill="#0d142a"/>
+  </g>
+  <g fill="#16223f">
+    <rect x="195" y="140" width="120" height="34" rx="4"/><rect x="195" y="184" width="120" height="34" rx="4"/>
+    <rect x="195" y="228" width="120" height="34" rx="4"/><rect x="195" y="272" width="120" height="34" rx="4"/>
+    <rect x="195" y="316" width="120" height="34" rx="4"/><rect x="195" y="360" width="120" height="34" rx="4"/>
+    <rect x="485" y="140" width="120" height="34" rx="4"/><rect x="485" y="184" width="120" height="34" rx="4"/>
+    <rect x="485" y="228" width="120" height="34" rx="4"/><rect x="485" y="272" width="120" height="34" rx="4"/>
+    <rect x="485" y="316" width="120" height="34" rx="4"/><rect x="485" y="360" width="120" height="34" rx="4"/>
+  </g>
+  <!-- Status LEDs -->
+  <g fill="#58c4ff"><circle cx="300" cy="157" r="4"/><circle cx="300" cy="201" r="4"/><circle cx="300" cy="245" r="4"/><circle cx="590" cy="157" r="4"/><circle cx="590" cy="245" r="4"/><circle cx="590" cy="333" r="4"/></g>
+  <g fill="#9fd8ff" opacity="0.6"><circle cx="284" cy="289" r="4"/><circle cx="574" cy="201" r="4"/></g>
+  <!-- Connecting data flow -->
+  <path d="M330 300 C400 280 400 320 470 300" fill="none" stroke="#58c4ff" stroke-width="3" stroke-dasharray="6 8" opacity="0.7"/>
+</svg>

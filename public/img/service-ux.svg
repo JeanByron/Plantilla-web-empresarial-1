@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Mobile device with a precision interface">
+  <defs>
+    <linearGradient id="suBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#091022"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="suGlow" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stop-color="#316bf3" stop-opacity="0.4"/><stop offset="1" stop-color="#316bf3" stop-opacity="0"/></radialGradient>
+    <linearGradient id="suScreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11335c"/><stop offset="1" stop-color="#0d142a"/></linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#suBg)"/>
+  <ellipse cx="400" cy="300" rx="300" ry="240" fill="url(#suGlow)"/>
+  <!-- Phone -->
+  <rect x="320" y="90" width="160" height="420" rx="28" fill="#0d142a" stroke="#223352" stroke-width="3"/>
+  <rect x="334" y="120" width="132" height="360" rx="14" fill="url(#suScreen)"/>
+  <rect x="378" y="104" width="44" height="8" rx="4" fill="#223352"/>
+  <!-- UI components -->
+  <g>
+    <circle cx="400" cy="180" r="30" fill="#58c4ff" opacity="0.85"/>
+    <rect x="352" y="230" width="96" height="12" rx="6" fill="#8fd4ff"/>
+    <rect x="352" y="252" width="64" height="10" rx="5" fill="#4a5d85"/>
+    <rect x="352" y="290" width="96" height="56" rx="8" fill="#16223f" stroke="#316bf3"/>
+    <rect x="352" y="360" width="96" height="56" rx="8" fill="#16223f" stroke="#223352"/>
+    <rect x="360" y="440" width="80" height="20" rx="10" fill="#58c4ff"/>
+  </g>
+</svg>

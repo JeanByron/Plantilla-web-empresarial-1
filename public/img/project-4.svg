@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Abstract business intelligence platform artwork">
+  <defs>
+    <linearGradient id="p4bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1328"/>
+      <stop offset="1" stop-color="#050810"/>
+    </linearGradient>
+    <radialGradient id="p4glow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#316bf3" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#316bf3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="p4bars" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#123a5e"/>
+      <stop offset="1" stop-color="#58c4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#p4bg)"/>
+  <ellipse cx="400" cy="300" rx="320" ry="220" fill="url(#p4glow)"/>
+  <!-- Node graph -->
+  <g stroke="#316bf3" stroke-width="1.5" opacity="0.6">
+    <path d="M160 140 L320 240 L520 160 L660 300 L480 420 L260 380 Z"/>
+    <path d="M320 240 L480 420 M520 160 L260 380 M160 140 L660 300"/>
+  </g>
+  <g fill="#58c4ff">
+    <circle cx="160" cy="140" r="8"/><circle cx="320" cy="240" r="10"/><circle cx="520" cy="160" r="8"/>
+    <circle cx="660" cy="300" r="10"/><circle cx="480" cy="420" r="8"/><circle cx="260" cy="380" r="9"/>
+  </g>
+  <!-- Bar group bottom -->
+  <g>
+    <rect x="120" y="470" width="44" height="70" rx="3" fill="url(#p4bars)"/>
+    <rect x="180" y="430" width="44" height="110" rx="3" fill="url(#p4bars)"/>
+    <rect x="240" y="490" width="44" height="50" rx="3" fill="url(#p4bars)"/>
+    <rect x="300" y="450" width="44" height="90" rx="3" fill="url(#p4bars)"/>
+  </g>
+  <!-- Live ticker line -->
+  <path d="M420 510 L470 480 L520 500 L570 460 L620 490 L680 440" fill="none" stroke="#9fd8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

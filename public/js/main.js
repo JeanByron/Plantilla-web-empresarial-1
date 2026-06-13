@@ -27,7 +27,17 @@ const I18N = {
         formSubmit: 'Send inquiry',
         formSuccess: 'Thank you. Your inquiry was sent successfully; we will be in touch soon.',
         formGenericError: 'An error occurred while submitting the form.',
-        formConnectionError: 'Could not connect to the server. Please try again.'
+        formConnectionError: 'Could not connect to the server. Please try again.',
+        demoDataNote: 'Demo data',
+        projectNotFoundTitle: 'Project not found',
+        projectNotFoundBody: "The case study you are looking for doesn't exist or has been moved.",
+        backToPortfolio: 'Back to portfolio',
+        startProjectCta: 'Start a project',
+        caseStudyBlocks: (p) => [
+            { heading: 'The Challenge', body: `${p.title} needed a digital presence that matched its ambition. We mapped the core problem, audited the existing experience, and defined the outcomes that mattered most for the ${p.label.toLowerCase()} brief.` },
+            { heading: 'Our Approach', body: `We designed and built an end-to-end solution—from concept and visual system to a performant, accessible front end—iterating closely with the team to keep the work sharp and on-brand.` },
+            { heading: 'The Results', body: `The launch delivered a faster, clearer, and more memorable experience. ${p.title} now has a foundation built to scale with the business.` }
+        ]
     },
     es: {
         projectsLoadError: 'No se pudieron cargar los proyectos. Verifica que el servidor esté en ejecución.',
@@ -49,7 +59,17 @@ const I18N = {
         formSubmit: 'Enviar consulta',
         formSuccess: 'Gracias. Tu consulta fue enviada correctamente; te contactaremos pronto.',
         formGenericError: 'Ocurrió un error al enviar el formulario.',
-        formConnectionError: 'No se pudo conectar con el servidor. Inténtalo de nuevo.'
+        formConnectionError: 'No se pudo conectar con el servidor. Inténtalo de nuevo.',
+        demoDataNote: 'Datos de demostración',
+        projectNotFoundTitle: 'Proyecto no encontrado',
+        projectNotFoundBody: 'El caso de estudio que buscas no existe o fue movido.',
+        backToPortfolio: 'Volver al portafolio',
+        startProjectCta: 'Inicia un proyecto',
+        caseStudyBlocks: (p) => [
+            { heading: 'El reto', body: `${p.title} necesitaba una presencia digital a la altura de su ambición. Mapeamos el problema central, auditamos la experiencia existente y definimos los resultados más importantes para el proyecto de ${p.label.toLowerCase()}.` },
+            { heading: 'Nuestro enfoque', body: `Diseñamos y construimos una solución integral —del concepto y el sistema visual a un front end accesible y de alto rendimiento—, iterando junto al equipo para mantener el trabajo afinado y fiel a la marca.` },
+            { heading: 'Los resultados', body: `El lanzamiento entregó una experiencia más rápida, clara y memorable. ${p.title} cuenta ahora con una base lista para escalar con el negocio.` }
+        ]
     }
 };
 
@@ -83,11 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.classList.add('app-ready');
     });
     setActiveNav();
+    setCopyrightYear();
     initRouter();
     initMobileMenu();
     initPortfolio();
     initContactForm();
     initDashboard();
+    initProjectDetail();
     initDotField();
     initCursorGlow();
     initGlowCards();
@@ -106,8 +128,10 @@ function initMobileMenu() {
 
     toggle.addEventListener('click', () => {
         menu.classList.toggle('hidden-menu');
+        const open = !menu.classList.contains('hidden-menu');
+        toggle.setAttribute('aria-expanded', String(open));
         const icon = toggle.querySelector('.material-symbols-outlined');
-        if (icon) icon.textContent = menu.classList.contains('hidden-menu') ? 'menu' : 'close';
+        if (icon) icon.textContent = open ? 'close' : 'menu';
     });
 }
 
@@ -141,6 +165,7 @@ function closeMobileMenu() {
     if (!menu || menu.classList.contains('hidden-menu')) return;
     menu.classList.add('hidden-menu');
     const toggle = document.getElementById('mobile-menu-toggle');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
     const icon = toggle && toggle.querySelector('.material-symbols-outlined');
     if (icon) icon.textContent = 'menu';
 }
@@ -196,9 +221,11 @@ async function navigateTo(url, push) {
         setActiveNav();
 
         // Initialize only what was just inserted: the persistent ones have guards
+        setCopyrightYear();
         initPortfolio();
         initContactForm();
         initDashboard();
+        initProjectDetail();
         initButtonEffects();
         initReveals();
 
@@ -518,16 +545,29 @@ function initReveals() {
     });
 }
 
+/* ---------- Dual-mode project loading ----------
+   Tries the Express API first (full-stack deployments); on any failure
+   falls back to the bundled window.PROJECTS_FALLBACK (static deployments). */
+async function loadProjects() {
+    const cfg = window.SITE_CONFIG || {};
+    try {
+        const res = await fetch((cfg.apiBase || '') + '/api/projects');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) return data;
+        throw new Error('empty');
+    } catch {
+        return Array.isArray(window.PROJECTS_FALLBACK) ? window.PROJECTS_FALLBACK : [];
+    }
+}
+
 /* ---------- Dynamic portfolio (portfolio.html) ---------- */
 async function initPortfolio() {
     const grid = document.getElementById('portfolio-grid');
     if (!grid) return;
 
-    let projects = [];
-    try {
-        const res = await fetch('/api/projects');
-        projects = await res.json();
-    } catch {
+    const projects = await loadProjects();
+    if (!projects.length) {
         grid.innerHTML = `<p class="font-body-md text-body-md text-error col-span-full">${T.projectsLoadError}</p>`;
         return;
     }
@@ -557,7 +597,7 @@ function renderProjects(grid, projects) {
     // The image is the background of the whole card; a spacer defines the height
     // and the text strip (project-caption) fades out on hover.
     grid.innerHTML = projects.map(p => `
-        <div class="project-card glow-card relative group flex flex-col bg-surface-container-lowest border border-surface-variant shadow-ambient-1 shadow-ambient-2 overflow-hidden transition-all duration-200 ease-out cursor-pointer ${p.wide ? 'md:col-span-2 lg:col-span-2' : ''}">
+        <a href="project.html?id=${encodeURIComponent(p.id)}" aria-label="${escapeHtml(p.title)} — ${T.viewCaseStudy}" class="project-card glow-card relative group flex flex-col bg-surface-container-lowest border border-surface-variant shadow-ambient-1 shadow-ambient-2 overflow-hidden transition-all duration-200 ease-out cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary ${p.wide ? 'md:col-span-2 lg:col-span-2' : ''}">
             <img alt="${escapeHtml(p.imageAlt)}" class="absolute inset-0 w-full h-full object-cover" src="${p.image}"/>
             <div class="w-full grow ${p.wide ? 'aspect-video' : 'aspect-[4/3]'}"></div>
             <div class="project-caption p-6">
@@ -568,10 +608,10 @@ function renderProjects(grid, projects) {
                 <h3 class="font-headline-md text-headline-md text-on-surface mb-2">${escapeHtml(p.title)}</h3>
                 <p class="font-body-md text-body-md text-on-surface-variant mb-4 ${p.wide ? 'max-w-2xl' : ''}">${escapeHtml(p.description)}</p>
                 <span class="text-secondary-fixed-dim font-label-md text-label-md uppercase tracking-wider flex items-center gap-2">
-                    Ver caso de estudio <span class="material-symbols-outlined">arrow_forward</span>
+                    ${T.viewCaseStudy} <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                 </span>
             </div>
-        </div>
+        </a>
     `).join('');
 }
 
@@ -591,22 +631,32 @@ async function initDashboard() {
     if (!root || root.dataset.init) return;
     root.dataset.init = '1';
 
-    let projects = [];
+    const cfg = window.SITE_CONFIG || {};
+    const projects = await loadProjects();
     let inquiries = [];
+    let demo = false;
     try {
-        [projects, inquiries] = await Promise.all([
-            fetch('/api/projects').then(r => r.json()),
-            fetch('/api/inquiries').then(r => r.json())
-        ]);
-    } catch { /* el dashboard se renderiza igualmente con datos vacíos */ }
+        const headers = {};
+        const key = (() => { try { return sessionStorage.getItem('admin-key'); } catch { return null; } })();
+        if (key) headers['x-admin-key'] = key;
+        const res = await fetch((cfg.apiBase || '') + '/api/inquiries', { headers });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        inquiries = await res.json();
+    } catch {
+        // No backend (static deploy) or protected endpoint: show demo data so
+        // the dashboard never looks empty or broken.
+        inquiries = DEMO_INQUIRIES;
+        demo = true;
+    }
 
     dashState = { range: 7, projects, inquiries, visits: buildVisitSeries(180) };
 
     renderDashboard();
     renderInquiriesTable(inquiries);
     animateSystemBars(root);
+    toggleDemoBadge(root, demo);
 
-    // Selector de rango (7 / 30 / 90 días)
+    // Range selector (7 / 30 / 90 days)
     root.querySelectorAll('[data-range]').forEach(btn => {
         btn.addEventListener('click', () => {
             root.querySelectorAll('[data-range]').forEach(b => {
@@ -628,7 +678,47 @@ async function initDashboard() {
     }
 }
 
-// Serie de visitas determinista (estable entre cargas, sin aleatoriedad)
+// Sample inquiries shown when no live backend is available, so the dashboard
+// always demonstrates the feature. Dates are offsets from "today" at render time.
+const DEMO_INQUIRIES = (() => {
+    const now = Date.now();
+    const day = 86400000;
+    const seed = [
+        { firstName: 'Olivia', lastName: 'Bennett', email: 'olivia.bennett@northpeak.io', inquiryType: 'Web Design', days: 1 },
+        { firstName: 'Marcus', lastName: 'Lindqvist', email: 'm.lindqvist@studioform.se', inquiryType: 'Branding', days: 3 },
+        { firstName: 'Aiko', lastName: 'Tanaka', email: 'aiko@meridianlabs.jp', inquiryType: 'Development', days: 5 },
+        { firstName: 'Daniel', lastName: 'Okafor', email: 'daniel.okafor@vertexhq.com', inquiryType: 'Web Design', days: 8 },
+        { firstName: 'Sofia', lastName: 'Marchetti', email: 'sofia@marchetti.design', inquiryType: 'Branding', days: 12 },
+        { firstName: 'Liam', lastName: 'Connolly', email: 'liam.connolly@brightwave.co', inquiryType: 'Development', days: 16 },
+        { firstName: 'Priya', lastName: 'Nair', email: 'priya.nair@lumastack.in', inquiryType: 'Web Design', days: 19 }
+    ];
+    return seed.map((s, i) => ({
+        id: i + 1,
+        firstName: s.firstName,
+        lastName: s.lastName,
+        email: s.email,
+        inquiryType: s.inquiryType,
+        message: 'Sample inquiry for demonstration.',
+        receivedAt: new Date(now - s.days * day).toISOString()
+    }));
+})();
+
+// Shows/hides the "Demo data" badge on the dashboard.
+function toggleDemoBadge(root, demo) {
+    let badge = root.querySelector('[data-demo-badge]');
+    if (!demo) { if (badge) badge.remove(); return; }
+    if (!badge) {
+        badge = document.createElement('span');
+        badge.dataset.demoBadge = '1';
+        badge.className = 'inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm';
+        const heading = root.querySelector('h1, h2');
+        if (heading) heading.insertAdjacentElement('afterend', badge);
+        else root.prepend(badge);
+    }
+    badge.textContent = T.demoDataNote;
+}
+
+// Deterministic visit series (stable across loads, no randomness)
 function buildVisitSeries(days) {
     const out = [];
     for (let i = 0; i < days; i++) {
@@ -659,10 +749,10 @@ function renderKpis() {
     const delta = prev.length ? Math.round((total - sum(prev)) / sum(prev) * 100) : 0;
     const conversion = total ? Math.min(100, (inquiries.length + 14) / total * 100) : 0;
 
-    setKpi('visits', total, `${delta >= 0 ? '+' : ''}${delta}% vs periodo anterior`, delta >= 0);
-    setKpi('projects', projects.length, 'publicados en el portafolio', true);
-    setKpi('inquiries', inquiries.length, 'desde el formulario de contacto', true);
-    setKpi('conversion', conversion, `sobre ${total.toLocaleString('es-CO')} visitas`, true);
+    setKpi('visits', total, T.kpiVisitsNote(delta), delta >= 0);
+    setKpi('projects', projects.length, T.kpiProjectsNote, true);
+    setKpi('inquiries', inquiries.length, T.kpiInquiriesNote, true);
+    setKpi('conversion', conversion, T.kpiConversionNote(total.toLocaleString(INTL_LOCALE)), true);
 }
 
 function setKpi(key, value, note, positive) {
@@ -677,7 +767,7 @@ function setKpi(key, value, note, positive) {
 
     const decimals = key === 'conversion' ? 1 : 0;
     const suffix = key === 'conversion' ? '%' : '';
-    const format = n => n.toLocaleString('es-CO', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+    const format = n => n.toLocaleString(INTL_LOCALE, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
 
     if (REDUCED_MOTION) {
         el.textContent = format(value);
@@ -737,7 +827,7 @@ function drawLineChart() {
             ctx.lineTo(w - padR, y);
             ctx.stroke();
             ctx.fillStyle = '#9fb2d1';
-            ctx.fillText(Math.round(max - (max - min) * (s / steps)).toLocaleString('es-CO'), 4, y + 4);
+            ctx.fillText(Math.round(max - (max - min) * (s / steps)).toLocaleString(INTL_LOCALE), 4, y + 4);
         }
 
         const count = Math.max(2, Math.ceil(data.length * eased));
@@ -755,7 +845,7 @@ function drawLineChart() {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Línea con resplandor cian
+        // Line with a cyan glow
         ctx.beginPath();
         ctx.moveTo(px(0), py(data[0]));
         for (let i = 1; i < count; i++) ctx.lineTo(px(i), py(data[i]));
@@ -781,7 +871,7 @@ function bindLineHover(canvas, data, px, py) {
         tip.className = 'dash-tooltip';
         wrap.appendChild(tip);
     }
-    // Asignación directa: cada re-render reemplaza el manejador anterior
+    // Direct assignment: each re-render replaces the previous handler
     canvas.onpointermove = (e) => {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -793,7 +883,10 @@ function bindLineHover(canvas, data, px, py) {
         }
         const date = new Date();
         date.setDate(date.getDate() - (data.length - 1 - best));
-        tip.textContent = `${data[best].toLocaleString('es-CO')} visitas · ${date.toLocaleDateString('es-CO', { day: 'numeric', month: 'short' })}`;
+        tip.textContent = T.chartTooltip(
+            data[best].toLocaleString(INTL_LOCALE),
+            date.toLocaleDateString(INTL_LOCALE, { day: 'numeric', month: 'short' })
+        );
         tip.style.left = `${canvas.offsetLeft + px(best)}px`;
         tip.style.top = `${canvas.offsetTop + py(data[best])}px`;
         tip.style.opacity = '1';
@@ -814,9 +907,9 @@ function drawDonut() {
     ctx.scale(dpr, dpr);
 
     const cats = [
-        { key: 'web', label: 'Diseño Web', color: '#58c4ff' },
-        { key: 'dev', label: 'Desarrollo', color: '#316bf3' },
-        { key: 'branding', label: 'Branding', color: '#8fd4ff' }
+        { key: 'web', label: T.donutCats.web, color: '#58c4ff' },
+        { key: 'dev', label: T.donutCats.dev, color: '#316bf3' },
+        { key: 'branding', label: T.donutCats.branding, color: '#8fd4ff' }
     ];
     const counts = cats.map(c => dashState.projects.filter(p => p.categories && p.categories.includes(c.key)).length);
     const total = counts.reduce((a, b) => a + b, 0) || 1;
@@ -850,7 +943,7 @@ function drawDonut() {
     ctx.fillText(String(dashState.projects.length), cx, cy + 4);
     ctx.fillStyle = '#9fb2d1';
     ctx.font = '11px Inter, sans-serif';
-    ctx.fillText('proyectos', cx, cy + 20);
+    ctx.fillText(T.donutCenterLabel, cx, cy + 20);
 
     const legend = document.getElementById('dash-donut-legend');
     if (legend) {
@@ -867,7 +960,7 @@ function renderInquiriesTable(inquiries) {
     if (!wrap) return;
 
     if (!inquiries.length) {
-        wrap.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant py-stack-sm">Aún no hay consultas registradas. Las que lleguen desde el formulario de contacto aparecerán aquí.</p>';
+        wrap.innerHTML = `<p class="font-body-md text-body-md text-on-surface-variant py-stack-sm">${T.inquiriesEmpty}</p>`;
         return;
     }
 
@@ -875,18 +968,18 @@ function renderInquiriesTable(inquiries) {
         <tr class="border-b border-outline-variant/40 hover:bg-surface-container-low transition-colors duration-200">
             <td class="py-3 pr-4 font-body-sm text-body-sm text-on-surface whitespace-nowrap">${escapeHtml(q.firstName)} ${escapeHtml(q.lastName)}</td>
             <td class="py-3 pr-4 font-body-sm text-body-sm text-secondary-fixed-dim">${escapeHtml(q.email)}</td>
-            <td class="py-3 pr-4 font-body-sm text-body-sm text-on-surface-variant">${escapeHtml(q.inquiryType || '—')}</td>
-            <td class="py-3 font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">${new Date(q.receivedAt).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' })}</td>
+            <td class="py-3 pr-4 font-body-sm text-body-sm text-on-surface-variant">${escapeHtml(q.inquiryType || T.inquiryTypeFallback)}</td>
+            <td class="py-3 font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">${new Date(q.receivedAt).toLocaleDateString(INTL_LOCALE, { day: 'numeric', month: 'short' })}</td>
         </tr>`).join('');
 
     wrap.innerHTML = `
         <div class="overflow-x-auto">
         <table class="w-full text-left">
         <thead><tr class="border-b border-outline-variant">
-            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">Nombre</th>
-            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">Correo</th>
-            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">Tipo</th>
-            <th class="py-2 font-label-md text-label-md text-on-surface-variant uppercase">Fecha</th>
+            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">${T.tableName}</th>
+            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">${T.tableEmail}</th>
+            <th class="py-2 pr-4 font-label-md text-label-md text-on-surface-variant uppercase">${T.tableType}</th>
+            <th class="py-2 font-label-md text-label-md text-on-surface-variant uppercase">${T.tableDate}</th>
         </tr></thead>
         <tbody>${rows}</tbody>
         </table>
@@ -906,13 +999,13 @@ function animateSystemBars(root) {
     });
 }
 
-/* ---------- Formulario de contacto (about.html) ---------- */
+/* ---------- Contact form (about.html) ---------- */
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
 
-    // Luz bajo el cursor en los campos, como en los botones
+    // Cursor-following light on the fields, like the buttons
     form.querySelectorAll('input, select, textarea').forEach(el => el.classList.add('field-glow'));
 
     const feedback = document.getElementById('form-feedback');
@@ -922,37 +1015,65 @@ function initContactForm() {
         e.preventDefault();
         feedback.classList.add('hidden');
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Enviando...';
+        submitBtn.textContent = T.formSending;
 
         const payload = {
             firstName: form.firstName.value,
             lastName: form.lastName.value,
             email: form.email.value,
             inquiryType: form.inquiryType.value,
-            message: form.message.value
+            message: form.message.value,
+            // Honeypot: bots fill hidden fields; real users leave it empty.
+            website: form.website ? form.website.value : ''
         };
 
         try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-
-            if (res.ok && data.ok) {
-                showFeedback(feedback, 'Gracias. Tu consulta fue enviada correctamente; te contactaremos pronto.', true);
+            const result = await submitInquiry(payload);
+            if (result.ok) {
+                showFeedback(feedback, T.formSuccess, true);
                 form.reset();
             } else {
-                showFeedback(feedback, (data.errors || ['Ocurrió un error al enviar el formulario.']).join(' '), false);
+                showFeedback(feedback, result.message || T.formGenericError, false);
             }
         } catch {
-            showFeedback(feedback, 'No se pudo conectar con el servidor. Inténtalo de nuevo.', false);
+            showFeedback(feedback, T.formConnectionError, false);
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Enviar consulta';
+            submitBtn.textContent = T.formSubmit;
         }
     });
+}
+
+/* ---------- Dual-mode inquiry submission ----------
+   Static deployments POST to a configured form service (e.g. Formspree);
+   full-stack deployments POST to the bundled Express API. Returns
+   { ok, message } and throws only on a network failure. */
+async function submitInquiry(payload) {
+    const cfg = window.SITE_CONFIG || {};
+
+    if (cfg.formEndpoint) {
+        const res = await fetch(cfg.formEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (res.ok) return { ok: true };
+        let message = '';
+        try {
+            const data = await res.json();
+            message = (data.errors && data.errors.map(e => e.message).join(' ')) || '';
+        } catch { /* non-JSON error response */ }
+        return { ok: false, message };
+    }
+
+    const res = await fetch((cfg.apiBase || '') + '/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (res.ok && data.ok) return { ok: true };
+    return { ok: false, message: (data.errors || []).join(' ') };
 }
 
 function showFeedback(el, message, success) {
@@ -961,4 +1082,62 @@ function showFeedback(el, message, success) {
     el.classList.add(...(success
         ? ['bg-secondary-fixed', 'text-on-secondary-fixed']
         : ['bg-error-container', 'text-on-error-container']));
+}
+
+/* ---------- Dynamic copyright year ---------- */
+function setCopyrightYear() {
+    const year = new Date().getFullYear();
+    document.querySelectorAll('[data-copyright-year]').forEach(el => {
+        el.textContent = year;
+    });
+}
+
+/* ---------- Project case study (project.html) ----------
+   Reads ?id= from the URL and renders the matching project (dual-mode load).
+   Derives a generic challenge/approach/results narrative from the project data. */
+async function initProjectDetail() {
+    const root = document.getElementById('project-detail');
+    if (!root) return;
+
+    const id = new URLSearchParams(location.search).get('id');
+    const projects = await loadProjects();
+    const project = projects.find(p => String(p.id) === String(id));
+
+    if (!project) {
+        root.innerHTML = `
+            <div class="text-center py-stack-2xl">
+                <h1 class="font-display-md text-display-md text-primary mb-4">${T.projectNotFoundTitle}</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">${T.projectNotFoundBody}</p>
+                <a href="portfolio.html" class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 font-label-lg text-label-lg">
+                    ${T.backToPortfolio} <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                </a>
+            </div>`;
+        document.title = `${T.projectNotFoundTitle} · AuraDesign Studio`;
+        return;
+    }
+
+    document.title = `${project.title} · AuraDesign Studio`;
+    const blocks = T.caseStudyBlocks(project);
+    root.innerHTML = `
+        <article class="max-w-5xl mx-auto">
+            <a href="portfolio.html" class="inline-flex items-center gap-2 text-secondary font-label-md text-label-md uppercase tracking-wider mb-6">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> ${T.backToPortfolio}
+            </a>
+            <div class="text-secondary font-label-md text-label-md uppercase tracking-wider mb-3">${escapeHtml(project.label)}</div>
+            <h1 class="font-display-md text-display-md text-primary mb-6">${escapeHtml(project.title)}</h1>
+            <img alt="${escapeHtml(project.imageAlt)}" src="${escapeHtml(project.image)}" width="1200" height="675" class="w-full aspect-video object-cover border border-surface-variant shadow-ambient-1 shadow-ambient-2 mb-10"/>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mb-12">${escapeHtml(project.description)}</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                ${blocks.map(b => `
+                    <section class="bg-surface-container-lowest border border-surface-variant p-6">
+                        <h2 class="font-headline-sm text-headline-sm text-primary mb-3">${b.heading}</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">${b.body}</p>
+                    </section>`).join('')}
+            </div>
+            <div class="mt-16 text-center">
+                <a href="about.html#contacto" class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 font-label-lg text-label-lg">
+                    ${T.startProjectCta} <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                </a>
+            </div>
+        </article>`;
 }

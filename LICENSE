@@ -1,0 +1,54 @@
+AuraDesign Studio — Regular License
+====================================
+
+Copyright (c) 2026 AuraDesign Studio. All rights reserved.
+
+This is a commercial template license. By purchasing or downloading this
+template ("the Item") you ("the Licensee") agree to the terms below.
+
+1. WHAT YOU CAN DO
+   - Use the Item to create ONE single end product (a website or web app),
+     for yourself or for one client.
+   - Modify, adapt, and build upon the Item's code, styles, and assets to
+     fit that end product.
+   - Charge a client for your work in implementing the end product.
+   - Deploy the end product to as many servers/domains as that single end
+     product requires.
+
+2. WHAT YOU CANNOT DO
+   - Resell, redistribute, sublicense, or give away the Item itself (or a
+     modified version of it) as a template, theme, or starter kit.
+   - Include the Item in a "website builder", theme marketplace, or any tool
+     where end users can extract the template.
+   - Use a single license across multiple distinct end products. Buy one
+     license per end product.
+
+3. EXTENDED USE
+   For multiple end products, or to use the Item in a product sold to many
+   end users, please obtain an extended license from the author.
+
+4. NO WARRANTY
+   THE ITEM IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+   OTHER LIABILITY ARISING FROM THE USE OF THE ITEM.
+
+
+THIRD-PARTY ASSETS
+==================
+
+This template bundles only original artwork. The illustrations in
+public/img/ (project-*.svg, team-*.svg, service-*.svg) are original works
+created for this template and are covered by this license as part of the Item.
+
+The template references the following third-party resources, each under its
+own license:
+
+- Inter and Work Sans fonts — SIL Open Font License 1.1 (loaded from Google
+  Fonts). https://fonts.google.com
+- Material Symbols (icon font) — Apache License 2.0 (loaded from Google
+  Fonts). https://fonts.google.com/icons
+- Tailwind CSS — MIT License (used as a build-time dependency).
+- Express — MIT License (optional backend dependency).
+
+The OpenStreetMap embed used on the About page is served by openstreetmap.org
+under the Open Database License; replace it with your own map embed as needed.

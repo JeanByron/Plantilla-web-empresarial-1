@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="A live-style analytics dashboard with custom canvas charts: visits trend, project mix, KPIs, and recent inquiries."/>
+<!-- Replace the placeholder domain below with your own before publishing -->
+<link rel="canonical" href="https://auradesign-studio.example.com/dashboard.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Dashboard — AuraDesign Studio"/>
+<meta property="og:description" content="A live-style analytics dashboard with custom canvas charts: visits trend, project mix, KPIs, and recent inquiries."/>
+<meta property="og:url" content="https://auradesign-studio.example.com/dashboard.html"/>
+<meta property="og:image" content="https://auradesign-studio.example.com/img/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Dashboard — AuraDesign Studio"/>
+<meta name="twitter:description" content="A live-style analytics dashboard with custom canvas charts: visits trend, project mix, KPIs, and recent inquiries."/>
+<meta name="twitter:image" content="https://auradesign-studio.example.com/img/og-image.png"/>
 <title>Dashboard - AuraDesign Studio</title>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -13,8 +25,10 @@
 <link href="css/styles.css" rel="stylesheet"/>
 <!-- Prevents the loading flash: main.js reveals the content once the styles are ready -->
 <style>html:not(.app-ready) main,html:not(.app-ready) footer{visibility:hidden}</style>
+<noscript><style>html main,html footer{visibility:visible!important}</style></noscript>
 </head>
 <body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
+<a class="skip-link" href="#main">Skip to content</a>
 <!-- Navigation -->
 <header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
 <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[80px]">
@@ -27,8 +41,8 @@
 <a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contact</a>
 </nav>
 <a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Get Started</a>
-<button aria-label="Open menu" class="md:hidden text-primary" id="mobile-menu-toggle">
-<span class="material-symbols-outlined">menu</span>
+<button aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-primary" id="mobile-menu-toggle">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
 </button>
 </div>
 <!-- Mobile menu -->
@@ -41,7 +55,7 @@
 <a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Get Started</a>
 </nav>
 </header>
-<main class="pt-[80px]">
+<main id="main" class="pt-[80px]">
 <section class="px-margin-mobile md:px-margin-desktop py-stack-lg md:py-[96px] max-w-container-max mx-auto" id="dashboard-root">
 <!-- Dashboard header -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-sm mb-stack-lg">
@@ -61,7 +75,7 @@
 <div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
 <div class="flex items-center justify-between mb-stack-sm">
 <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Visits</span>
-<span class="material-symbols-outlined text-secondary">monitoring</span>
+<span aria-hidden="true" class="material-symbols-outlined text-secondary">monitoring</span>
 </div>
 <div class="font-headline-lg text-headline-lg text-primary" data-kpi="visits">0</div>
 <p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="visits"></p>
@@ -69,7 +83,7 @@
 <div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
 <div class="flex items-center justify-between mb-stack-sm">
 <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Projects</span>
-<span class="material-symbols-outlined text-secondary">web</span>
+<span aria-hidden="true" class="material-symbols-outlined text-secondary">web</span>
 </div>
 <div class="font-headline-lg text-headline-lg text-primary" data-kpi="projects">0</div>
 <p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="projects"></p>
@@ -77,7 +91,7 @@
 <div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
 <div class="flex items-center justify-between mb-stack-sm">
 <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Inquiries</span>
-<span class="material-symbols-outlined text-secondary">mail</span>
+<span aria-hidden="true" class="material-symbols-outlined text-secondary">mail</span>
 </div>
 <div class="font-headline-lg text-headline-lg text-primary" data-kpi="inquiries">0</div>
 <p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="inquiries"></p>
@@ -85,7 +99,7 @@
 <div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
 <div class="flex items-center justify-between mb-stack-sm">
 <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Conversion</span>
-<span class="material-symbols-outlined text-secondary">percent</span>
+<span aria-hidden="true" class="material-symbols-outlined text-secondary">percent</span>
 </div>
 <div class="font-headline-lg text-headline-lg text-primary" data-kpi="conversion">0</div>
 <p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="conversion"></p>
@@ -161,7 +175,7 @@
 <div class="col-span-1 md:col-span-1">
 <div class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm">AuraDesign</div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                © 2026 AuraDesign Studio. All rights reserved.
+                © <span data-copyright-year>2026</span> AuraDesign Studio. All rights reserved.
             </p>
 </div>
 <div class="col-span-1 md:col-span-3 flex flex-wrap gap-stack-md justify-start md:justify-end items-center opacity-80 hover:opacity-100 transition-opacity">
@@ -169,11 +183,13 @@
 <a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">View portfolio</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Case studies</a>
 <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Our process</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Privacy policy</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">LinkedIn</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Dribbble</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="privacy.html">Privacy policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="https://www.linkedin.com/company/your-company" target="_blank" rel="noopener">LinkedIn</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="https://dribbble.com/your-handle" target="_blank" rel="noopener">Dribbble</a>
 </div>
 </footer>
+<script src="js/site-config.js"></script>
+<script src="js/projects-data.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

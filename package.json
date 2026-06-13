@@ -1,7 +1,19 @@
 {
   "name": "auradesign-studio",
-  "version": "1.0.0",
-  "description": "Sitio web de AuraDesign Studio - frontend + backend (Express)",
+  "version": "1.1.0",
+  "description": "Premium dark-themed agency & portfolio website template with interactive canvas effects, SPA navigation, an analytics dashboard, and dual static / Node-Express deployment.",
+  "keywords": [
+    "template",
+    "agency",
+    "portfolio",
+    "tailwind",
+    "dark-theme",
+    "express",
+    "spa",
+    "landing-page"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Your Name <you@example.com>",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",

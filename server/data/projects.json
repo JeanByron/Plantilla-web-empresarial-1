@@ -2,11 +2,11 @@
   {
     "id": 1,
     "title": "Nexus Financial",
-    "label": "Web y Desarrollo",
+    "label": "Web & Development",
     "categories": ["web", "dev"],
-    "description": "Renovación completa de una aplicación bancaria heredada, enfocada en paneles centrados en el usuario y flujos transaccionales optimizados.",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDnUNmlzo67nq0mXZabIG-XC-xoZAaYL2K0ahJ2uj4C__Gz1qCkD2wYJohZLqotPOO3Tze5rYWqn0agBSXO_FnEPiEC790wek0xChHMOl9VPf69mow7gyAy6fWRFMtpBKfHFIP7IMj74JN4u9BmG3kLvvQnd-7jioSzuGvRWgp5zaoOL06BygbNWsHFLE9DlMpol5r-Z601t0yyoXXYVaX7-KqLCqlzWNmjAvBSopQcJF4zrHNRMXGa359Zg6dG8ciaNknz3UX5EXE",
-    "imageAlt": "Panel fintech moderno en un monitor de alta resolución",
+    "description": "A full redesign of a legacy banking app, focused on user-centered dashboards and streamlined transactional flows.",
+    "image": "img/project-1.svg",
+    "imageAlt": "Modern fintech dashboard on a high-resolution monitor",
     "wide": false
   },
   {
@@ -14,29 +14,29 @@
     "title": "Lumina Partners",
     "label": "Branding",
     "categories": ["branding"],
-    "description": "Posicionamiento estratégico de marca y sistema de identidad visual para una consultora boutique que opera en mercados globales.",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAiPrjg3ViP8oAdHF0hJkWYLD5JX9jb39JkuZpqeJkDMIbGj9ptFySKnTpTMiMtIsq_sQXFyvxBI0HtF2tPpujUHtAkR8szY1myLZM7WvdG9YwRtvVWVFhXolkRVaqEvnTB9Qs1Tie8jIUcnzQYrWsBC_KNng80JpP9gjAm__atgkE9o4hpFP0b_2AoFL4WQbuXAcdyLqNRGxskW9c64bawhH7hgu8Rko9rlYXeiOoB4h52BDkDeijuhKNdLQ1Ej08R9ETRZwz5U30",
-    "imageAlt": "Presentación de identidad de marca minimalista",
+    "description": "Strategic brand positioning and a visual identity system for a boutique consultancy operating in global markets.",
+    "image": "img/project-2.svg",
+    "imageAlt": "Minimalist brand identity presentation",
     "wide": false
   },
   {
     "id": 3,
     "title": "Aether Apparel",
-    "label": "Diseño Web",
+    "label": "Web Design",
     "categories": ["web"],
-    "description": "Una experiencia de comercio headless inmersiva y de alto rendimiento, diseñada para resaltar el detalle del producto y simplificar la ruta de compra.",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDJR93afMKBrtteuekZKd-cjoCozKzWVH0W465WBkZXEuxT6oeIqCrMejCihW8Y9lCciEaSrBEXesqisDewV8nM6I0TAMrBSKiFzIbJhTQ0f_1i3GnqMIpPjzLP5lDqGciIs4NdN_aGA3p0p5GnD1z8fPoyFnKsJUOAtolUEVXRLMnWlNP1yw9sECrbEnDsRcvkM1RGhu68Zb7JCz-zyjpD9-_g8jCSeklZ7Tajn8N3Dz5CmZVOOooEgVxInZEPXmpQKl9ZoTR3GHY",
-    "imageAlt": "Sitio e-commerce minimalista en una laptop",
+    "description": "An immersive, high-performance headless commerce experience designed to highlight product detail and simplify the path to purchase.",
+    "image": "img/project-3.svg",
+    "imageAlt": "Minimalist e-commerce site on a laptop",
     "wide": false
   },
   {
     "id": 4,
     "title": "Synthetix BI",
-    "label": "Web y Desarrollo",
+    "label": "Web & Development",
     "categories": ["web", "dev"],
-    "description": "Una robusta plataforma de inteligencia de negocios de nivel empresarial. Diseñamos la arquitectura front-end para manejar grandes volúmenes de datos manteniendo una experiencia fluida a 60fps con visualizaciones interactivas complejas.",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDEaZiJaf6MfpCrBC6v-ftmPxcI9roUm_J3P6geohdJehJTShGiFjbFU-YUdOiArt96s2bGkBTPCx8I9Nn8x95GfGQ2mATV_8Di2CqoLuv5aDAd_51N5hkwoOQsGnXUaEmzHI9XeXFGa_003aWXCdjHgoi8TPyzOQ96cfmiID1xfYb64mulJFngtWz7nnsv7DLz8HEbP5MB9Lg1xh3CCLw1m35KFB5w6N1CUn17i2Yt1KC3ZSecxqizDmllr5guyYZb2C5BviIsKek",
-    "imageAlt": "Plataforma de visualización de datos",
+    "description": "A robust, enterprise-grade business intelligence platform. We architected the front end to handle large data volumes while keeping a smooth 60fps experience with complex interactive visualizations.",
+    "image": "img/project-4.svg",
+    "imageAlt": "Data visualization platform",
     "wide": true
   },
   {
@@ -44,9 +44,9 @@
     "title": "Vanguard Architecture",
     "label": "Branding",
     "categories": ["branding"],
-    "description": "Una renovación de identidad liderada por la tipografía para un estudio de arquitectura premiado, diseñada para reflejar su estilo estructural y brutalista.",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD0dbBJg91LELec2X2UGzHOm-ifU4tijlH43szzMdzTQ1ujvv9CjZdLHBIykVdbHIZMIlzNJ_9SbE39vINUPQKvogh_Yp4x8JqnT-viO6wopA7iJxFg_1D8AtAE0NKuUGBsUdXYNDZoj3xthr-Hko4pOOyLkNh1HP8bGegsYotd7u1Wn2OVbGvlchAAxMRBHBivb5UTuOJKfgIKNVPcFKqui7Lfoo-cPtOIMX-09n8CO0vrwS1iSx3l4WL58SijXBWmCnfHZHHGfh0",
-    "imageAlt": "Papelería de identidad arquitectónica minimalista",
+    "description": "A typography-led identity refresh for an award-winning architecture studio, designed to reflect its structural, brutalist style.",
+    "image": "img/project-5.svg",
+    "imageAlt": "Minimalist architectural identity stationery",
     "wide": false
   }
 ]

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Abstract brand identity artwork">
+  <defs>
+    <linearGradient id="p2bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#091022"/>
+      <stop offset="1" stop-color="#050810"/>
+    </linearGradient>
+    <radialGradient id="p2glow" cx="0.3" cy="0.7" r="0.7">
+      <stop offset="0" stop-color="#316bf3" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#316bf3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="p2ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9fd8ff"/>
+      <stop offset="1" stop-color="#58c4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#p2bg)"/>
+  <circle cx="260" cy="420" r="240" fill="url(#p2glow)"/>
+  <!-- Monogram mark built from concentric and offset rings -->
+  <g fill="none" stroke="url(#p2ring)" stroke-width="3" opacity="0.85">
+    <circle cx="400" cy="300" r="150"/>
+    <circle cx="400" cy="300" r="100" opacity="0.7"/>
+    <circle cx="400" cy="300" r="50" opacity="0.5"/>
+  </g>
+  <path d="M400 150 A150 150 0 0 1 550 300" fill="none" stroke="#58c4ff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M400 450 A150 150 0 0 1 250 300" fill="none" stroke="#9fd8ff" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  <g fill="#58c4ff">
+    <circle cx="400" cy="150" r="9"/><circle cx="550" cy="300" r="9"/>
+    <circle cx="400" cy="450" r="7" fill="#9fd8ff"/><circle cx="250" cy="300" r="7" fill="#9fd8ff"/>
+  </g>
+  <!-- Type baseline accents -->
+  <g opacity="0.5" stroke="#4a5d85" stroke-width="2">
+    <path d="M120 540 H320 M360 540 H520 M560 540 H680"/>
+  </g>
+</svg>

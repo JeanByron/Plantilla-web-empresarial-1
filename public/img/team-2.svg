@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Abstract portrait silhouette">
+  <defs>
+    <linearGradient id="t2bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1228"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="t2glow" cx="0.55" cy="0.35" r="0.55"><stop offset="0" stop-color="#316bf3" stop-opacity="0.5"/><stop offset="1" stop-color="#316bf3" stop-opacity="0"/></radialGradient>
+    <linearGradient id="t2fig" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123a5e"/><stop offset="1" stop-color="#0d142a"/></linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#t2bg)"/>
+  <circle cx="300" cy="230" r="220" fill="url(#t2glow)"/>
+  <path d="M130 600 C130 470 205 405 300 405 C395 405 470 470 470 600 Z" fill="url(#t2fig)"/>
+  <circle cx="300" cy="245" r="92" fill="#16223f" stroke="#9fd8ff" stroke-opacity="0.6" stroke-width="2"/>
+  <g stroke="#9fd8ff" stroke-width="2" opacity="0.45" fill="none"><circle cx="300" cy="245" r="125"/></g>
+  <g fill="#58c4ff" opacity="0.8"><circle cx="190" cy="210" r="4"/><circle cx="410" cy="180" r="4"/><circle cx="180" cy="340" r="4"/></g>
+</svg>
