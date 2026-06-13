@@ -1,5 +1,15 @@
-# Dependencias (se regeneran con npm install)
+# Dependencies (regenerated with npm install)
 node_modules/
 
-# Datos generados en tiempo de ejecución (consultas del formulario)
+# Local environment variables
+.env
+
+# Runtime-generated data (contact form submissions)
 server/data/inquiries.json
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+
+# Netlify local state
+.netlify/

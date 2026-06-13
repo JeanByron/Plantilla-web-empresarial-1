@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1326"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="glow2" cx="0.5" cy="0.0" r="0.8"><stop offset="0" stop-color="#316bf3" stop-opacity="0.35"/><stop offset="1" stop-color="#316bf3" stop-opacity="0"/></radialGradient>
+    <linearGradient id="acc2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58c4ff"/><stop offset="1" stop-color="#9fd8ff"/></linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <ellipse cx="640" cy="40" rx="700" ry="320" fill="url(#glow2)"/>
+  <text x="640" y="110" text-anchor="middle" fill="#9fb2d1" font-size="22" letter-spacing="6" font-weight="600">EVERYTHING INCLUDED</text>
+  <text x="640" y="172" text-anchor="middle" fill="#eaf2ff" font-size="56" font-weight="800" letter-spacing="-1">Built for agencies that mean business</text>
+
+  <!-- 6 feature cards -->
+  <g>
+    <g transform="translate(70,230)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">✦</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">Interactive effects</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">Mouse-reactive dot mesh, glow</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">cards, magnetic buttons — pure</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">vanilla JS, zero libraries.</text>
+    </g>
+    <g transform="translate(460,230)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">▤</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">Analytics dashboard</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">Custom canvas charts: visits</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">line, project donut, animated</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">KPIs — no Chart.js.</text>
+    </g>
+    <g transform="translate(850,230)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">✉</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">Working form</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">Validated contact form with</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">honeypot + rate limiting, via</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">Node or Formspree.</text>
+    </g>
+    <g transform="translate(70,450)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">⇄</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">Dual deployment</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">Ship it 100% static to Netlify,</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">or run the included Express</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">backend. Your call.</text>
+    </g>
+    <g transform="translate(460,450)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">◎</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">SEO + a11y</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">Meta, Open Graph, JSON-LD,</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">sitemap, skip-links and ARIA</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">baked in.</text>
+    </g>
+    <g transform="translate(850,450)">
+      <rect width="360" height="200" rx="14" fill="#0d142a" stroke="#1c2a4a"/>
+      <circle cx="48" cy="56" r="26" fill="#11335c"/><text x="48" y="64" text-anchor="middle" font-size="26" fill="#58c4ff">⌘</text>
+      <text x="92" y="52" fill="#eaf2ff" font-size="26" font-weight="700">EN / ES ready</text>
+      <text x="36" y="110" fill="#9fb2d1" font-size="20">All runtime strings in one i18n</text>
+      <text x="36" y="138" fill="#9fb2d1" font-size="20">dictionary — flip a single</text>
+      <text x="36" y="166" fill="#9fb2d1" font-size="20">LOCALE constant.</text>
+    </g>
+  </g>
+</svg>

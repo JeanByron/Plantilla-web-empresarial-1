@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1326"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="glow3" cx="0.25" cy="0.3" r="0.7"><stop offset="0" stop-color="#58c4ff" stop-opacity="0.32"/><stop offset="1" stop-color="#58c4ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="area3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#58c4ff" stop-opacity="0.4"/><stop offset="1" stop-color="#58c4ff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg3)"/>
+  <circle cx="300" cy="240" r="420" fill="url(#glow3)"/>
+
+  <text x="90" y="120" fill="#9fb2d1" font-size="22" letter-spacing="6" font-weight="600">BUILT-IN ANALYTICS</text>
+  <text x="86" y="186" fill="#eaf2ff" font-size="60" font-weight="800" letter-spacing="-1">A dashboard that</text>
+  <text x="86" y="252" fill="#58c4ff" font-size="60" font-weight="800" letter-spacing="-1">actually charts.</text>
+  <text x="90" y="312" fill="#9fb2d1" font-size="24">Hand-built canvas visualizations.</text>
+  <text x="90" y="346" fill="#9fb2d1" font-size="24">No Chart.js. No dependencies.</text>
+
+  <g font-size="22" fill="#dbe6f7">
+    <g transform="translate(90,430)"><circle cx="8" cy="-7" r="5" fill="#58c4ff"/><text x="28">Visits line chart with hover tooltip</text></g>
+    <g transform="translate(90,472)"><circle cx="8" cy="-7" r="5" fill="#58c4ff"/><text x="28">Animated KPIs and project donut</text></g>
+    <g transform="translate(90,514)"><circle cx="8" cy="-7" r="5" fill="#58c4ff"/><text x="28">Live data or demo mode out of the box</text></g>
+  </g>
+
+  <!-- dashboard panel -->
+  <g transform="translate(680,150)">
+    <rect width="520" height="420" rx="16" fill="#0c1226" stroke="#1c2a4a" stroke-width="2"/>
+    <!-- KPI row -->
+    <g transform="translate(28,30)">
+      <rect width="140" height="90" rx="10" fill="#0d142a" stroke="#1c2a4a"/>
+      <text x="16" y="34" fill="#9fb2d1" font-size="14">VISITS (7D)</text><text x="16" y="68" fill="#eaf2ff" font-size="30" font-weight="800">12,480</text>
+      <rect x="160" width="140" height="90" rx="10" fill="#0d142a" stroke="#1c2a4a"/>
+      <text x="176" y="34" fill="#9fb2d1" font-size="14">PROJECTS</text><text x="176" y="68" fill="#eaf2ff" font-size="30" font-weight="800">24</text>
+      <rect x="320" width="144" height="90" rx="10" fill="#0d142a" stroke="#1c2a4a"/>
+      <text x="336" y="34" fill="#9fb2d1" font-size="14">CONVERSION</text><text x="336" y="68" fill="#8fd4ff" font-size="30" font-weight="800">3.4%</text>
+    </g>
+    <!-- line chart -->
+    <g transform="translate(28,150)">
+      <rect width="300" height="230" rx="10" fill="#0d142a" stroke="#1c2a4a"/>
+      <path d="M20 200 L70 170 L110 182 L160 130 L210 150 L280 96 L280 210 L20 210 Z" fill="url(#area3)"/>
+      <path d="M20 200 L70 170 L110 182 L160 130 L210 150 L280 96" fill="none" stroke="#58c4ff" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="280" cy="96" r="5" fill="#9fd8ff"/>
+    </g>
+    <!-- donut -->
+    <g transform="translate(348,150)">
+      <rect width="144" height="230" rx="10" fill="#0d142a" stroke="#1c2a4a"/>
+      <g transform="translate(72,90)">
+        <circle r="50" fill="none" stroke="#16223f" stroke-width="18"/>
+        <circle r="50" fill="none" stroke="#58c4ff" stroke-width="18" stroke-dasharray="160 314" transform="rotate(-90)"/>
+        <circle r="50" fill="none" stroke="#316bf3" stroke-width="18" stroke-dasharray="90 314" stroke-dashoffset="-160" transform="rotate(-90)"/>
+        <text y="8" text-anchor="middle" fill="#eaf2ff" font-size="26" font-weight="800">24</text>
+      </g>
+      <g font-size="14" fill="#9fb2d1">
+        <text x="20" y="180">● Web</text><text x="20" y="204">● Branding</text>
+      </g>
+    </g>
+  </g>
+</svg>

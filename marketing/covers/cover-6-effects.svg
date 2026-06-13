@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1326"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="cursor6" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#58c4ff" stop-opacity="0.9"/><stop offset="1" stop-color="#58c4ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="acc6" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58c4ff"/><stop offset="1" stop-color="#9fd8ff"/></linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg6)"/>
+
+  <!-- reactive dot mesh, denser/brighter near the "cursor" -->
+  <g fill="#58c4ff">
+    <!-- ambient dots -->
+    <g opacity="0.18">
+      <circle cx="120" cy="120" r="2"/><circle cx="200" cy="120" r="2"/><circle cx="280" cy="120" r="2"/><circle cx="360" cy="120" r="2"/><circle cx="440" cy="120" r="2"/>
+      <circle cx="120" cy="200" r="2"/><circle cx="200" cy="200" r="2"/><circle cx="280" cy="200" r="2"/><circle cx="360" cy="200" r="2"/><circle cx="440" cy="200" r="2"/>
+      <circle cx="120" cy="600" r="2"/><circle cx="200" cy="600" r="2"/><circle cx="280" cy="600" r="2"/><circle cx="360" cy="600" r="2"/>
+      <circle cx="900" cy="600" r="2"/><circle cx="980" cy="600" r="2"/><circle cx="1060" cy="600" r="2"/><circle cx="1140" cy="600" r="2"/>
+    </g>
+    <!-- excited dots near cursor (top-right) -->
+    <g>
+      <circle cx="980" cy="200" r="5" opacity="0.9"/><circle cx="1040" cy="180" r="4" opacity="0.8"/><circle cx="920" cy="240" r="4.5" opacity="0.85"/>
+      <circle cx="1080" cy="240" r="3.5" opacity="0.7"/><circle cx="960" cy="280" r="4" opacity="0.75"/><circle cx="1040" cy="300" r="3" opacity="0.6"/>
+    </g>
+  </g>
+  <circle cx="1010" cy="230" r="140" fill="url(#cursor6)"/>
+  <circle cx="1010" cy="230" r="10" fill="#9fd8ff"/>
+
+  <text x="90" y="300" fill="#9fb2d1" font-size="22" letter-spacing="6" font-weight="600">INTERACTION, NOT DECORATION</text>
+  <text x="86" y="380" fill="#eaf2ff" font-size="68" font-weight="800" letter-spacing="-2">Effects that</text>
+  <text x="86" y="456" fill="url(#acc6)" font-size="68" font-weight="800" letter-spacing="-2">feel premium.</text>
+  <text x="90" y="520" fill="#9fb2d1" font-size="26">A mouse-reactive dot field, cursor glow, 3D-tilt cards,</text>
+  <text x="90" y="556" fill="#9fb2d1" font-size="26">magnetic buttons — all hand-coded, all 60fps,</text>
+  <text x="90" y="592" fill="#9fb2d1" font-size="26">all respecting prefers-reduced-motion.</text>
+
+  <!-- magnetic button sample -->
+  <g transform="translate(90,628)">
+    <rect width="220" height="56" rx="8" fill="#58c4ff"/>
+    <text x="110" y="36" text-anchor="middle" fill="#02101f" font-size="22" font-weight="700">Start a project</text>
+  </g>
+</svg>

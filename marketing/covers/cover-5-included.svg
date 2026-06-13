@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1326"/><stop offset="1" stop-color="#050810"/></linearGradient>
+    <radialGradient id="glow5" cx="0.8" cy="0.7" r="0.6"><stop offset="0" stop-color="#58c4ff" stop-opacity="0.28"/><stop offset="1" stop-color="#58c4ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="acc5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#58c4ff"/><stop offset="1" stop-color="#9fd8ff"/></linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg5)"/>
+  <circle cx="1000" cy="520" r="420" fill="url(#glow5)"/>
+
+  <text x="90" y="120" fill="#9fb2d1" font-size="22" letter-spacing="6" font-weight="600">WHAT'S IN THE BOX</text>
+  <text x="86" y="186" fill="#eaf2ff" font-size="60" font-weight="800" letter-spacing="-1">Full source. Real docs.</text>
+  <text x="86" y="252" fill="url(#acc5)" font-size="60" font-weight="800" letter-spacing="-1">Commercial license.</text>
+
+  <!-- file tree panel -->
+  <g transform="translate(90,310)" font-family="ui-monospace, Consolas, monospace" font-size="22">
+    <rect width="560" height="340" rx="14" fill="#0c1226" stroke="#1c2a4a" stroke-width="2"/>
+    <g transform="translate(34,52)" fill="#9fb2d1">
+      <text x="0" y="0" fill="#eaf2ff">📁 public/</text>
+      <text x="34" y="34">8 HTML pages · css · js</text>
+      <text x="34" y="68">img/ — original SVG artwork</text>
+      <text x="0" y="108" fill="#eaf2ff">📁 server/</text>
+      <text x="34" y="142">Express API + JSON data</text>
+      <text x="0" y="182" fill="#eaf2ff">📁 docs/</text>
+      <text x="34" y="216">customization + deployment</text>
+      <text x="0" y="256" fill="#58c4ff">LICENSE · README · CHANGELOG</text>
+    </g>
+  </g>
+
+  <!-- right checklist -->
+  <g transform="translate(720,330)" font-size="24" fill="#dbe6f7">
+    <g transform="translate(0,0)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">8 responsive pages</text></g>
+    <g transform="translate(0,52)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Tailwind config + build</text></g>
+    <g transform="translate(0,104)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Node/Express backend</text></g>
+    <g transform="translate(0,156)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Original, license-clear images</text></g>
+    <g transform="translate(0,208)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Customization &amp; deploy guides</text></g>
+    <g transform="translate(0,260)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Commercial license</text></g>
+  </g>
+</svg>
