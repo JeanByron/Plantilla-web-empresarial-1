@@ -13,3 +13,6 @@ Thumbs.db
 
 # Netlify local state
 .netlify/
+
+# Claude Code harness state (not part of the product)
+.claude/
