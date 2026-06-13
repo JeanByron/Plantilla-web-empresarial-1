@@ -1,0 +1,5 @@
+# Dependencias (se regeneran con npm install)
+node_modules/
+
+# Datos generados en tiempo de ejecución (consultas del formulario)
+server/data/inquiries.json

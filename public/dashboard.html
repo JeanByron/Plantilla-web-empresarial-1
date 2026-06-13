@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - AuraDesign Studio</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js"></script>
+<link href="css/styles.css" rel="stylesheet"/>
+<!-- Evita el parpadeo de carga: main.js revela el contenido cuando los estilos están listos -->
+<style>html:not(.app-ready) main,html:not(.app-ready) footer{visibility:hidden}</style>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
+<!-- Navegación -->
+<header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[80px]">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="index.html">AuraDesign</a>
+<nav class="hidden md:flex gap-stack-md font-body-md text-body-md uppercase tracking-wider" id="main-nav">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="services.html" href="services.html">Servicios</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Contacto</a>
+</nav>
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="about.html#contacto">Comenzar</a>
+<button aria-label="Abrir menú" class="md:hidden text-primary" id="mobile-menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Menú móvil -->
+<nav class="hidden-menu md:hidden absolute top-full left-0 w-full bg-surface border-t border-outline-variant flex flex-col px-margin-mobile py-stack-sm gap-stack-sm shadow-ambient-1" id="mobile-menu">
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portafolio</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="services.html" href="services.html">Servicios</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="about.html" href="about.html">Nosotros</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="dashboard.html" href="dashboard.html">Dashboard</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="about.html#contacto">Contacto</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="about.html#contacto">Comenzar</a>
+</nav>
+</header>
+<main class="pt-[80px]">
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg md:py-[96px] max-w-container-max mx-auto" id="dashboard-root">
+<!-- Encabezado del panel -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-sm mb-stack-lg">
+<div>
+<span class="inline-block px-4 py-1.5 mb-4 bg-surface-container-low text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant uppercase tracking-wider">Panel en vivo</span>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-base">Panel de Control</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">Resumen del rendimiento del estudio: visitas, proyectos y consultas recibidas desde el sitio.</p>
+</div>
+<div class="flex flex-wrap gap-base">
+<button class="filter-btn active px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full transition-colors duration-200 ease-out" data-range="7">7 días</button>
+<button class="filter-btn px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full hover:bg-surface-dim transition-colors duration-200 ease-out" data-range="30">30 días</button>
+<button class="filter-btn px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full hover:bg-surface-dim transition-colors duration-200 ease-out" data-range="90">90 días</button>
+</div>
+</div>
+<!-- KPIs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<div class="flex items-center justify-between mb-stack-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Visitas</span>
+<span class="material-symbols-outlined text-secondary">monitoring</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary" data-kpi="visits">0</div>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="visits"></p>
+</div>
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<div class="flex items-center justify-between mb-stack-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Proyectos</span>
+<span class="material-symbols-outlined text-secondary">web</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary" data-kpi="projects">0</div>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="projects"></p>
+</div>
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<div class="flex items-center justify-between mb-stack-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Consultas</span>
+<span class="material-symbols-outlined text-secondary">mail</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary" data-kpi="inquiries">0</div>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="inquiries"></p>
+</div>
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<div class="flex items-center justify-between mb-stack-sm">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Conversión</span>
+<span class="material-symbols-outlined text-secondary">percent</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary" data-kpi="conversion">0</div>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim mt-1" data-kpi-note="conversion"></p>
+</div>
+</div>
+<!-- Gráficas -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack-lg">
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1 lg:col-span-2">
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Visitas al sitio</h3>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Por día</span>
+</div>
+<div class="relative">
+<canvas class="w-full h-[260px]" id="dash-line"></canvas>
+</div>
+</div>
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm">Proyectos por categoría</h3>
+<canvas class="w-full h-[200px]" id="dash-donut"></canvas>
+<ul class="mt-stack-sm space-y-2" id="dash-donut-legend"></ul>
+</div>
+</div>
+<!-- Consultas recientes y estado del sistema -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1 lg:col-span-2">
+<div class="flex items-center justify-between mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Consultas recientes</h3>
+<a class="text-secondary font-label-md text-label-md uppercase tracking-wider hover:text-secondary-fixed-dim transition-colors duration-200" href="about.html#contacto">Ir al formulario</a>
+</div>
+<div id="dash-inquiries">
+<p class="font-body-md text-body-md text-on-surface-variant">Cargando consultas...</p>
+</div>
+</div>
+<div class="glow-card bg-surface-container-lowest p-stack-md rounded border border-outline-variant shadow-ambient-1">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md">Estado del sistema</h3>
+<div class="space-y-stack-sm">
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Disponibilidad</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">99.98%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden"><div class="dash-bar-fill" data-target="99.98"></div></div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rendimiento</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">96</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden"><div class="dash-bar-fill" data-target="96"></div></div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Accesibilidad</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">98</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden"><div class="dash-bar-fill" data-target="98"></div></div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">SEO</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">94</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden"><div class="dash-bar-fill" data-target="94"></div></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-stack-md opacity-80">Métricas de la última auditoría de rendimiento del sitio.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Pie de página -->
+<footer class="bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm">AuraDesign</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                © 2026 AuraDesign Studio. Todos los derechos reservados.
+            </p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-stack-md justify-start md:justify-end items-center opacity-80 hover:opacity-100 transition-opacity">
+<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="about.html#contacto">Iniciar proyecto</a>
+<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="portfolio.html">Ver portafolio</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Casos de estudio</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="services.html">Nuestro proceso</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Política de privacidad</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">LinkedIn</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Dribbble</a>
+</div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

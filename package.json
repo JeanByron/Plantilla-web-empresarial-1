@@ -1,0 +1,13 @@
+{
+  "name": "auradesign-studio",
+  "version": "1.0.0",
+  "description": "Sitio web de AuraDesign Studio - frontend + backend (Express)",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
