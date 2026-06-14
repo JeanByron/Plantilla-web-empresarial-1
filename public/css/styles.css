@@ -162,7 +162,7 @@ header a[href="index.html"] {
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: left center;
     /* Nudge left so the scaled-up state doesn't crowd the nav */
-    margin-left: -6px;
+    margin-left: -14px;
 }
 
 header a[href="index.html"].logo-expanded {
