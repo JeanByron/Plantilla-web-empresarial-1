@@ -2,6 +2,7 @@
 # These are author/dev assets the buyer should not receive.
 marketing/      export-ignore
 scripts/        export-ignore
+light/          export-ignore
 .claude/        export-ignore
 .gitattributes  export-ignore
 .gitignore      export-ignore

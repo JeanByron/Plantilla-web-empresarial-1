@@ -1,0 +1,5 @@
+# Replace the placeholder domain with your own before publishing.
+User-agent: *
+Allow: /
+
+Sitemap: https://auradesign-light.example.com/sitemap.xml

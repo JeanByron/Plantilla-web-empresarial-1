@@ -96,9 +96,10 @@ scratch?** Reply to your receipt or reach us at [your email] and let's talk.
 
 - **List price: $19.** Launch with an intro discount code to **$12–14** for the
   first 2 weeks to seed reviews.
-- Consider a **free "light" version** later (Home + Portfolio, static only) as a
-  separate $0+ Gumroad product that links here and to your services — this is
-  the traffic magnet for the agency play.
+- The **free "light" version** is built (`light/` folder, Home + Portfolio,
+  static only). Publish it as a separate $0+ Gumroad product and deploy its demo
+  — it links back here and to your services. This is the traffic magnet for the
+  agency play. See the free-edition listing section below.
 - Offer/keep an **"extended" or "done-for-you" tier** as the upsell that routes
   buyers to custom work (the actual money in the loss-leader strategy).
 - After ~10–20 sales, revisit building a React/Next variant before any "bundle".
@@ -112,3 +113,48 @@ scratch?** Reply to your receipt or reach us at [your email] and let's talk.
 - [ ] Fill `author` in `package.json` and the contact email in the CTA above.
 - [ ] Upload the fresh `AuraDesign-Studio-v1.1.zip` (not the v1.0).
 - [ ] Add the demo link + a video to the Gumroad page.
+
+---
+
+# FREE EDITION — separate Gumroad product ($0+)
+
+The free "light" edition lives in the `light/` folder and is packaged as
+`marketing/AuraDesign-Studio-Free.zip`. List it as its own **$0+ (pay what you
+want)** product. Its whole job is to send traffic to the paid template and to
+your agency.
+
+## Product name
+
+**AuraDesign Studio — Free Agency Template (Home + Portfolio)**
+
+## Description (paste into the free product)
+
+A free, static taste of AuraDesign Studio: the **Home and Portfolio pages with
+the full interactive effects** — mouse-reactive dot mesh, cursor glow, 3D-tilt
+cards, magnetic buttons. No backend, no build step. Drop it on Netlify and go.
+
+Love it? The **full template** adds 6 more pages (Services, About, a working
+contact form, an analytics dashboard, case-study pages), a Node/Express
+backend, dual deployment, SEO, and docs — [grab it here](FULL_URL).
+
+Need a site built *for* you? [Let's talk](HIRE_URL).
+
+### What's in the free edition
+- Home + Portfolio + 404, fully responsive
+- All the interactive canvas effects
+- Original SVG artwork
+- 100% static — deploy in minutes
+
+> Free to use and deploy. The full template ships under a commercial license.
+
+## Setup before publishing the free edition
+
+The `light/` files contain three placeholder URLs. Edit them at the top of
+`scripts/build-light.js` and re-run `node scripts/build-light.js`, or
+find-and-replace in the `light/` files directly:
+
+- [ ] `FULL_URL`  → your paid Gumroad product URL
+- [ ] `HIRE_URL`  → your agency / services site
+- [ ] `DOMAIN`    → where you host the free demo (e.g. a Netlify subdomain)
+- [ ] Deploy `light/` to Netlify and link the live demo from this product.
+- [ ] Upload `marketing/AuraDesign-Studio-Free.zip`.

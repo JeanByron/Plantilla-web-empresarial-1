@@ -1,0 +1,8 @@
+# Netlify config for the FREE light edition. Publish this folder as-is.
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Explore a curated portfolio of web design, branding, and development case studies, with category filters and individual project pages."/>
+<!-- Replace the placeholder domain below with your own before publishing -->
+<link rel="canonical" href="https://auradesign-light.example.com/portfolio.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Portfolio — AuraDesign Studio"/>
+<meta property="og:description" content="Explore a curated portfolio of web design, branding, and development case studies, with category filters and individual project pages."/>
+<meta property="og:url" content="https://auradesign-light.example.com/portfolio.html"/>
+<meta property="og:image" content="https://auradesign-light.example.com/img/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Portfolio — AuraDesign Studio"/>
+<meta name="twitter:description" content="Explore a curated portfolio of web design, branding, and development case studies, with category filters and individual project pages."/>
+<meta name="twitter:image" content="https://auradesign-light.example.com/img/og-image.png"/>
+<title>Portfolio — AuraDesign Studio (Free)</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="css/tailwind.css" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<!-- Prevents the loading flash: main.js reveals the content once the styles are ready -->
+<style>html:not(.app-ready) main,html:not(.app-ready) footer{visibility:hidden}</style>
+<noscript><style>html main,html footer{visibility:visible!important}</style></noscript>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- Free edition banner -->
+<div class="bg-secondary text-on-secondary text-center font-label-md text-label-md py-2 px-4 relative z-[60]">
+Free edition · <a class="underline font-bold" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get the full template</a> (8 pages, dashboard, Node backend) or <a class="underline font-bold" href="https://your-agency-site.example.com">hire us to build it for you</a>.
+</div>
+<!-- Navigation -->
+<header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-[80px]">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="index.html">AuraDesign</a>
+<nav class="hidden md:flex gap-stack-md font-body-md text-body-md uppercase tracking-wider" id="main-nav">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="index.html" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-200 ease-out" href="https://your-agency-site.example.com">Hire us</a>
+</nav>
+<a class="hidden md:inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get full template</a>
+<button aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-primary" id="mobile-menu-toggle">
+<span aria-hidden="true" class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Mobile menu -->
+<nav class="hidden-menu md:hidden absolute top-full left-0 w-full bg-surface border-t border-outline-variant flex flex-col px-margin-mobile py-stack-sm gap-stack-sm shadow-ambient-1" id="mobile-menu">
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="index.html" href="index.html">Home</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" data-nav="portfolio.html" href="portfolio.html">Portfolio</a>
+<a class="text-on-surface-variant font-body-md text-body-md uppercase tracking-wider hover:text-secondary py-2" href="https://your-agency-site.example.com">Hire us</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded text-center uppercase" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get full template</a>
+</nav>
+</header>
+<main id="main" class="pt-[120px]">
+<!-- Portfolio header -->
+<section class="py-[128px] px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center md:text-left">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-md max-w-3xl">
+            Selected Work
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-stack-lg">
+            A collection of our finest projects in web design, branding, and development. We build digital experiences that drive results and elevate brands.
+        </p>
+<!-- Filters -->
+<div class="flex flex-wrap gap-base justify-center md:justify-start" id="portfolio-filters">
+<button class="filter-btn active px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full transition-colors duration-200 ease-out" data-filter="all">All</button>
+<button class="filter-btn px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full hover:bg-surface-dim transition-colors duration-200 ease-out" data-filter="web">Web Design</button>
+<button class="filter-btn px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full hover:bg-surface-dim transition-colors duration-200 ease-out" data-filter="branding">Branding</button>
+<button class="filter-btn px-4 py-2 font-label-md text-label-md uppercase tracking-wider bg-surface-container text-on-surface-variant rounded-full hover:bg-surface-dim transition-colors duration-200 ease-out" data-filter="dev">Development</button>
+</div>
+</section>
+<!-- Portfolio grid (populated from /api/projects) -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-[128px]">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="portfolio-grid">
+<p class="font-body-md text-body-md text-on-surface-variant col-span-full">Loading projects...</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant w-full py-stack-lg px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-stack-sm">AuraDesign</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+© <span data-copyright-year>2026</span> AuraDesign Studio. Free edition.
+</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-stack-md justify-start md:justify-end items-center opacity-80 hover:opacity-100 transition-opacity">
+<a class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-secondary transition-colors duration-200 ease-out" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get full template</a>
+<a class="bg-transparent border border-primary text-primary font-label-md text-label-md px-4 py-2 rounded uppercase hover:bg-surface-container transition-colors duration-200 ease-out" href="https://your-agency-site.example.com">Hire us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="portfolio.html">Portfolio</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="https://www.linkedin.com/company/your-company" target="_blank" rel="noopener">LinkedIn</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors duration-200" href="https://dribbble.com/your-handle" target="_blank" rel="noopener">Dribbble</a>
+</div>
+</footer>
+<script src="js/site-config.js"></script>
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
