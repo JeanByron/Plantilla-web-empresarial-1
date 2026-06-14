@@ -33,6 +33,9 @@ const I18N = {
         projectNotFoundBody: "The case study you are looking for doesn't exist or has been moved.",
         backToPortfolio: 'Back to portfolio',
         startProjectCta: 'Start a project',
+        loadingProjects: 'Loading projects...',
+        loadingInquiries: 'Loading inquiries...',
+        loadingCaseStudy: 'Loading case study…',
         caseStudyBlocks: (p) => [
             { heading: 'The Challenge', body: `${p.title} needed a digital presence that matched its ambition. We mapped the core problem, audited the existing experience, and defined the outcomes that mattered most for the ${p.label.toLowerCase()} brief.` },
             { heading: 'Our Approach', body: `We designed and built an end-to-end solution—from concept and visual system to a performant, accessible front end—iterating closely with the team to keep the work sharp and on-brand.` },
@@ -65,6 +68,9 @@ const I18N = {
         projectNotFoundBody: 'El caso de estudio que buscas no existe o fue movido.',
         backToPortfolio: 'Volver al portafolio',
         startProjectCta: 'Inicia un proyecto',
+        loadingProjects: 'Cargando proyectos...',
+        loadingInquiries: 'Cargando consultas...',
+        loadingCaseStudy: 'Cargando caso de estudio…',
         caseStudyBlocks: (p) => [
             { heading: 'El reto', body: `${p.title} necesitaba una presencia digital a la altura de su ambición. Mapeamos el problema central, auditamos la experiencia existente y definimos los resultados más importantes para el proyecto de ${p.label.toLowerCase()}.` },
             { heading: 'Nuestro enfoque', body: `Diseñamos y construimos una solución integral —del concepto y el sistema visual a un front end accesible y de alto rendimiento—, iterando junto al equipo para mantener el trabajo afinado y fiel a la marca.` },
@@ -103,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setActiveNav();
     setCopyrightYear();
+    initLoadingLabels();
     initRouter();
     initMobileMenu();
     initPortfolio();
@@ -1066,6 +1073,21 @@ function setCopyrightYear() {
     });
 }
 
+// Localizes the initial "Loading…" placeholders so they follow LOCALE.
+// The HTML keeps an English fallback for the no-JS case; this overwrites it
+// with the active-language string before each section fetches its data.
+function initLoadingLabels() {
+    const labels = [
+        ['portfolio-grid', T.loadingProjects],
+        ['dash-inquiries', T.loadingInquiries],
+        ['project-detail', T.loadingCaseStudy],
+    ];
+    labels.forEach(([id, text]) => {
+        const p = document.querySelector(`#${id} p`);
+        if (p) p.textContent = text;
+    });
+}
+
 /* ---------- Project case study (project.html) ----------
    Reads ?id= from the URL and renders the matching project (dual-mode load).
    Derives a generic challenge/approach/results narrative from the project data. */
@@ -1091,6 +1113,7 @@ async function initProjectDetail() {
     }
 
     document.title = `${project.title} · AuraDesign Studio`;
+    updateProjectMeta(project);
     const blocks = T.caseStudyBlocks(project);
     root.innerHTML = `
         <article class="max-w-5xl mx-auto">
@@ -1114,6 +1137,29 @@ async function initProjectDetail() {
                 </a>
             </div>
         </article>`;
+}
+
+// Updates the canonical link and Open Graph/Twitter tags to the active case
+// study. Note: social crawlers usually don't run JS, so link previews still
+// read the static <head>; this benefits in-app navigation and tab/title SEO.
+// For per-project social previews, pre-render one HTML page per case study.
+function updateProjectMeta(project) {
+    const base = (document.querySelector('link[rel="canonical"]')?.href || location.href).split('?')[0];
+    const url = `${base}?id=${project.id}`;
+    const img = new URL(project.image, location.href).href;
+    const desc = project.description || '';
+    const setAttr = (selector, attr, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute(attr, value);
+    };
+    setAttr('link[rel="canonical"]', 'href', url);
+    setAttr('meta[property="og:url"]', 'content', url);
+    setAttr('meta[property="og:title"]', 'content', `${project.title} — AuraDesign Studio`);
+    setAttr('meta[property="og:description"]', 'content', desc);
+    setAttr('meta[property="og:image"]', 'content', img);
+    setAttr('meta[name="twitter:title"]', 'content', `${project.title} — AuraDesign Studio`);
+    setAttr('meta[name="twitter:description"]', 'content', desc);
+    setAttr('meta[name="twitter:image"]', 'content', img);
 }
 
 /* ---------- FAQ accordion ----------

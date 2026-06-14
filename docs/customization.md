@@ -63,6 +63,15 @@ To make the form work without the Node backend:
 The form sends JSON with an `Accept: application/json` header, which Formspree
 accepts. The hidden `website` honeypot field is included automatically.
 
+## Contact details (About page)
+
+The "Direct contact" block on [public/about.html](../public/about.html) ships
+with demo email, phone, and address values, and the embedded map points at the
+demo address. Replace them with your own — either edit `about.html` directly, or
+set `contactEmail`, `contactPhone`, and `contactAddress` in
+[brand.config.json](../brand.config.json) and run `node scripts/personalize.js`.
+Run `node scripts/personalize.js --check` to confirm no demo placeholders remain.
+
 ## Images
 
 Replace the SVGs in [public/img/](../public/img/) with your own (keep the same

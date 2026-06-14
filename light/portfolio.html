@@ -31,7 +31,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <!-- Free edition banner -->
 <div class="bg-secondary text-on-secondary text-center font-label-md text-label-md py-2 px-4 relative z-[60]">
-Free edition · <a class="underline font-bold" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get the full template</a> (8 pages, dashboard, Node backend) or <a class="underline font-bold" href="https://your-agency-site.example.com">hire us to build it for you</a>.
+Free edition · <a class="underline font-bold" href="https://your-gumroad.gumroad.com/l/auradesign-studio" target="_blank" rel="noopener">Get the full template</a> (9 pages, dashboard, Node backend) or <a class="underline font-bold" href="https://your-agency-site.example.com">hire us to build it for you</a>.
 </div>
 <!-- Navigation -->
 <header class="bg-surface fixed top-0 w-full z-50 shadow-sm transition-all duration-200 ease-out">
@@ -74,7 +74,8 @@ Free edition · <a class="underline font-bold" href="https://your-gumroad.gumroa
 </section>
 <!-- Portfolio grid (populated from /api/projects) -->
 <section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-[128px]">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="portfolio-grid">
+<h2 class="sr-only">Projects</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="portfolio-grid" aria-live="polite">
 <p class="font-body-md text-body-md text-on-surface-variant col-span-full">Loading projects...</p>
 </div>
 </section>

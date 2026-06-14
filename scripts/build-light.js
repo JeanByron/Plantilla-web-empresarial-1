@@ -70,7 +70,7 @@ const HEADER = `<!-- Navigation -->
 // ---------- "Free version" banner (sits above the header, fixed) ----------
 const BANNER = `<!-- Free edition banner -->
 <div class="bg-secondary text-on-secondary text-center font-label-md text-label-md py-2 px-4 relative z-[60]">
-Free edition · <a class="underline font-bold" href="${FULL_URL}" target="_blank" rel="noopener">Get the full template</a> (8 pages, dashboard, Node backend) or <a class="underline font-bold" href="${HIRE_URL}">hire us to build it for you</a>.
+Free edition · <a class="underline font-bold" href="${FULL_URL}" target="_blank" rel="noopener">Get the full template</a> (9 pages, dashboard, Node backend) or <a class="underline font-bold" href="${HIRE_URL}">hire us to build it for you</a>.
 </div>`;
 
 // ---------- Reduced footer (dual CTA, only existing links) ----------
@@ -118,7 +118,7 @@ function transform(file, html) {
     // 3. Rewrite links to pages that don't exist in the light edition. Any CTA
     //    that pointed at the contact form now points at the agency CTA; links to
     //    services/about/dashboard/case-study go to the full-template purchase.
-    html = html.replace(/href="about\.html#contacto"/g, `href="${HIRE_URL}"`);
+    html = html.replace(/href="about\.html#contact"/g, `href="${HIRE_URL}"`);
     html = html.replace(/href="services\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
     html = html.replace(/href="about\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
     html = html.replace(/href="dashboard\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
@@ -131,7 +131,15 @@ function transform(file, html) {
 
     // 4. SEO: point canonical/OG at the light domain, and append "(Free)" to titles.
     html = html.replace(/https:\/\/auradesign-studio\.example\.com/g, DOMAIN);
-    html = html.replace(/<title>([^<]*)<\/title>/, (m, t) => `<title>${t.replace(/ - AuraDesign Studio| \| Web Design Agency/, '')} — AuraDesign Studio (Free)</title>`);
+    html = html.replace(/<title>([^<]*)<\/title>/, (m, t) => {
+        // Strip the studio suffix; if the page name *is* the brand (the home),
+        // avoid "AuraDesign Studio — AuraDesign Studio (Free)" duplication.
+        const base = t.replace(/ - AuraDesign Studio| \| Web Design Agency/, '').trim();
+        const title = base === 'AuraDesign Studio'
+            ? 'AuraDesign Studio — Web Design Agency (Free)'
+            : `${base} — AuraDesign Studio (Free)`;
+        return `<title>${title}</title>`;
+    });
 
     // 5. The pt-[80px] on <main> must clear the banner too; add extra top space.
     html = html.replace('<main id="main" class="pt-[80px]"', '<main id="main" class="pt-[120px]"');
@@ -149,7 +157,7 @@ function transformMainJs(js) {
         'href="project.html?id=${encodeURIComponent(p.id)}"',
         `href="${FULL_URL}" target="_blank" rel="noopener"`
     );
-    js = js.replace('href="about.html#contacto"', `href="${HIRE_URL}"`);
+    js = js.replace('href="about.html#contact"', `href="${HIRE_URL}"`);
     return js;
 }
 
@@ -198,15 +206,19 @@ fs.writeFileSync(path.join(OUT, 'README.md'),
 A free, static taste of the [AuraDesign Studio](${FULL_URL}) agency template:
 the Home and Portfolio pages with the full interactive effects, no backend.
 
-## This is a lead magnet — set your 3 links first
+## This is a lead magnet — set your links first
 
 This folder is **generated** by \`scripts/build-light.js\` in the full template
-repo. Before publishing, edit the three URLs at the top of that script and
-re-run it (or just find-and-replace in these files):
+repo from the values in \`brand.config.json\`. Before publishing, fill those
+values and regenerate:
 
-- \`FULL_URL\` → your paid full template (Gumroad)
-- \`HIRE_URL\` → your agency / services site
-- \`DOMAIN\`   → where you host this free demo
+1. Edit \`brand.config.json\` — \`fullTemplateUrl\` (your paid Gumroad page),
+   \`agencyUrl\` (your agency / services site), and \`lightSiteDomain\` (where
+   you host this free demo).
+2. Run \`node scripts/personalize.js\` then \`node scripts/build-light.js\`.
+
+(If you only have this \`light/\` folder, just find-and-replace the placeholder
+URLs directly in these files.)
 
 ## Deploy
 

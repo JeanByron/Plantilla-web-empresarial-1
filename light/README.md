@@ -3,15 +3,19 @@
 A free, static taste of the [AuraDesign Studio](https://your-gumroad.gumroad.com/l/auradesign-studio) agency template:
 the Home and Portfolio pages with the full interactive effects, no backend.
 
-## This is a lead magnet — set your 3 links first
+## This is a lead magnet — set your links first
 
 This folder is **generated** by `scripts/build-light.js` in the full template
-repo. Before publishing, edit the three URLs at the top of that script and
-re-run it (or just find-and-replace in these files):
+repo from the values in `brand.config.json`. Before publishing, fill those
+values and regenerate:
 
-- `FULL_URL` → your paid full template (Gumroad)
-- `HIRE_URL` → your agency / services site
-- `DOMAIN`   → where you host this free demo
+1. Edit `brand.config.json` — `fullTemplateUrl` (your paid Gumroad page),
+   `agencyUrl` (your agency / services site), and `lightSiteDomain` (where
+   you host this free demo).
+2. Run `node scripts/personalize.js` then `node scripts/build-light.js`.
+
+(If you only have this `light/` folder, just find-and-replace the placeholder
+URLs directly in these files.)
 
 ## Deploy
 

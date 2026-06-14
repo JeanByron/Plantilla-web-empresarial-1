@@ -23,8 +23,8 @@ backend** for a real contact form and inquiries dashboard.
 - **Accessible** — skip-link, ARIA on interactive controls, reduced-motion
   support, and a `<noscript>` fallback.
 - **Original artwork** — all images are original, license-clear SVGs.
-- **8 pages** — Home, Portfolio, Services, About + Contact, Dashboard, Case
-  Study, 404, and Privacy Policy.
+- **9 pages** — Home, Portfolio, Services, Pricing, About + Contact, Dashboard,
+  Case Study, 404, and Privacy Policy.
 
 ## Requirements
 
@@ -69,6 +69,9 @@ the dashboard with an admin key via environment variables (see
 PORT=3100 ADMIN_KEY=your-secret npm start
 ```
 
+Prefer a `.env` file? Copy `.env.example` to `.env` and run `npm run start:env`
+(requires Node 20+). Plain `npm start` does not read `.env`.
+
 While editing styles, keep the CSS rebuilding:
 
 ```bash
@@ -79,7 +82,7 @@ npm run watch:css
 
 ```
 ├── public/                  # Front end (static-deployable)
-│   ├── index.html  portfolio.html  services.html  about.html
+│   ├── index.html  portfolio.html  services.html  pricing.html  about.html
 │   ├── dashboard.html  project.html  404.html  privacy.html
 │   ├── robots.txt  sitemap.xml  favicon.svg
 │   ├── img/                 # Original SVG artwork + OG image

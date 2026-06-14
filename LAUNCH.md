@@ -55,7 +55,7 @@ This is your traffic magnet.
 1. Create a new product. Use the copy in
    [marketing/GUMROAD-LISTING.md](marketing/GUMROAD-LISTING.md) (name, subtitle,
    description).
-2. Upload `marketing/AuraDesign-Studio-v1.1.zip` as the file.
+2. Upload `marketing/AuraDesign-Studio-v1.2.zip` as the file.
 3. Upload the covers from `marketing/covers/` in the order listed, plus
    `thumbnail-80.png`.
 4. Add the **paid demo URL** from step 1.
@@ -92,7 +92,8 @@ is real demand, that's hours better spent on traffic and client work.
 | Edit your details | `brand.config.json` → `node scripts/personalize.js` |
 | Regenerate the free edition | `node scripts/build-light.js` |
 | Rebuild CSS | `npm run build:css` |
-| Paid product ZIP | `marketing/AuraDesign-Studio-v1.1.zip` |
+| Regenerate covers + 80×80 thumbnail | `node scripts/render-covers.js` |
+| Paid product ZIP | `marketing/AuraDesign-Studio-v1.2.zip` |
 | Free product ZIP | `marketing/AuraDesign-Studio-Free.zip` |
 | Covers | `marketing/covers/` |
 | Sales copy | `marketing/GUMROAD-LISTING.md` |

@@ -29,6 +29,11 @@ const REPLACEMENTS = [
     { find: 'https://dribbble.com/your-handle', repl: cfg.social.dribbble, scope: 'all' },
     // Contact email in docs/listing.
     { find: '[your email]', repl: cfg.contactEmail, scope: 'all' },
+    // Demo contact details shown on the About page (and the map link address).
+    { find: 'hello@auradesign.agency', repl: cfg.contactEmail, scope: 'public' },
+    { find: '+44 (0) 20 7123 4567', repl: cfg.contactPhone, scope: 'public' },
+    { find: '100 Structural Way<br/>London, LDN 10010<br/>United Kingdom', repl: cfg.contactAddress, scope: 'public' },
+    { find: '100+Structural+Way,+London,+United+Kingdom', repl: encodeURIComponent(cfg.contactAddress).replace(/%20/g, '+'), scope: 'public' },
 ];
 
 // Files to scan, grouped by scope.
@@ -88,7 +93,7 @@ if (!CHECK) {
 }
 
 // Report any placeholders still present anywhere.
-const PLACEHOLDER_MARKERS = ['example.com', 'your-gumroad', 'your-agency', 'your-company', 'your-handle', 'Your Name'];
+const PLACEHOLDER_MARKERS = ['example.com', 'your-gumroad', 'your-agency', 'your-company', 'your-handle', 'Your Name', 'auradesign.agency', '+44 (0) 20 7123 4567', '100 Structural Way'];
 for (const file of targetFiles.concat(path.join(ROOT, 'package.json'))) {
     const text = fs.readFileSync(file, 'utf8');
     for (const m of PLACEHOLDER_MARKERS) {

@@ -66,8 +66,8 @@ your call — no rewrite.
 
 ### 📦 What you get
 
-- 8 responsive pages — Home, Portfolio, Services, About + Contact, Dashboard,
-  Case Study, 404, Privacy Policy
+- 9 responsive pages — Home, Portfolio, Services, Pricing, About + Contact,
+  Dashboard, Case Study, 404, Privacy Policy
 - Full Tailwind CSS source + config (compiled, no CDN)
 - Node/Express backend with a JSON data store
 - Customization & deployment guides
@@ -112,7 +112,7 @@ See [LAUNCH.md](../LAUNCH.md) for the full step-by-step. In short:
       replaces the domain, social links, author, full-template URL and agency
       URL everywhere at once (no manual find-and-replace).
 - [ ] Deploy the static demo to Netlify and put the live URL in the listing.
-- [ ] Upload `AuraDesign-Studio-v1.1.zip` + the covers from `covers/`.
+- [ ] Upload `AuraDesign-Studio-v1.2.zip` + the covers from `covers/`.
 - [ ] Add the demo link + a video to the Gumroad page.
 
 ---
@@ -134,8 +134,8 @@ A free, static taste of AuraDesign Studio: the **Home and Portfolio pages with
 the full interactive effects** — mouse-reactive dot mesh, cursor glow, 3D-tilt
 cards, magnetic buttons. No backend, no build step. Drop it on Netlify and go.
 
-Love it? The **full template** adds 6 more pages (Services, About, a working
-contact form, an analytics dashboard, case-study pages), a Node/Express
+Love it? The **full template** adds more pages (Services, Pricing, About, a
+working contact form, an analytics dashboard, case-study pages), a Node/Express
 backend, dual deployment, SEO, and docs — [grab it here](FULL_URL).
 
 Need a site built *for* you? [Let's talk](HIRE_URL).

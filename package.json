@@ -1,6 +1,6 @@
 {
   "name": "auradesign-studio",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Premium dark-themed agency & portfolio website template with interactive canvas effects, SPA navigation, an analytics dashboard, and dual static / Node-Express deployment.",
   "keywords": [
     "template",
@@ -13,10 +13,11 @@
     "landing-page"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "author": "Your Name <you@example.com>",
+  "author": "AuraDesign Studio",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
+    "start:env": "node --env-file=.env server/server.js",
     "dev": "node --watch server/server.js",
     "build:css": "tailwindcss -i ./src/input.css -o ./public/css/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./public/css/tailwind.css --watch"

@@ -3,6 +3,39 @@
 All notable changes to AuraDesign Studio are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-06-13
+
+A content and polish pass: a new Pricing page, richer home sections, and a
+sweep of accessibility, SEO, and personalization refinements.
+
+### Added
+- **Pricing page** (`pricing.html`) — three productized tiers, a feature
+  comparison table, and a pricing FAQ; linked from the main navigation.
+- **Richer home sections** — client logo marquee, animated stat band, process
+  timeline, testimonials, and an FAQ accordion.
+- **Personalizable contact details** — the About page email, phone, and address
+  are now driven by `brand.config.json` and rewritten by `personalize.js`.
+- **Per-case-study metadata** — `project.html` updates its canonical and
+  Open Graph/Twitter tags to the active project on navigation.
+- **New type scale tokens** — `display-md`, `headline-sm`, `label-lg`, and
+  `stack-2xl` added to the design system.
+
+### Changed
+- Contact anchor renamed from `#contacto` to `#contact` across the site.
+- "Compare packages" now uses a dark section background, consistent with the
+  rest of the site.
+- Header logo position tuned so its expanded state no longer crowds the nav.
+
+### Fixed
+- **Accessibility** — contact-form result now announced via `aria-live`;
+  heading hierarchy corrected (no `h1→h3` skips); visible focus ring added for
+  all keyboard controls; client-marquee text contrast raised to meet WCAG AA;
+  `prefers-reduced-motion` now also disables the glow-card and FAQ animations;
+  the inert "View gallery" button is now a real link.
+- **SEO** — `404.html` marked `noindex`; fixed a duplicated brand name in the
+  free edition's home `<title>`.
+- Localized the initial "Loading…" placeholders so they follow `LOCALE`.
+
 ## [1.1.0] — 2026-06-12
 
 A major productization pass turning the site into a sellable, deployable template.
@@ -11,7 +44,7 @@ A major productization pass turning the site into a sellable, deployable templat
 - **Local Tailwind build** (`tailwind.config.js`, `src/input.css`, `npm run build:css`) — the Tailwind Play CDN was removed; CSS is now compiled and minified to `public/css/tailwind.css`.
 - **Dual deployment** — the front end works fully static (no Node) via `public/js/projects-data.js` and `public/js/site-config.js`, or full-stack with the bundled Express server.
 - **Internationalization** — all runtime strings live in an `I18N` dictionary in `main.js` with English and Spanish locales, selectable via `LOCALE`.
-- **New pages** — individual case-study page (`project.html`), styled `404.html`, and a `privacy.html` policy template.
+- **New pages** — a `pricing.html` packages page, individual case-study page (`project.html`), styled `404.html`, and a `privacy.html` policy template.
 - **SEO** — per-page meta description, canonical, Open Graph and Twitter Card tags, `Organization` JSON-LD on the homepage, plus `robots.txt` and `sitemap.xml`.
 - **Accessibility** — skip-link, `aria-expanded`/`aria-controls` on the mobile menu, `aria-hidden` on decorative icons, and a `<noscript>` fallback so content stays visible without JS.
 - **Original artwork** — all imagery replaced with original, license-clear SVGs in `public/img/`.

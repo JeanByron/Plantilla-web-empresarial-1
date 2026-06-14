@@ -693,4 +693,25 @@ body.js-ready .reveal.in-view {
     .logo-marquee {
         animation: none;
     }
+
+    .glow-card::after {
+        animation: none;
+    }
+
+    .faq-a {
+        transition: none;
+    }
+
+    .faq-q .faq-icon {
+        transition: none;
+    }
+}
+
+/* ---------- Visible keyboard focus (consistent across all controls) ---------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid #58c4ff;
+    outline-offset: 2px;
+    border-radius: 2px;
 }

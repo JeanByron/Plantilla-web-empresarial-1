@@ -16,13 +16,13 @@ const footer = base.match(/<!-- Footer -->[\s\S]*?<\/footer>/)[0];
 // Scripts block (site-config + projects-data + main).
 const scripts = base.match(/<script src="js\/site-config\.js">[\s\S]*?<script src="js\/main\.js"><\/script>/)[0];
 
-function head(title, description, canonical, ogTitle) {
+function head(title, description, canonical, ogTitle, noindex) {
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="${description}"/>
+<meta name="description" content="${description}"/>${noindex ? '\n<meta name="robots" content="noindex, follow"/>' : ''}
 <!-- Replace the placeholder domain below with your own before publishing -->
 <link rel="canonical" href="${DOMAIN}${canonical}"/>
 <meta property="og:type" content="website"/>
@@ -52,7 +52,7 @@ ${header}`;
 }
 
 function page(meta, mainHtml) {
-    return `${head(meta.title, meta.description, meta.canonical, meta.ogTitle)}
+    return `${head(meta.title, meta.description, meta.canonical, meta.ogTitle, meta.noindex)}
 ${mainHtml}
 ${footer}
 ${scripts}
@@ -64,7 +64,7 @@ ${scripts}
 // --- project.html: filled at runtime by initProjectDetail() in main.js ---
 const projectMain = `<main id="main" class="pt-[80px]">
 <section class="px-margin-mobile md:px-margin-desktop py-section-y max-w-container-max mx-auto">
-<div id="project-detail">
+<div id="project-detail" aria-live="polite">
 <p class="font-body-md text-body-md text-on-surface-variant">Loading case study…</p>
 </div>
 </section>
@@ -91,7 +91,8 @@ fs.writeFileSync(path.join(PUBLIC, '404.html'), page({
     title: 'Page Not Found - AuraDesign Studio',
     description: 'The page you are looking for could not be found.',
     canonical: '/404.html',
-    ogTitle: 'Page Not Found — AuraDesign Studio'
+    ogTitle: 'Page Not Found — AuraDesign Studio',
+    noindex: true
 }, notFoundMain), 'utf8');
 
 // --- privacy.html ---
@@ -110,7 +111,7 @@ const privacyMain = `<main id="main" class="pt-[80px]">
 <h2 class="font-headline-md text-headline-md text-primary pt-stack-sm">Data retention</h2>
 <p>Inquiries submitted through the bundled Node backend are stored on your server. Define how long you keep them and how a visitor can request deletion.</p>
 <h2 class="font-headline-md text-headline-md text-primary pt-stack-sm">Contact</h2>
-<p>For privacy questions, reach us through the <a class="text-secondary hover:text-secondary-fixed-dim" href="about.html#contacto">contact form</a>.</p>
+<p>For privacy questions, reach us through the <a class="text-secondary hover:text-secondary-fixed-dim" href="about.html#contact">contact form</a>.</p>
 </div>
 </section>
 </main>`;

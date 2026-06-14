@@ -51,13 +51,13 @@ ${header}`;
 const tier = (name, price, blurb, features, featured) => `
 <div class="relative flex flex-col bg-surface-container-lowest border ${featured ? 'border-secondary shadow-ambient-1 shadow-ambient-2' : 'border-outline-variant'} rounded-lg p-stack-md glow-card">
 ${featured ? '<span class="absolute -top-3 left-stack-md bg-secondary text-on-secondary font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider">Most popular</span>' : ''}
-<h3 class="font-headline-md text-headline-md text-primary mb-base">${name}</h3>
+<h2 class="font-headline-md text-headline-md text-primary mb-base">${name}</h2>
 <div class="mb-base"><span class="font-display-lg-mobile text-display-lg-mobile text-primary">${price}</span></div>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">${blurb}</p>
 <ul class="space-y-3 mb-stack-lg grow">
 ${features.map(f => `<li class="flex items-start gap-3"><span aria-hidden="true" class="material-symbols-outlined text-secondary">check</span><span class="font-body-md text-body-md text-on-surface">${f}</span></li>`).join('\n')}
 </ul>
-<a class="${featured ? 'bg-primary text-on-primary hover:bg-secondary' : 'bg-transparent border border-primary text-primary hover:bg-surface-container'} font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out uppercase text-center" href="about.html#contacto">Get started</a>
+<a class="${featured ? 'bg-primary text-on-primary hover:bg-secondary' : 'bg-transparent border border-primary text-primary hover:bg-surface-container'} font-label-md text-label-md px-6 py-3 rounded transition-colors duration-200 ease-out uppercase text-center" href="about.html#contact">Get started</a>
 </div>`;
 
 const compareRow = (label, a, b, c) => `
@@ -139,7 +139,7 @@ ${compareRow('Dedicated team', no, no, yes)}
 <div class="max-w-container-max mx-auto text-center">
 <h2 class="font-headline-xl text-headline-xl text-primary mb-stack-md">Not sure which fits?</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg">Tell us what you're building and we'll recommend the right package — or design a custom one.</p>
-<a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase inline-flex" href="about.html#contacto">Talk to us</a>
+<a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:bg-secondary transition-colors duration-200 ease-out uppercase inline-flex" href="about.html#contact">Talk to us</a>
 </div>
 </section>
 </main>`;
