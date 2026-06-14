@@ -33,7 +33,6 @@ const REPLACEMENTS = [
     { find: 'hello@auradesign.agency', repl: cfg.contactEmail, scope: 'public' },
     { find: '+44 (0) 20 7123 4567', repl: cfg.contactPhone, scope: 'public' },
     { find: '100 Structural Way<br/>London, LDN 10010<br/>United Kingdom', repl: cfg.contactAddress, scope: 'public' },
-    { find: '100+Structural+Way,+London,+United+Kingdom', repl: encodeURIComponent(cfg.contactAddress).replace(/%20/g, '+'), scope: 'public' },
 ];
 
 // Files to scan, grouped by scope.
