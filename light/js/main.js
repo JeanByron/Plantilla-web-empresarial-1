@@ -225,6 +225,7 @@ async function navigateTo(url, push) {
         initProjectDetail();
         initFaq();
         initStatCounters();
+        initLogoGlow();
         initButtonEffects();
         initReveals();
 
@@ -474,17 +475,20 @@ function spawnRipple(el, e, rect) {
     ripple.addEventListener('animationend', () => ripple.remove());
 }
 
-/* ---------- Logo: negative lighting limited to the letters ---------- */
+/* ---------- Letter-level glow: header logo and the trusted-by names ---------- */
 function initLogoGlow() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    document.querySelectorAll('header a[href="index.html"]').forEach(logo => {
-        logo.classList.add('logo-glow');
-        logo.dataset.text = logo.textContent.trim();
-        logo.addEventListener('pointermove', (e) => {
-            const r = logo.getBoundingClientRect();
-            logo.style.setProperty('--mx', `${e.clientX - r.left}px`);
-            logo.style.setProperty('--my', `${e.clientY - r.top}px`);
+    const targets = document.querySelectorAll('header a[href="index.html"], .logo-mark');
+    targets.forEach(el => {
+        if (el.dataset.glowBound) return;
+        el.dataset.glowBound = '1';
+        el.classList.add('logo-glow');
+        el.dataset.text = el.textContent.trim();
+        el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            el.style.setProperty('--my', `${e.clientY - r.top}px`);
         });
     });
 }

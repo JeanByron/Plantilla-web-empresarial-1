@@ -161,10 +161,12 @@ header[class*="fixed"] {
 header a[href="index.html"] {
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: left center;
+    /* Nudge left so the scaled-up state doesn't crowd the nav */
+    margin-left: -6px;
 }
 
 header a[href="index.html"].logo-expanded {
-    transform: scale(1.18);
+    transform: scale(1.12);
 }
 
 /* ---------- Logo: negative lighting limited to the letters ----------
@@ -193,6 +195,18 @@ header a[href="index.html"].logo-expanded {
 
 .logo-glow:hover::after {
     opacity: 1;
+}
+
+/* ---------- Trusted-by names: scale + letter glow on hover, like the logo ---------- */
+.logo-mark {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    transform-origin: center;
+}
+
+.logo-mark:hover {
+    transform: scale(1.18);
+    color: var(--color-on-surface, #e6eefb);
 }
 
 /* ---------- Navigation: boxes with a lit bottom border ---------- */

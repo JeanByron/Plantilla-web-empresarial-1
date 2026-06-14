@@ -88,7 +88,8 @@ ${tier('Scale', 'Custom', 'Bespoke platforms, integrations, and ongoing partners
 <p class="text-center font-body-sm text-body-sm text-on-surface-variant mt-stack-lg">All prices are starting points. Final quotes are fixed after a short discovery call.</p>
 </section>
 <!-- Comparison table -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-[128px]">
+<section class="px-margin-mobile md:px-margin-desktop py-[128px] bg-surface-container-lowest border-y border-outline-variant">
+<div class="max-w-container-max mx-auto">
 <h2 class="font-headline-xl text-headline-xl text-primary mb-stack-lg text-center">Compare packages</h2>
 <div class="overflow-x-auto">
 <table class="w-full min-w-[640px] text-left">
@@ -110,6 +111,7 @@ ${compareRow('Support window', '—', '30 days', 'Ongoing')}
 ${compareRow('Dedicated team', no, no, yes)}
 </tbody>
 </table>
+</div>
 </div>
 </section>
 <!-- Pricing FAQ -->
