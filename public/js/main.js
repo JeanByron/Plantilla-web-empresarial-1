@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initDashboard();
     initProjectDetail();
+    initFaq();
+    initStatCounters();
     initDotField();
     initCursorGlow();
     initGlowCards();
@@ -221,6 +223,8 @@ async function navigateTo(url, push) {
         initContactForm();
         initDashboard();
         initProjectDetail();
+        initFaq();
+        initStatCounters();
         initButtonEffects();
         initReveals();
 
@@ -1106,4 +1110,57 @@ async function initProjectDetail() {
                 </a>
             </div>
         </article>`;
+}
+
+/* ---------- FAQ accordion ----------
+   Add data-faq to a container and, inside, repeat:
+   <div class="faq-item"><button class="faq-q" aria-expanded="false">…</button>
+   <div class="faq-a">…</div></div> */
+function initFaq() {
+    document.querySelectorAll('[data-faq] .faq-q').forEach(btn => {
+        if (btn.dataset.bound) return;
+        btn.dataset.bound = '1';
+        const answer = btn.nextElementSibling;
+        btn.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', () => {
+            const open = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!open));
+            if (answer) answer.style.maxHeight = open ? null : answer.scrollHeight + 'px';
+        });
+    });
+}
+
+/* ---------- Animated stat counters ----------
+   Counts up to the number in [data-stat] when it scrolls into view. */
+function initStatCounters() {
+    const stats = document.querySelectorAll('[data-stat]');
+    if (!stats.length) return;
+
+    const animate = el => {
+        const target = parseFloat(el.dataset.stat);
+        const suffix = el.dataset.statSuffix || '';
+        const decimals = (el.dataset.stat.split('.')[1] || '').length;
+        if (REDUCED_MOTION) {
+            el.textContent = target.toFixed(decimals) + suffix;
+            return;
+        }
+        const t0 = performance.now();
+        (function tick(now) {
+            const p = Math.min(1, (now - t0) / 1100);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = (target * eased).toFixed(decimals) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animate(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    stats.forEach(el => observer.observe(el));
 }

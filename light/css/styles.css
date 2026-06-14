@@ -595,6 +595,49 @@ body.js-ready .reveal.in-view {
     background: linear-gradient(180deg, #2a5ca8, #58c4ffaa);
 }
 
+/* ---------- FAQ accordion ---------- */
+.faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-q .faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-q[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* ---------- Marquee row for client logos ---------- */
+.logo-marquee {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+    animation: logo-scroll 32s linear infinite;
+}
+
+.logo-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes logo-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- Process timeline connector ---------- */
+.timeline-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 1.5rem;
+    top: 3.5rem;
+    bottom: -1.5rem;
+    width: 2px;
+    background: linear-gradient(180deg, #1c4f8f, transparent);
+}
+
 /* ---------- Skip link (keyboard accessibility) ---------- */
 .skip-link {
     position: absolute;
@@ -631,5 +674,9 @@ body.js-ready .reveal.in-view {
 
     header a[href="index.html"] {
         transition: none;
+    }
+
+    .logo-marquee {
+        animation: none;
     }
 }

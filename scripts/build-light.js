@@ -122,6 +122,7 @@ function transform(file, html) {
     html = html.replace(/href="services\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
     html = html.replace(/href="about\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
     html = html.replace(/href="dashboard\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
+    html = html.replace(/href="pricing\.html"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);
     // Case-study cards: keep them clickable but send to the full template
     // (the project.html detail page isn't included in the free edition).
     html = html.replace(/href="project\.html\?id=\d+"/g, `href="${FULL_URL}" target="_blank" rel="noopener"`);

@@ -4,6 +4,7 @@
   <url><loc>https://auradesign-studio.example.com/</loc><priority>1.0</priority></url>
   <url><loc>https://auradesign-studio.example.com/portfolio.html</loc><priority>0.8</priority></url>
   <url><loc>https://auradesign-studio.example.com/services.html</loc><priority>0.8</priority></url>
+  <url><loc>https://auradesign-studio.example.com/pricing.html</loc><priority>0.8</priority></url>
   <url><loc>https://auradesign-studio.example.com/about.html</loc><priority>0.8</priority></url>
   <url><loc>https://auradesign-studio.example.com/dashboard.html</loc><priority>0.5</priority></url>
   <url><loc>https://auradesign-studio.example.com/project.html</loc><priority>0.6</priority></url>
