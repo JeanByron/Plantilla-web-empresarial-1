@@ -3,6 +3,36 @@
 All notable changes to AuraDesign Studio are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] — 2026-06-13
+
+A self-sufficiency pass: the template can now be fully personalized and
+published by a non-technical buyer, with no terminal and no build step.
+
+### Added
+- **No-build accent colour** — change the brand highlight by editing a single
+  `--accent` variable in `public/css/styles.css`; the whole site recolours with
+  no recompile (canvas charts included).
+- **Demo-content markers** — every placeholder block (client logos, stats,
+  testimonials, team, history, contact details, map, social links) is now
+  flagged with `<!-- DEMO CONTENT -->` comments so they're easy to find.
+- **Before-you-publish checklist** and a no-terminal "Start here" guide in the
+  README.
+
+### Changed
+- Rewrote README and the customization/deployment guides for a non-technical
+  audience: the static, no-Node path is the default; Node is clearly optional.
+- The contact form now shows a clear "not set up yet" message instead of a
+  misleading "could not connect to the server" error when no form endpoint is
+  configured on a static deploy.
+- `netlify.toml` no longer runs an npm build (the CSS ships compiled), so
+  connecting a Git repo deploys without Node.
+- `site-config.js` flags the Formspree endpoint as required for static mode.
+
+### Fixed
+- Removed documentation references to seller-only tooling that isn't part of the
+  download.
+- Portfolio error message no longer mentions a "server" in static mode.
+
 ## [1.2.0] — 2026-06-13
 
 A content and polish pass: a new Pricing page, richer home sections, and a
@@ -14,7 +44,7 @@ sweep of accessibility, SEO, and personalization refinements.
 - **Richer home sections** — client logo marquee, animated stat band, process
   timeline, testimonials, and an FAQ accordion.
 - **Personalizable contact details** — the About page email, phone, and address
-  are now driven by `brand.config.json` and rewritten by `personalize.js`.
+  are clearly marked demo values, easy to find and replace in `about.html`.
 - **Per-case-study metadata** — `project.html` updates its canonical and
   Open Graph/Twitter tags to the active project on navigation.
 - **New type scale tokens** — `display-md`, `headline-sm`, `label-lg`, and

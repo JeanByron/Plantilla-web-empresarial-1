@@ -1,8 +1,9 @@
 # Netlify configuration — static deployment of AuraDesign Studio.
-# Builds the Tailwind CSS, then publishes the static `public/` folder.
+# The CSS is already compiled in public/css/tailwind.css, so no build step is
+# needed: we just publish the static `public/` folder. (This also means
+# connecting your Git repo works without Node — Netlify won't try to build.)
 
 [build]
-  command = "npm install && npm run build:css"
   publish = "public"
 
 # Long-cache the original SVG artwork and the compiled CSS (content-hashed by

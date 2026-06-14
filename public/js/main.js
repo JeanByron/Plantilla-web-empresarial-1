@@ -8,7 +8,7 @@
 // strings live here so they never appear hardcoded across the file.
 const I18N = {
     en: {
-        projectsLoadError: 'Could not load projects. Make sure the server is running.',
+        projectsLoadError: 'Could not load projects. Check js/projects-data.js.',
         viewCaseStudy: 'View case study',
         kpiVisitsNote: (delta) => `${delta >= 0 ? '+' : ''}${delta}% vs previous period`,
         kpiProjectsNote: 'published in the portfolio',
@@ -28,6 +28,7 @@ const I18N = {
         formSuccess: 'Thank you. Your inquiry was sent successfully; we will be in touch soon.',
         formGenericError: 'An error occurred while submitting the form.',
         formConnectionError: 'Could not connect to the server. Please try again.',
+        formNotConfigured: 'The contact form is not set up yet. (Site owner: add your Formspree endpoint in js/site-config.js — see the docs.)',
         demoDataNote: 'Demo data',
         projectNotFoundTitle: 'Project not found',
         projectNotFoundBody: "The case study you are looking for doesn't exist or has been moved.",
@@ -43,7 +44,7 @@ const I18N = {
         ]
     },
     es: {
-        projectsLoadError: 'No se pudieron cargar los proyectos. Verifica que el servidor esté en ejecución.',
+        projectsLoadError: 'No se pudieron cargar los proyectos. Revisa js/projects-data.js.',
         viewCaseStudy: 'Ver caso de estudio',
         kpiVisitsNote: (delta) => `${delta >= 0 ? '+' : ''}${delta}% vs periodo anterior`,
         kpiProjectsNote: 'publicados en el portafolio',
@@ -63,6 +64,7 @@ const I18N = {
         formSuccess: 'Gracias. Tu consulta fue enviada correctamente; te contactaremos pronto.',
         formGenericError: 'Ocurrió un error al enviar el formulario.',
         formConnectionError: 'No se pudo conectar con el servidor. Inténtalo de nuevo.',
+        formNotConfigured: 'El formulario de contacto aún no está configurado. (Dueño del sitio: añade tu endpoint de Formspree en js/site-config.js — ver la documentación.)',
         demoDataNote: 'Datos de demostración',
         projectNotFoundTitle: 'Proyecto no encontrado',
         projectNotFoundBody: 'El caso de estudio que buscas no existe o fue movido.',
@@ -86,6 +88,11 @@ const INTL_LOCALE = LOCALE === 'es' ? 'es-CO' : 'en-US';
 
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
+
+// Brand accent for the canvas charts/effects. Reads --accent from styles.css
+// so changing the colour there also recolours the dashboard, with no rebuild.
+const ACCENT = (getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#58c4ff').trim();
+const ACCENT_RGB = (getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb') || '88 196 255').trim().replace(/\s+/g, ', ');
 
 // Mouse position shared across pages: stored on navigation so the light effects
 // start instantly right where the cursor is.
@@ -807,7 +814,7 @@ function drawLineChart() {
         const steps = 4;
         for (let s = 0; s <= steps; s++) {
             const y = padT + ih * (s / steps);
-            ctx.strokeStyle = 'rgba(88, 196, 255, 0.08)';
+            ctx.strokeStyle = `rgba(${ACCENT_RGB}, 0.08)`;
             ctx.beginPath();
             ctx.moveTo(padL, y);
             ctx.lineTo(w - padR, y);
@@ -819,8 +826,8 @@ function drawLineChart() {
         const count = Math.max(2, Math.ceil(data.length * eased));
 
         const grad = ctx.createLinearGradient(0, padT, 0, h - padB);
-        grad.addColorStop(0, 'rgba(88, 196, 255, 0.26)');
-        grad.addColorStop(1, 'rgba(88, 196, 255, 0)');
+        grad.addColorStop(0, `rgba(${ACCENT_RGB}, 0.26)`);
+        grad.addColorStop(1, `rgba(${ACCENT_RGB}, 0)`);
         ctx.beginPath();
         ctx.moveTo(px(0), py(data[0]));
         for (let i = 1; i < count; i++) ctx.lineTo(px(i), py(data[i]));
@@ -833,9 +840,9 @@ function drawLineChart() {
         ctx.beginPath();
         ctx.moveTo(px(0), py(data[0]));
         for (let i = 1; i < count; i++) ctx.lineTo(px(i), py(data[i]));
-        ctx.strokeStyle = '#58c4ff';
+        ctx.strokeStyle = ACCENT;
         ctx.lineWidth = 2;
-        ctx.shadowColor = 'rgba(88, 196, 255, 0.6)';
+        ctx.shadowColor = `rgba(${ACCENT_RGB}, 0.6)`;
         ctx.shadowBlur = 10;
         ctx.stroke();
         ctx.shadowBlur = 0;
@@ -890,7 +897,7 @@ function drawDonut() {
     ctx.scale(dpr, dpr);
 
     const cats = [
-        { key: 'web', label: T.donutCats.web, color: '#58c4ff' },
+        { key: 'web', label: T.donutCats.web, color: ACCENT },
         { key: 'dev', label: T.donutCats.dev, color: '#316bf3' },
         { key: 'branding', label: T.donutCats.branding, color: '#8fd4ff' }
     ];
@@ -1052,7 +1059,15 @@ async function submitInquiry(payload) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
-    const data = await res.json();
+    // On a static host with no form service configured, /api/contact doesn't
+    // exist and the host returns an HTML page. Detect that and tell the owner
+    // to set formEndpoint, instead of a misleading "server" error.
+    let data;
+    try {
+        data = await res.json();
+    } catch {
+        return { ok: false, message: T.formNotConfigured };
+    }
     if (res.ok && data.ok) return { ok: true };
     return { ok: false, message: (data.errors || []).join(' ') };
 }

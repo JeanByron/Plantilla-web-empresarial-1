@@ -50,5 +50,6 @@ own license:
 - Tailwind CSS — MIT License (used as a build-time dependency).
 - Express — MIT License (optional backend dependency).
 
-The OpenStreetMap embed used on the About page is served by openstreetmap.org
-under the Open Database License; replace it with your own map embed as needed.
+The map embed on the About page is a Google Maps embed served by google.com,
+subject to Google's terms of service; replace it with your own location (or a
+different map provider) as needed.
