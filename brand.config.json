@@ -1,0 +1,32 @@
+{
+  "_help": "Fill in your real values, then run: node scripts/personalize.js. This rewrites the placeholder domain, social links, author, full-template URL and agency URL across public/, package.json, sitemap.xml, robots.txt and the light edition. Re-run any time you change a value.",
+
+  "siteName": "AuraDesign Studio",
+
+  "fullSiteDomain": "https://auradesign-studio.example.com",
+  "fullSiteComment": "Where the PAID template demo is hosted (no trailing slash). Used in canonical/OG/sitemap/robots.",
+
+  "lightSiteDomain": "https://auradesign-light.example.com",
+  "lightSiteComment": "Where the FREE light demo is hosted (no trailing slash).",
+
+  "fullTemplateUrl": "https://your-gumroad.gumroad.com/l/auradesign-studio",
+  "fullTemplateComment": "Your paid product page on Gumroad. The free edition links here.",
+
+  "agencyUrl": "https://your-agency-site.example.com",
+  "agencyComment": "Your agency / services site. The 'Hire us' CTAs point here.",
+
+  "contactEmail": "you@example.com",
+
+  "social": {
+    "linkedin": "https://www.linkedin.com/company/your-company",
+    "dribbble": "https://dribbble.com/your-handle"
+  },
+
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  },
+
+  "formspreeEndpoint": "",
+  "formspreeComment": "Optional. For the STATIC demo's contact form, paste your Formspree endpoint (https://formspree.io/f/XXXX). Leave empty to use the Node backend instead."
+}

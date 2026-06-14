@@ -13,11 +13,16 @@ const ROOT = path.join(__dirname, '..');
 const SRC = path.join(ROOT, 'public');
 const OUT = path.join(ROOT, 'light');
 
-// --- Configurable CTA targets (placeholders, documented for the seller) ---
-// Replace all three before publishing the free edition (see light/README.md).
-const FULL_URL = 'https://your-gumroad.gumroad.com/l/auradesign-studio'; // paid full template on Gumroad
-const HIRE_URL = 'https://your-agency-site.example.com';                  // your agency / services site
-const DOMAIN = 'https://auradesign-light.example.com';                    // where the free demo is hosted
+// CTA targets come from brand.config.json (single source of truth, shared with
+// scripts/personalize.js). Falls back to placeholders if the config is absent.
+const cfg = (() => {
+    try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'brand.config.json'), 'utf8')); }
+    catch { return {}; }
+})();
+const strip = u => String(u).replace(/\/+$/, '');
+const FULL_URL = cfg.fullTemplateUrl || 'https://your-gumroad.gumroad.com/l/auradesign-studio';
+const HIRE_URL = cfg.agencyUrl || 'https://your-agency-site.example.com';
+const DOMAIN = strip(cfg.lightSiteDomain || 'https://auradesign-light.example.com');
 
 // Pages that ship in the light edition.
 const PAGES = ['index.html', 'portfolio.html', '404.html'];

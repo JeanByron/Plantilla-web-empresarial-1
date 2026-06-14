@@ -106,12 +106,13 @@ scratch?** Reply to your receipt or reach us at [your email] and let's talk.
 
 ## Pre-publish checklist
 
-- [ ] Replace `auradesign-studio.example.com` everywhere (canonical, OG,
-      sitemap, robots) with your real demo URL.
+See [LAUNCH.md](../LAUNCH.md) for the full step-by-step. In short:
+
+- [ ] Fill `brand.config.json` and run `node scripts/personalize.js` — this
+      replaces the domain, social links, author, full-template URL and agency
+      URL everywhere at once (no manual find-and-replace).
 - [ ] Deploy the static demo to Netlify and put the live URL in the listing.
-- [ ] Set your Formspree `formEndpoint` in `public/js/site-config.js` on the demo.
-- [ ] Fill `author` in `package.json` and the contact email in the CTA above.
-- [ ] Upload the fresh `AuraDesign-Studio-v1.1.zip` (not the v1.0).
+- [ ] Upload `AuraDesign-Studio-v1.1.zip` + the covers from `covers/`.
 - [ ] Add the demo link + a video to the Gumroad page.
 
 ---
@@ -149,12 +150,10 @@ Need a site built *for* you? [Let's talk](HIRE_URL).
 
 ## Setup before publishing the free edition
 
-The `light/` files contain three placeholder URLs. Edit them at the top of
-`scripts/build-light.js` and re-run `node scripts/build-light.js`, or
-find-and-replace in the `light/` files directly:
+The free edition's URLs come from `brand.config.json` too. After running
+`node scripts/personalize.js` and `node scripts/build-light.js` (see
+[LAUNCH.md](../LAUNCH.md)), the `light/` files already point at your paid
+product, your agency, and the free demo domain.
 
-- [ ] `FULL_URL`  → your paid Gumroad product URL
-- [ ] `HIRE_URL`  → your agency / services site
-- [ ] `DOMAIN`    → where you host the free demo (e.g. a Netlify subdomain)
 - [ ] Deploy `light/` to Netlify and link the live demo from this product.
 - [ ] Upload `marketing/AuraDesign-Studio-Free.zip`.
