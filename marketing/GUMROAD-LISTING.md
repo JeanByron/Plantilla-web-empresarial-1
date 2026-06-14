@@ -112,7 +112,7 @@ See [LAUNCH.md](../LAUNCH.md) for the full step-by-step. In short:
       replaces the domain, social links, author, full-template URL and agency
       URL everywhere at once (no manual find-and-replace).
 - [ ] Deploy the static demo to Netlify and put the live URL in the listing.
-- [ ] Upload `AuraDesign-Studio-v1.2.zip` + the covers from `covers/`.
+- [ ] Upload `AuraDesign-Studio-v1.3.zip` + the covers from `covers/`.
 - [ ] Add the demo link + a video to the Gumroad page.
 
 ---
