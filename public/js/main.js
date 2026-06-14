@@ -774,7 +774,7 @@ function setKpi(key, value, note, positive) {
         el.dataset.value = value;
         return;
     }
-    // Conteo animado desde el valor anterior
+    // Animated count from the previous value
     const start = parseFloat(el.dataset.value || '0');
     el.dataset.value = value;
     const t0 = performance.now();
@@ -816,7 +816,7 @@ function drawLineChart() {
         const eased = 1 - Math.pow(1 - p, 3);
         ctx.clearRect(0, 0, w, h);
 
-        // Rejilla y etiquetas del eje Y
+        // Grid and Y-axis labels
         ctx.font = '11px Inter, sans-serif';
         const steps = 4;
         for (let s = 0; s <= steps; s++) {
@@ -832,7 +832,7 @@ function drawLineChart() {
 
         const count = Math.max(2, Math.ceil(data.length * eased));
 
-        // Área bajo la curva
+        // Area under the curve
         const grad = ctx.createLinearGradient(0, padT, 0, h - padB);
         grad.addColorStop(0, 'rgba(88, 196, 255, 0.26)');
         grad.addColorStop(1, 'rgba(88, 196, 255, 0)');
@@ -936,7 +936,7 @@ function drawDonut() {
     });
     ctx.shadowBlur = 0;
 
-    // Total en el centro
+    // Total in the center
     ctx.textAlign = 'center';
     ctx.fillStyle = '#e6eefb';
     ctx.font = '700 26px Inter, sans-serif';
