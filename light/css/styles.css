@@ -98,7 +98,7 @@ html {
     font-variation-settings: 'FILL' 1;
 }
 
-/* ---------- Fondo animado de puntos (canvas inyectado por main.js) ---------- */
+/* ---------- Animated dot background (canvas injected by main.js) ---------- */
 #dot-field {
     position: fixed;
     inset: 0;
@@ -106,12 +106,11 @@ html {
     pointer-events: none;
 }
 
-/* El body es transparente para dejar ver el canvas; el fondo lo da el <html> */
 body {
     background-color: transparent !important;
 }
 
-/* ---------- Halo de luz que sigue al cursor ---------- */
+/* ---------- Cursor-following light halo ---------- */
 .cursor-glow {
     position: fixed;
     left: 0;
@@ -136,7 +135,7 @@ body {
     50%      { filter: hue-rotate(28deg); }
 }
 
-/* ---------- Encabezado con efecto vidrio ---------- */
+/* ---------- Glass-effect header ---------- */
 header[class*="fixed"] {
     background: rgba(7, 11, 22, 0.65) !important;
     backdrop-filter: blur(16px) saturate(150%);
@@ -158,7 +157,7 @@ header[class*="fixed"] {
     pointer-events: none;
 }
 
-/* ---------- Logo: se expande cuando la vista activa es Inicio ---------- */
+/* ---------- Logo: expands when Home is the active view ---------- */
 header a[href="index.html"] {
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: left center;
@@ -205,7 +204,6 @@ header a[href="index.html"].logo-expanded {
     transition: background-color 0.25s ease, color 0.2s ease;
 }
 
-/* On the desktop menu the box spans the full header height */
 header nav:not(#mobile-menu) {
     align-self: stretch;
     align-items: stretch;
@@ -223,7 +221,6 @@ header nav:not(#mobile-menu) .nav-box {
     background-color: rgba(88, 196, 255, 0.07);
 }
 
-/* Bottom light beam that follows the cursor's horizontal position */
 .nav-box::after {
     content: '';
     position: absolute;
@@ -240,7 +237,6 @@ header nav:not(#mobile-menu) .nav-box {
         transparent 70%);
 }
 
-/* Resplandor tipo foco alrededor del haz */
 .nav-box::before {
     content: '';
     position: absolute;
@@ -303,7 +299,7 @@ header nav:not(#mobile-menu) .nav-box {
     will-change: transform;
 }
 
-/* ---------- Botones: luz que sigue la punta del cursor ---------- */
+/* ---------- Buttons: light following the cursor tip ---------- */
 .btn-glow {
     position: relative;
     overflow: hidden;
@@ -326,7 +322,7 @@ header nav:not(#mobile-menu) .nav-box {
     opacity: 1;
 }
 
-/* ---------- Botones: onda de color al pulsar ---------- */
+/* ---------- Buttons: color ripple on press ---------- */
 .btn-ripple {
     position: absolute;
     border-radius: 50%;
@@ -346,7 +342,6 @@ header nav:not(#mobile-menu) .nav-box {
     }
 }
 
-/* Color pulse that expands around the button on press */
 .btn-pulse {
     animation: btn-pulse 0.55s ease-out;
 }
@@ -362,7 +357,7 @@ header nav:not(#mobile-menu) .nav-box {
     }
 }
 
-/* ---------- Variante invertida para botones de fondo claro (bg-primary) ---------- */
+/* ---------- Inverted variant for light-background buttons (bg-primary) ---------- */
 .btn-glow-dark::after {
     background: radial-gradient(130px circle at var(--mx, 50%) var(--my, 50%),
         rgba(8, 28, 64, 0.38),
@@ -392,7 +387,6 @@ header nav:not(#mobile-menu) .nav-box {
     }
 }
 
-/* Filtros seleccionados: usan la variante invertida mientras brillan */
 .filter-btn.active::after {
     background: radial-gradient(130px circle at var(--mx, 50%) var(--my, 50%),
         rgba(8, 28, 64, 0.38),
@@ -426,7 +420,7 @@ button[class*="bg-primary"]:hover {
     transform: translateY(-2px);
 }
 
-/* ---------- Filtros del portafolio ---------- */
+/* ---------- Portfolio filters ---------- */
 .filter-btn {
     border: 1px solid transparent;
 }
@@ -441,7 +435,7 @@ button[class*="bg-primary"]:hover {
     box-shadow: 0 0 20px rgba(88, 196, 255, 0.45);
 }
 
-/* ---------- Overlay de las tarjetas de proyecto ---------- */
+/* ---------- Project card overlay ---------- */
 .project-card .overlay {
     opacity: 0;
     transition: opacity 250ms ease-out;
@@ -453,7 +447,6 @@ button[class*="bg-primary"]:hover {
     opacity: 1;
 }
 
-/* Card text strip: fades out on hover */
 .project-caption {
     position: relative;
     background: #0d142a;
@@ -464,7 +457,7 @@ button[class*="bg-primary"]:hover {
     opacity: 0;
 }
 
-/* ---------- Brillo suave en titulares ---------- */
+/* ---------- Soft glow on headings ---------- */
 h1 {
     text-shadow: 0 0 45px rgba(88, 196, 255, 0.30);
 }
@@ -494,7 +487,7 @@ main.view-enter {
     transform: translateY(12px);
 }
 
-/* ---------- Campos del formulario: fondo opaco y luz que sigue al cursor ---------- */
+/* ---------- Form fields: opaque background with cursor-following light ---------- */
 .field-glow {
     background-color: rgba(15, 23, 48, 0.95) !important;
 }
@@ -507,9 +500,9 @@ main.view-enter {
         transparent 70%);
 }
 
-/* ---------- Mapa de Google con tema oscuro ----------
-   El embed no admite estilos sin clave de API: el tema oscuro se logra con
-   filtros CSS. En reposo va en escala de grises; el hover recupera el color. */
+/* ---------- Dark-themed Google Map ----------
+   The embed can't be styled without an API key, so the dark theme is done with
+   CSS filters: grayscale at rest, full color on hover. */
 .map-dark iframe {
     filter: grayscale(1) invert(92%) hue-rotate(180deg) contrast(0.92) saturate(0.75);
     transition: filter 0.5s ease;
@@ -565,7 +558,7 @@ body.js-ready .reveal.in-view {
     transform: translateY(0);
 }
 
-/* ---------- Animaciones de entrada ---------- */
+/* ---------- Entrance animations ---------- */
 .fade-in-up {
     opacity: 0;
     transform: translateY(20px);
@@ -583,7 +576,7 @@ body.js-ready .reveal.in-view {
     }
 }
 
-/* ---------- Scrollbar personalizada ---------- */
+/* ---------- Custom scrollbar ---------- */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -636,7 +629,6 @@ body.js-ready .reveal.in-view {
         transform: none;
     }
 
-    /* The expanded logo applies instantly, without animation */
     header a[href="index.html"] {
         transition: none;
     }

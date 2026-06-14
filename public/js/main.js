@@ -98,7 +98,6 @@ function storePointer(x, y) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveals the content once the styles are ready (anti-flash)
     requestAnimationFrame(() => {
         document.documentElement.classList.add('app-ready');
     });
@@ -148,13 +147,11 @@ function setActiveNav() {
         link.classList.toggle('text-secondary', active);
         link.classList.toggle('font-bold', active);
         link.classList.toggle('text-on-surface-variant', !active);
-        // The fixed underline only applies to the desktop menu
         if (link.closest('#main-nav')) {
             link.classList.toggle('border-b-2', active);
             link.classList.toggle('border-secondary', active);
         }
     });
-    // The logo expands when the active view is Home
     document.querySelectorAll('header a[href="index.html"]').forEach(logo => {
         logo.classList.toggle('logo-expanded', page === 'index.html');
     });
@@ -194,7 +191,6 @@ let navigating = false;
 async function navigateTo(url, push) {
     closeMobileMenu();
 
-    // Same view: just scroll (to the anchor or to the very top)
     if (url.pathname === location.pathname) {
         if (push && url.href !== location.href) history.pushState({}, '', url.href);
         if (url.hash) scrollToHash(url.hash);
@@ -220,7 +216,6 @@ async function navigateTo(url, push) {
         if (push) history.pushState({}, '', url.href);
         setActiveNav();
 
-        // Initialize only what was just inserted: the persistent ones have guards
         setCopyrightYear();
         initPortfolio();
         initContactForm();
@@ -233,7 +228,6 @@ async function navigateTo(url, push) {
         if (url.hash) scrollToHash(url.hash);
         fadeInMain(newMain);
     } catch {
-        // On any problem, fall back to traditional navigation
         location.href = url.href;
     } finally {
         navigating = false;
@@ -270,12 +264,10 @@ function initDotField() {
     const MOUSE_RADIUS = 210;
     let width, height, dots = [];
 
-    // Starts where the cursor was on the previous page
     const stored = loadStoredPointer();
     const pointer = stored
         ? { x: stored.x, y: stored.y, tx: stored.x, ty: stored.y, active: true }
         : { x: -9999, y: -9999, tx: -9999, ty: -9999, active: false };
-    // Light intensity (drops to 0 when leaving the window or entering the map)
     let influence = pointer.active ? 1 : 0;
 
     function resize() {
@@ -294,10 +286,8 @@ function initDotField() {
     window.addEventListener('pointermove', (e) => {
         pointer.tx = e.clientX;
         pointer.ty = e.clientY;
-        // Over the map the light fades just like when leaving the window
         pointer.active = !(e.target.closest && e.target.closest('.map-dark'));
     });
-    // The map iframe doesn't emit pointermove: entry is detected here
     document.addEventListener('pointerover', (e) => {
         if (e.target.closest && e.target.closest('.map-dark')) pointer.active = false;
     });
@@ -313,7 +303,6 @@ function initDotField() {
         t += 0.016;
         pointer.x = pointer.tx;
         pointer.y = pointer.ty;
-        // Quick fade-in, soft fade-out
         influence += ((pointer.active ? 1 : 0) - influence) * (pointer.active ? 0.3 : 0.06);
 
         ctx.clearRect(0, 0, width, height);
@@ -361,7 +350,6 @@ function initCursorGlow() {
     glow.className = 'cursor-glow';
     document.body.appendChild(glow);
 
-    // Starts where the cursor was on the previous page
     const stored = loadStoredPointer();
     if (stored) {
         glow.style.transform = `translate(${stored.x}px, ${stored.y}px)`;
@@ -371,13 +359,11 @@ function initCursorGlow() {
 
     window.addEventListener('pointermove', (e) => {
         glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        // Over the map the glow also fades, like when leaving the window
         glow.style.opacity = (e.target.closest && e.target.closest('.map-dark')) ? '0' : '1';
     });
     document.addEventListener('pointerover', (e) => {
         if (e.target.closest && e.target.closest('.map-dark')) glow.style.opacity = '0';
     });
-    // When leaving the window, the glow fades out in place
     document.addEventListener('pointerleave', () => {
         glow.style.opacity = '0';
     });
@@ -387,7 +373,6 @@ function initCursorGlow() {
 function initGlowCards() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Delegation: also works with dynamically created cards (portfolio)
     document.addEventListener('pointermove', (e) => {
         const card = e.target.closest ? e.target.closest('.glow-card') : null;
         if (!card) return;
@@ -415,7 +400,6 @@ function initGlowCards() {
 function initFieldGlow() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Delegation: also covers fields inserted after a smooth navigation
     document.addEventListener('pointermove', (e) => {
         const field = e.target.closest && e.target.closest('.field-glow');
         if (!field) return;
@@ -429,7 +413,6 @@ function initFieldGlow() {
 function initButtonEffects() {
     if (REDUCED_MOTION || !FINE_POINTER) return;
 
-    // Underlined links (border-b-2) are text, not buttons: no effects
     const els = document.querySelectorAll(
         'a[class*="bg-primary"], button[class*="bg-primary"], ' +
         'a[class*="border-primary"]:not([class*="border-b-2"]), ' +
@@ -438,11 +421,9 @@ function initButtonEffects() {
     );
 
     els.forEach(el => {
-        // Avoids duplicating listeners after smooth navigation
         if (el.dataset.fxBound) return;
         el.dataset.fxBound = '1';
         el.classList.add('magnetic', 'btn-glow');
-        // Inverted-color variant for light-background buttons
         if (el.className.includes('bg-primary')) {
             el.classList.add('btn-glow-dark');
         }
@@ -454,9 +435,7 @@ function initButtonEffects() {
 
         el.addEventListener('pointermove', (e) => {
             const r = el.getBoundingClientRect();
-            // Magnetism toward the cursor
             applyTransform(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
-            // Inner light following the mouse tip
             el.style.setProperty('--mx', `${e.clientX - r.left}px`);
             el.style.setProperty('--my', `${e.clientY - r.top}px`);
         });
@@ -466,7 +445,6 @@ function initButtonEffects() {
             const r = el.getBoundingClientRect();
             applyTransform(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
             spawnRipple(el, e, r);
-            // Restarts the color pulse even on repeated presses
             el.classList.remove('btn-pulse');
             void el.offsetWidth;
             el.classList.add('btn-pulse');
@@ -481,7 +459,6 @@ function initButtonEffects() {
     });
 }
 
-// Color ripple that expands from the exact click point
 function spawnRipple(el, e, rect) {
     const size = Math.max(rect.width, rect.height) * 2.2;
     const ripple = document.createElement('span');
@@ -499,7 +476,6 @@ function initLogoGlow() {
 
     document.querySelectorAll('header a[href="index.html"]').forEach(logo => {
         logo.classList.add('logo-glow');
-        // The ::after draws an exact copy of the text from this attribute
         logo.dataset.text = logo.textContent.trim();
         logo.addEventListener('pointermove', (e) => {
             const r = logo.getBoundingClientRect();
@@ -594,8 +570,6 @@ async function initPortfolio() {
 }
 
 function renderProjects(grid, projects) {
-    // The image is the background of the whole card; a spacer defines the height
-    // and the text strip (project-caption) fades out on hover.
     grid.innerHTML = projects.map(p => `
         <a href="project.html?id=${encodeURIComponent(p.id)}" aria-label="${escapeHtml(p.title)} — ${T.viewCaseStudy}" class="project-card glow-card relative group flex flex-col bg-surface-container-lowest border border-surface-variant shadow-ambient-1 shadow-ambient-2 overflow-hidden transition-all duration-200 ease-out cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary ${p.wide ? 'md:col-span-2 lg:col-span-2' : ''}">
             <img alt="${escapeHtml(p.imageAlt)}" class="absolute inset-0 w-full h-full object-cover" src="${p.image}"/>
@@ -656,7 +630,6 @@ async function initDashboard() {
     animateSystemBars(root);
     toggleDemoBadge(root, demo);
 
-    // Range selector (7 / 30 / 90 days)
     root.querySelectorAll('[data-range]').forEach(btn => {
         btn.addEventListener('click', () => {
             root.querySelectorAll('[data-range]').forEach(b => {
@@ -774,7 +747,6 @@ function setKpi(key, value, note, positive) {
         el.dataset.value = value;
         return;
     }
-    // Animated count from the previous value
     const start = parseFloat(el.dataset.value || '0');
     el.dataset.value = value;
     const t0 = performance.now();
@@ -816,7 +788,6 @@ function drawLineChart() {
         const eased = 1 - Math.pow(1 - p, 3);
         ctx.clearRect(0, 0, w, h);
 
-        // Grid and Y-axis labels
         ctx.font = '11px Inter, sans-serif';
         const steps = 4;
         for (let s = 0; s <= steps; s++) {
@@ -832,7 +803,6 @@ function drawLineChart() {
 
         const count = Math.max(2, Math.ceil(data.length * eased));
 
-        // Area under the curve
         const grad = ctx.createLinearGradient(0, padT, 0, h - padB);
         grad.addColorStop(0, 'rgba(88, 196, 255, 0.26)');
         grad.addColorStop(1, 'rgba(88, 196, 255, 0)');
@@ -845,7 +815,6 @@ function drawLineChart() {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Line with a cyan glow
         ctx.beginPath();
         ctx.moveTo(px(0), py(data[0]));
         for (let i = 1; i < count; i++) ctx.lineTo(px(i), py(data[i]));
@@ -871,7 +840,6 @@ function bindLineHover(canvas, data, px, py) {
         tip.className = 'dash-tooltip';
         wrap.appendChild(tip);
     }
-    // Direct assignment: each re-render replaces the previous handler
     canvas.onpointermove = (e) => {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -936,7 +904,6 @@ function drawDonut() {
     });
     ctx.shadowBlur = 0;
 
-    // Total in the center
     ctx.textAlign = 'center';
     ctx.fillStyle = '#e6eefb';
     ctx.font = '700 26px Inter, sans-serif';
@@ -1005,7 +972,6 @@ function initContactForm() {
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
 
-    // Cursor-following light on the fields, like the buttons
     form.querySelectorAll('input, select, textarea').forEach(el => el.classList.add('field-glow'));
 
     const feedback = document.getElementById('form-feedback');
