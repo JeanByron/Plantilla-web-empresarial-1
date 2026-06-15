@@ -16,7 +16,7 @@
     <rect width="560" height="340" rx="14" fill="#0c1226" stroke="#1c2a4a" stroke-width="2"/>
     <g transform="translate(34,52)" fill="#9fb2d1">
       <text x="0" y="0" fill="#eaf2ff">📁 public/</text>
-      <text x="34" y="34">8 HTML pages · css · js</text>
+      <text x="34" y="34">9 HTML pages · css · js</text>
       <text x="34" y="68">img/ — original SVG artwork</text>
       <text x="0" y="108" fill="#eaf2ff">📁 server/</text>
       <text x="34" y="142">Express API + JSON data</text>
@@ -28,7 +28,7 @@
 
   <!-- right checklist -->
   <g transform="translate(720,330)" font-size="24" fill="#dbe6f7">
-    <g transform="translate(0,0)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">8 responsive pages</text></g>
+    <g transform="translate(0,0)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">9 responsive pages</text></g>
     <g transform="translate(0,52)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Tailwind config + build</text></g>
     <g transform="translate(0,104)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Node/Express backend</text></g>
     <g transform="translate(0,156)"><text fill="#58c4ff" font-size="26">✓</text><text x="40">Original, license-clear images</text></g>
