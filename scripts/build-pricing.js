@@ -49,8 +49,8 @@ const head = `<!DOCTYPE html>
 ${header}`;
 
 const tier = (name, price, blurb, features, featured) => `
-<div class="relative flex flex-col bg-surface-container-lowest border ${featured ? 'border-secondary shadow-ambient-1 shadow-ambient-2' : 'border-outline-variant'} rounded-lg p-stack-md glow-card">
-${featured ? '<span class="absolute -top-3 left-stack-md bg-secondary text-on-secondary font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider">Most popular</span>' : ''}
+<div class="relative flex flex-col bg-surface-container-lowest border ${featured ? 'border-secondary shadow-ambient-1 shadow-ambient-2 pt-[44px]' : 'border-outline-variant'} rounded-lg p-stack-md glow-card">
+${featured ? '<span class="absolute top-3 left-stack-md z-[3] bg-secondary text-on-secondary font-label-md text-label-md px-3 py-1 rounded-full uppercase tracking-wider">Most popular</span>' : ''}
 <h2 class="font-headline-md text-headline-md text-primary mb-base">${name}</h2>
 <div class="mb-base"><span class="font-display-lg-mobile text-display-lg-mobile text-primary">${price}</span></div>
 <p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">${blurb}</p>
