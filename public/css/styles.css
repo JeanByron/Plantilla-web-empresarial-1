@@ -790,6 +790,143 @@ body.js-ready .reveal.in-view {
     50%      { background-position: 100% 50%; }
 }
 
+/* ============================================================
+   HERO BENTO — modular 3D board of cards floating at different
+   depths. Each cell sits in a 2D grid (position) and a child
+   carries the Z depth, so the grid never fights preserve-3d.
+   ============================================================ */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, minmax(56px, 1fr));
+    gap: 14px;
+    height: 100%;
+}
+
+/* Mobile/tablet: flatten the 3D stage and stack the cells in one column.
+   (The desktop 12x6 board only applies from lg up.) */
+@media (max-width: 1023px) {
+    .bento-stage {
+        transform: none !important;
+        animation: none !important;
+        transform-style: flat;
+    }
+    .scene-3d { perspective: none; }
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: none;
+        gap: 12px;
+    }
+    .float-layer,
+    .float-soft {
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* Staggered entrance; cells stay visible by default (revealed, not hidden) */
+.bento-cell {
+    opacity: 0;
+    animation: bento-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+@keyframes bento-pop {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Softer levitation for the big anchor cells */
+.float-soft {
+    transform: translateZ(var(--z, 0px));
+    animation: layer-float-soft 9s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes layer-float-soft {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -8px; }
+}
+
+/* Diagonal light sweep across a card */
+.card-sheen { position: relative; overflow: hidden; }
+.card-sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 38%, rgb(var(--accent-rgb) / 0.28) 50%, transparent 62%);
+    transform: translateX(-130%);
+    animation: sheen-sweep 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes sheen-sweep {
+    0%, 18%   { transform: translateX(-130%); }
+    42%, 100% { transform: translateX(130%); }
+}
+
+/* Rotating accent halo behind a featured card (shows only at the edge) */
+.card-edge-glow { position: relative; }
+.card-edge-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 0deg, transparent, rgb(var(--accent-rgb) / 0.55), transparent 40%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: edge-rotate 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes edge-rotate {
+    to { transform: rotate(1turn); }
+}
+
+/* "Available for work" pulsing dot */
+.live-dot {
+    position: relative;
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: var(--accent);
+}
+.live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent);
+    animation: live-pulse 2s ease-out infinite;
+}
+
+@keyframes live-pulse {
+    0%   { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* Blinking caret in the mini-browser URL bar */
+.type-caret { animation: caret-blink 1.1s step-end infinite; }
+@keyframes caret-blink { 50% { opacity: 0; } }
+
+/* Conic progress ring (set --p inline, e.g. --p:98%) */
+.progress-ring {
+    border-radius: 9999px;
+    background:
+        radial-gradient(closest-side, var(--color-surface-container-lowest, #0d142a) 78%, transparent 79% 100%),
+        conic-gradient(var(--accent) var(--p, 0%), rgb(var(--accent-rgb) / 0.15) 0);
+}
+
+/* Tech-stack pills */
+.tech-pill {
+    border: 1px solid var(--color-outline-variant, #223352);
+    background: rgb(var(--accent-rgb) / 0.06);
+}
+
 /* ---------- Accessibility: respect reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     .cursor-glow,
@@ -799,9 +936,21 @@ body.js-ready .reveal.in-view {
 
     .scene-3d-stage,
     .float-layer,
+    .float-soft,
     .scene-floor,
     .scene-bar,
-    .text-flow {
+    .text-flow,
+    .card-sheen::before,
+    .card-edge-glow::before,
+    .live-dot::after,
+    .type-caret {
+        animation: none !important;
+    }
+
+    /* Keep bento cells fully visible (their entrance starts at opacity:0) */
+    .bento-cell {
+        opacity: 1 !important;
+        transform: none !important;
         animation: none !important;
     }
 

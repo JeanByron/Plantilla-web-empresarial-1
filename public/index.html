@@ -68,96 +68,149 @@
 </nav>
 </header>
 <main id="main" class="pt-[80px]">
-<!-- Hero section -->
-<section class="min-h-[819px] flex items-center px-margin-mobile md:px-margin-desktop py-[112px] md:py-[140px] relative overflow-hidden bg-surface-container-lowest">
-<!-- Dotted grid texture -->
-<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(rgba(110, 200, 255, 0.55) 1px, transparent 1px); background-size: 24px 24px;"></div>
-<!-- Soft accent glow behind the headline -->
-<div class="absolute -top-1/4 -left-1/4 w-[680px] h-[680px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(88,196,255,0.16), transparent 62%); filter: blur(20px);"></div>
-<div class="absolute bottom-0 right-0 w-[560px] h-[560px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(47,107,255,0.14), transparent 60%); filter: blur(20px);"></div>
-<div class="max-w-container-max mx-auto relative z-10 w-full grid lg:grid-cols-2 gap-stack-lg lg:gap-gutter items-center">
-<!-- Left: copy -->
-<div class="text-center lg:text-left">
-<span class="fade-in-up inline-flex items-center gap-2 px-4 py-1.5 mb-stack-md bg-surface-container-low text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant uppercase tracking-wider">
+<!-- Hero section — modular 3D bento board -->
+<section class="min-h-screen lg:min-h-[820px] flex items-center px-margin-mobile md:px-margin-desktop py-[112px] md:py-[128px] relative bg-surface-container-lowest">
+<!-- Background glows (the global dot-field canvas sits behind everything) -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-1/4 -left-1/4 w-[680px] h-[680px] rounded-full" style="background: radial-gradient(circle, rgb(var(--accent-rgb) / 0.16), transparent 62%); filter: blur(20px);"></div>
+<div class="absolute bottom-[-10%] right-[-8%] w-[620px] h-[620px] rounded-full" style="background: radial-gradient(circle, rgba(47,107,255,0.14), transparent 60%); filter: blur(20px);"></div>
+</div>
+<div class="max-w-container-max mx-auto relative z-10 w-full">
+<div class="scene-3d relative lg:h-[600px]" id="hero-scene">
+<div class="scene-3d-stage bento-stage relative">
+<!-- Perspective floor grid -->
+<div class="scene-floor hidden lg:block"></div>
+<div class="bento-grid">
+
+<!-- A · Headline anchor -->
+<div class="bento-cell col-span-full lg:col-[1/7] lg:row-[1/5] text-center lg:text-left" style="--i:0">
+<div class="float-soft h-full flex flex-col justify-center" style="--z:0px; --delay:0s">
+<span class="inline-flex items-center gap-2 self-center lg:self-start px-4 py-1.5 mb-stack-md bg-surface-container-low text-on-surface-variant font-label-md text-label-md rounded-full border border-outline-variant uppercase tracking-wider">
 <span class="w-2 h-2 rounded-full bg-secondary"></span> Strategic Design Partner
 </span>
-<h1 class="fade-in-up delay-100 font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-md">
-                    We turn visions into <span class="text-flow bg-gradient-to-r from-secondary via-tertiary to-secondary bg-clip-text text-transparent">digital reality</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-md">
+We turn visions into <span class="text-flow bg-gradient-to-r from-secondary via-tertiary to-secondary bg-clip-text text-transparent">digital reality</span>
 </h1>
-<p class="fade-in-up delay-200 font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto lg:mx-0 mb-stack-lg">
-                    We craft high-performance web experiences for business leaders. Architectural minimalism meets corporate precision to elevate your digital footprint.
-                </p>
-<div class="fade-in-up delay-300 flex flex-col sm:flex-row gap-stack-sm justify-center lg:justify-start mb-stack-lg">
-<a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:bg-secondary transition-all duration-200 ease-out shadow-ambient-1 hover:-translate-y-0.5 uppercase" href="about.html#contact">
-                        Start a project
-                    </a>
-<a class="bg-transparent text-primary font-label-md text-label-md px-8 py-4 rounded border border-primary hover:bg-surface-container transition-all duration-200 ease-out uppercase" href="portfolio.html">
-                        View portfolio
-                    </a>
-</div>
-<!-- Inline proof stats -->
-<div class="fade-in-up delay-300 flex gap-stack-lg justify-center lg:justify-start">
-<div>
-<div class="font-headline-lg text-headline-lg text-primary" data-stat="120" data-stat-suffix="+">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Projects shipped</p>
-</div>
-<div>
-<div class="font-headline-lg text-headline-lg text-primary" data-stat="98" data-stat-suffix="%">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Client retention</p>
-</div>
-<div>
-<div class="font-headline-lg text-headline-lg text-primary" data-stat="14" data-stat-suffix="+">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Years of craft</p>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 mb-stack-md">
+We craft high-performance web experiences that turn ambitious brands into market leaders.
+</p>
+<div class="flex flex-col sm:flex-row gap-stack-sm justify-center lg:justify-start">
+<a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:bg-secondary transition-all duration-200 ease-out shadow-ambient-1 hover:-translate-y-0.5 uppercase" href="about.html#contact">Start a project</a>
+<a class="bg-transparent text-primary font-label-md text-label-md px-8 py-4 rounded border border-primary hover:bg-surface-container transition-all duration-200 ease-out uppercase" href="portfolio.html">View portfolio</a>
 </div>
 </div>
 </div>
-<!-- Right: floating 3D scene (cards levitate at different depths; parallax follows the cursor) -->
-<div class="fade-in-up delay-200 hidden lg:block">
-<div class="scene-3d relative h-[440px]" id="hero-scene">
-<!-- Perspective floor grid -->
-<div class="scene-3d-stage absolute inset-0">
-<div class="scene-floor"></div>
-<!-- Main chart panel (closest layer) -->
-<div class="float-layer absolute left-[6%] top-[14%] w-[64%]" style="--z:60px; --delay:0s">
-<div class="glass-panel rounded-xl p-stack-md">
-<div class="flex items-center gap-2 mb-stack-sm">
+
+<!-- B · Live preview (mini browser) -->
+<div class="bento-cell hidden lg:block lg:col-[7/13] lg:row-[1/4]" style="--i:1">
+<div class="float-layer h-full" style="--z:50px; --delay:.3s">
+<div class="glass-panel glow-card card-edge-glow rounded-xl h-full p-3 flex flex-col overflow-hidden">
+<!-- browser chrome -->
+<div class="flex items-center gap-2 mb-2">
 <span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
 <span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
 <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
-<span class="ml-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">studio metrics</span>
+<span class="ml-2 flex-1 bg-surface-container-low border border-outline-variant rounded px-2 py-0.5 font-body-sm text-body-sm text-on-surface-variant truncate">auradesign.studio<span class="type-caret text-secondary">|</span></span>
 </div>
-<div class="flex items-end justify-between gap-1.5 h-[110px]">
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:46%; --delay:0s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:60%; --delay:.2s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:52%; --delay:.4s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:78%; --delay:.6s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:66%; --delay:.8s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:94%; --delay:1s"></span>
-<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:82%; --delay:1.2s"></span>
+<!-- fake viewport -->
+<div class="grow rounded-lg bg-surface-container-low border border-outline-variant p-3 flex flex-col gap-2 overflow-hidden">
+<div class="h-3 w-2/3 rounded bg-gradient-to-r from-secondary to-tertiary"></div>
+<div class="h-2 w-1/2 rounded bg-surface-variant"></div>
+<div class="grid grid-cols-3 gap-2 mt-1 grow">
+<div class="rounded bg-surface-container border border-outline-variant"></div>
+<div class="rounded bg-surface-container border border-outline-variant"></div>
+<div class="rounded bg-surface-container border border-outline-variant"></div>
 </div>
 </div>
 </div>
-<!-- Floating KPI: conversion (deep, top-right) -->
-<div class="float-layer absolute right-[2%] top-[2%] w-[34%]" style="--z:120px; --delay:.8s">
-<div class="glass-panel rounded-lg p-stack-sm text-center">
+</div>
+</div>
+
+<!-- C · KPI · projects shipped -->
+<div class="bento-cell col-span-6 lg:col-[1/3] lg:row-[5/7]" style="--i:2">
+<div class="float-layer h-full" style="--z:90px; --delay:1s">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg h-full p-stack-sm flex flex-col justify-center">
+<div class="font-display-md text-display-md text-secondary leading-none" data-stat="120" data-stat-suffix="+">0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Projects shipped</p>
+</div>
+</div>
+</div>
+
+<!-- D · KPI · conversion lift -->
+<div class="bento-cell col-span-6 lg:col-[3/5] lg:row-[5/7]" style="--i:3">
+<div class="float-layer h-full" style="--z:130px; --delay:.5s">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg h-full p-stack-sm flex flex-col justify-center">
 <div class="font-display-md text-display-md text-secondary leading-none" data-stat="40" data-stat-suffix="%">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Conv. lift</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Avg. conversion lift</p>
 </div>
 </div>
-<!-- Floating KPI: fps (mid, left) -->
-<div class="float-layer absolute left-[0%] bottom-[16%] w-[33%]" style="--z:100px; --delay:1.6s">
-<div class="glass-panel rounded-lg p-stack-sm text-center">
-<div class="font-display-md text-display-md text-secondary leading-none" data-stat="60" data-stat-suffix="fps">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Smooth UI</p>
+</div>
+
+<!-- E · Mini chart with animated bars -->
+<div class="bento-cell hidden lg:block lg:col-[7/10] lg:row-[4/7]" style="--i:4">
+<div class="float-layer h-full" style="--z:30px; --delay:.8s">
+<div class="glass-panel glow-card card-sheen rounded-xl h-full p-stack-sm flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">studio metrics</span>
+<div class="grow flex items-end justify-between gap-1.5 min-h-[90px]">
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:46%; --delay:0s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:62%; --delay:.2s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:52%; --delay:.4s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:80%; --delay:.6s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:68%; --delay:.8s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:95%; --delay:1s"></span>
 </div>
 </div>
-<!-- Floating KPI: uptime (front, bottom-right) -->
-<div class="float-layer absolute right-[8%] bottom-[6%] w-[36%]" style="--z:160px; --delay:.4s">
-<div class="glass-panel rounded-lg p-stack-sm text-center">
-<div class="font-display-md text-display-md text-secondary leading-none" data-stat="99" data-stat-suffix="%">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Uptime</p>
 </div>
 </div>
+
+<!-- F · Tech stack pills -->
+<div class="bento-cell hidden lg:block lg:col-[10/13] lg:row-[4/5]" style="--i:5">
+<div class="float-layer h-full" style="--z:70px; --delay:1.4s">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg h-full px-stack-sm py-2 flex flex-wrap items-center gap-1.5 content-center">
+<span class="tech-pill font-body-sm text-body-sm text-on-surface-variant px-2 py-0.5 rounded">Figma</span>
+<span class="tech-pill font-body-sm text-body-sm text-on-surface-variant px-2 py-0.5 rounded">React</span>
+<span class="tech-pill font-body-sm text-body-sm text-on-surface-variant px-2 py-0.5 rounded">Node</span>
+<span class="tech-pill font-body-sm text-body-sm text-on-surface-variant px-2 py-0.5 rounded">Tailwind</span>
+<span class="tech-pill font-body-sm text-body-sm text-on-surface-variant px-2 py-0.5 rounded">SEO</span>
+</div>
+</div>
+</div>
+
+<!-- G · Available for work (closest layer) -->
+<div class="bento-cell col-span-full lg:col-[5/7] lg:row-[5/6]" style="--i:6">
+<div class="float-layer h-full" style="--z:170px; --delay:.2s">
+<div class="glass-panel rounded-full h-full px-4 flex items-center justify-center gap-2">
+<span class="live-dot"></span>
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Available · 2026</span>
+</div>
+</div>
+</div>
+
+<!-- H · Mini testimonial -->
+<div class="bento-cell hidden lg:block lg:col-[10/13] lg:row-[5/7]" style="--i:7">
+<div class="float-layer h-full" style="--z:110px; --delay:1.7s">
+<div class="glass-panel glow-card rounded-xl h-full p-stack-sm flex flex-col justify-center">
+<p class="font-body-sm text-body-sm text-on-surface mb-2 leading-snug">"They rebuilt our platform without a single dropped frame."</p>
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">ER</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Elena R. · VP Product</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- I · Progress ring · client retention -->
+<div class="bento-cell hidden lg:flex lg:col-[5/7] lg:row-[6/7] items-center justify-center" style="--i:8">
+<div class="float-layer" style="--z:150px; --delay:1.2s">
+<div class="progress-ring w-[84px] h-[84px] flex items-center justify-center" style="--p:98%">
+<div class="text-center">
+<div class="font-headline-md text-headline-md text-primary leading-none" data-stat="98" data-stat-suffix="%">0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[10px] uppercase tracking-wider">retention</p>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 </div>
