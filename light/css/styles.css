@@ -853,7 +853,7 @@ body.js-ready .reveal.in-view {
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(6, minmax(56px, 1fr));
+    grid-template-rows: repeat(6, minmax(66px, 1fr));
     gap: 14px;
     height: 100%;
 }
