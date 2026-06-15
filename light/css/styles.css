@@ -696,9 +696,9 @@ body.js-ready .reveal.in-view {
 
 /* ============================================================
    HERO 3D SCENE — floating layered panels in perspective.
-   Pure CSS: a perspective stage holds cards at different Z depths
-   that levitate and drift in a loop; JS adds cursor parallax via
-   --rx / --ry. All motion is disabled under prefers-reduced-motion.
+   Pure CSS: a fixed-tilt perspective stage holds cards at different
+   Z depths; each card levitates on its own (no cursor reaction, no
+   block sway). All motion is disabled under prefers-reduced-motion.
    ============================================================ */
 .scene-3d {
     perspective: 1400px;
@@ -708,9 +708,10 @@ body.js-ready .reveal.in-view {
 .scene-3d-stage {
     position: relative;
     transform-style: preserve-3d;
-    transform: rotateX(calc(8deg + var(--ry, 0deg))) rotateY(calc(-16deg + var(--rx, 0deg)));
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    animation: scene-sway 14s ease-in-out infinite;
+    /* Fixed 3D tilt that gives the cards their depth. The board no longer
+       reacts to the cursor or sways as a block — each card animates on its
+       own (see .float-a … .float-h). */
+    transform: rotateX(9deg) rotateY(-13deg);
 }
 
 /* Perspective floor grid behind the cards */
@@ -822,11 +823,6 @@ body.js-ready .reveal.in-view {
 .text-flow {
     background-size: 220% 100%;
     animation: text-flow 6s ease-in-out infinite;
-}
-
-@keyframes scene-sway {
-    0%, 100% { transform: rotateX(calc(8deg + var(--ry, 0deg))) rotateY(calc(-16deg + var(--rx, 0deg))); }
-    50%      { transform: rotateX(calc(11deg + var(--ry, 0deg))) rotateY(calc(-9deg + var(--rx, 0deg))); }
 }
 
 @keyframes layer-float {

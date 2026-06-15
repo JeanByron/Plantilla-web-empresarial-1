@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFieldGlow();
     initNavGlow();
     initLogoGlow();
-    initHeroScene();
     initReveals();
 });
 
@@ -241,7 +240,6 @@ async function navigateTo(url, push) {
         initFaq();
         initStatCounters();
         initLogoGlow();
-        initHeroScene();
         initButtonEffects();
         initReveals();
 
@@ -506,31 +504,6 @@ function initLogoGlow() {
             el.style.setProperty('--mx', `${e.clientX - r.left}px`);
             el.style.setProperty('--my', `${e.clientY - r.top}px`);
         });
-    });
-}
-
-/* ---------- Hero 3D scene: cursor parallax on the floating stage ----------
-   Rotates the perspective stage slightly toward the pointer (sets --rx/--ry,
-   which the CSS animation adds on top of its idle sway). No-op when the user
-   prefers reduced motion or has no fine pointer. */
-function initHeroScene() {
-    if (REDUCED_MOTION || !FINE_POINTER) return;
-    const scene = document.getElementById('hero-scene');
-    if (!scene || scene.dataset.sceneBound) return;
-    scene.dataset.sceneBound = '1';
-    const stage = scene.querySelector('.scene-3d-stage');
-    if (!stage) return;
-
-    scene.addEventListener('pointermove', (e) => {
-        const r = scene.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;  // -0.5 .. 0.5
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        stage.style.setProperty('--rx', `${px * 14}deg`);
-        stage.style.setProperty('--ry', `${-py * 10}deg`);
-    });
-    scene.addEventListener('pointerleave', () => {
-        stage.style.setProperty('--rx', '0deg');
-        stage.style.setProperty('--ry', '0deg');
     });
 }
 
