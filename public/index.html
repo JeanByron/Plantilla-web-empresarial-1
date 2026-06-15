@@ -82,7 +82,7 @@
 <span class="w-2 h-2 rounded-full bg-secondary"></span> Strategic Design Partner
 </span>
 <h1 class="fade-in-up delay-100 font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-md">
-                    We turn visions into <span class="bg-gradient-to-r from-secondary to-tertiary bg-clip-text text-transparent">digital reality</span>
+                    We turn visions into <span class="text-flow bg-gradient-to-r from-secondary via-tertiary to-secondary bg-clip-text text-transparent">digital reality</span>
 </h1>
 <p class="fade-in-up delay-200 font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto lg:mx-0 mb-stack-lg">
                     We craft high-performance web experiences for business leaders. Architectural minimalism meets corporate precision to elevate your digital footprint.
@@ -111,41 +111,52 @@
 </div>
 </div>
 </div>
-<!-- Right: glass dashboard panel (tilts toward the cursor) -->
+<!-- Right: floating 3D scene (cards levitate at different depths; parallax follows the cursor) -->
 <div class="fade-in-up delay-200 hidden lg:block">
-<div class="glow-card relative bg-surface-container-lowest border border-outline-variant rounded-xl shadow-ambient-1 p-stack-md">
-<!-- Window chrome -->
-<div class="flex items-center gap-2 mb-stack-md">
-<span class="w-3 h-3 rounded-full bg-surface-variant"></span>
-<span class="w-3 h-3 rounded-full bg-surface-variant"></span>
-<span class="w-3 h-3 rounded-full bg-secondary"></span>
-<span class="ml-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">studio metrics</span>
+<div class="scene-3d relative h-[440px]" id="hero-scene">
+<!-- Perspective floor grid -->
+<div class="scene-3d-stage absolute inset-0">
+<div class="scene-floor"></div>
+<!-- Main chart panel (closest layer) -->
+<div class="float-layer absolute left-[6%] top-[14%] w-[64%]" style="--z:60px; --delay:0s">
+<div class="glass-panel rounded-xl p-stack-md">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="ml-1 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">studio metrics</span>
 </div>
-<!-- Mini bar chart (pure CSS) -->
-<div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-sm mb-stack-sm">
-<div class="flex items-end justify-between gap-2 h-[120px]">
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:42%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:58%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:50%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:76%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:64%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:92%"></span>
-<span class="flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:80%"></span>
+<div class="flex items-end justify-between gap-1.5 h-[110px]">
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:46%; --delay:0s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:60%; --delay:.2s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:52%; --delay:.4s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:78%; --delay:.6s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:66%; --delay:.8s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:94%; --delay:1s"></span>
+<span class="scene-bar flex-1 rounded-t bg-gradient-to-t from-secondary-fixed to-secondary" style="height:82%; --delay:1.2s"></span>
 </div>
 </div>
-<!-- Mini KPI cards -->
-<div class="grid grid-cols-3 gap-2">
-<div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-sm text-center">
-<div class="font-headline-md text-headline-md text-secondary" data-stat="40" data-stat-suffix="%">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Conv. lift</p>
 </div>
-<div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-sm text-center">
-<div class="font-headline-md text-headline-md text-secondary" data-stat="60" data-stat-suffix="fps">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Smooth UI</p>
+<!-- Floating KPI: conversion (deep, top-right) -->
+<div class="float-layer absolute right-[2%] top-[2%] w-[34%]" style="--z:120px; --delay:.8s">
+<div class="glass-panel rounded-lg p-stack-sm text-center">
+<div class="font-display-md text-display-md text-secondary leading-none" data-stat="40" data-stat-suffix="%">0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Conv. lift</p>
 </div>
-<div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-sm text-center">
-<div class="font-headline-md text-headline-md text-secondary" data-stat="99" data-stat-suffix="%">0</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Uptime</p>
+</div>
+<!-- Floating KPI: fps (mid, left) -->
+<div class="float-layer absolute left-[0%] bottom-[16%] w-[33%]" style="--z:100px; --delay:1.6s">
+<div class="glass-panel rounded-lg p-stack-sm text-center">
+<div class="font-display-md text-display-md text-secondary leading-none" data-stat="60" data-stat-suffix="fps">0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Smooth UI</p>
+</div>
+</div>
+<!-- Floating KPI: uptime (front, bottom-right) -->
+<div class="float-layer absolute right-[8%] bottom-[6%] w-[36%]" style="--z:160px; --delay:.4s">
+<div class="glass-panel rounded-lg p-stack-sm text-center">
+<div class="font-display-md text-display-md text-secondary leading-none" data-stat="99" data-stat-suffix="%">0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Uptime</p>
+</div>
 </div>
 </div>
 </div>

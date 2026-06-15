@@ -694,11 +694,115 @@ body.js-ready .reveal.in-view {
     left: 0;
 }
 
+/* ============================================================
+   HERO 3D SCENE — floating layered panels in perspective.
+   Pure CSS: a perspective stage holds cards at different Z depths
+   that levitate and drift in a loop; JS adds cursor parallax via
+   --rx / --ry. All motion is disabled under prefers-reduced-motion.
+   ============================================================ */
+.scene-3d {
+    perspective: 1400px;
+    perspective-origin: 50% 40%;
+}
+
+.scene-3d-stage {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(calc(8deg + var(--ry, 0deg))) rotateY(calc(-16deg + var(--rx, 0deg)));
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: scene-sway 14s ease-in-out infinite;
+}
+
+/* Perspective floor grid behind the cards */
+.scene-floor {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    width: 150%;
+    height: 150%;
+    transform: translateX(-50%) rotateX(72deg);
+    transform-origin: top center;
+    background-image:
+        linear-gradient(to right, rgb(var(--accent-rgb) / 0.20) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(var(--accent-rgb) / 0.20) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse at center top, #000 5%, transparent 62%);
+    mask-image: radial-gradient(ellipse at center top, #000 5%, transparent 62%);
+    animation: floor-scroll 5s linear infinite;
+    pointer-events: none;
+}
+
+/* A floating layer; depth set inline via --z, motion offset via --delay */
+.float-layer {
+    transform: translateZ(var(--z, 0px));
+    animation: layer-float 7s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    will-change: transform;
+}
+
+/* Glassy panel look for the floating cards */
+.glass-panel {
+    background: rgba(13, 20, 42, 0.72);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgb(var(--accent-rgb) / 0.22);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+        0 0 35px rgb(var(--accent-rgb) / 0.10);
+}
+
+/* Bars that grow on loop inside the floating chart */
+.scene-bar {
+    transform-origin: bottom;
+    animation: bar-rise 3.6s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Animated flowing gradient for the headline accent word */
+.text-flow {
+    background-size: 220% 100%;
+    animation: text-flow 6s ease-in-out infinite;
+}
+
+@keyframes scene-sway {
+    0%, 100% { transform: rotateX(calc(8deg + var(--ry, 0deg))) rotateY(calc(-16deg + var(--rx, 0deg))); }
+    50%      { transform: rotateX(calc(11deg + var(--ry, 0deg))) rotateY(calc(-9deg + var(--rx, 0deg))); }
+}
+
+@keyframes layer-float {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -16px; }
+}
+
+@keyframes floor-scroll {
+    from { background-position: 0 0; }
+    to   { background-position: 0 44px; }
+}
+
+@keyframes bar-rise {
+    0%, 100% { transform: scaleY(0.55); }
+    50%      { transform: scaleY(1); }
+}
+
+@keyframes text-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
 /* ---------- Accessibility: respect reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     .cursor-glow,
     #dot-field {
         display: none;
+    }
+
+    .scene-3d-stage,
+    .float-layer,
+    .scene-floor,
+    .scene-bar,
+    .text-flow {
+        animation: none !important;
     }
 
     .glow-card,
